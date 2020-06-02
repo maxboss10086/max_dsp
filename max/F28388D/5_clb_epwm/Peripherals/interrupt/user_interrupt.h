@@ -37,6 +37,7 @@ void spia_tx_interrupt_set(void);
 void spia_rx_interrupt_set(void);
 void spib_rx_interrupt_set(void);
 void spib_tx_interrupt_set(void);
+void epwm1_interrupt_set(void);
 //中断服务函数
 __interrupt void sciaTXFIFOISR(void);
 __interrupt void sciaRXFIFOISR(void);
@@ -46,5 +47,8 @@ __interrupt void spiaTxFIFOISR(void);
 __interrupt void spiaRxFIFOISR(void);
 __interrupt void spibTxFIFOISR(void);
 __interrupt void spibRxFIFOISR(void);
+
+__interrupt void epwm1ISR(void);
+
 
 #endif /* PERIPHERALS_INTERRUPT_USER_INTERRUPT_H_ */

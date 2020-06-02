@@ -16,7 +16,9 @@
 #include "driverlib.h"
 #include "device.h"
 #include <stdbool.h>
-
+#include "clb_config.h"
+#include "clb.h"
+#include "user_clb.h"
 
 #include "user_interrupt.h"
 
@@ -117,15 +119,27 @@ void interrupt_init_set(void){
 //    SPI_enableInterrupt(SPIB_BASE, SPI_INT_TXFF);
 //}
 //使能spib接收中断并设置
-void spib_rx_interrupt_set(void){
-    Interrupt_register(INT_SPIB_RX, &spibRxFIFOISR);
-    Interrupt_enable(INT_SPIB_RX);
-    SPI_clearInterruptStatus(SPIB_BASE, SPI_INT_RXFF);
-    SPI_setFIFOInterruptLevel(SPIB_BASE, SPI_FIFO_TX2, SPI_FIFO_RX2);
-    SPI_enableInterrupt(SPIB_BASE, SPI_INT_RXFF);
+//void spib_rx_interrupt_set(void){
+//    Interrupt_register(INT_SPIB_RX, &spibRxFIFOISR);
+//    Interrupt_enable(INT_SPIB_RX);
+//    SPI_clearInterruptStatus(SPIB_BASE, SPI_INT_RXFF);
+//    SPI_setFIFOInterruptLevel(SPIB_BASE, SPI_FIFO_TX2, SPI_FIFO_RX2);
+//    SPI_enableInterrupt(SPIB_BASE, SPI_INT_RXFF);
+//}
+
+
+void epwm1_interrupt_set(void){
+    Interrupt_register(INT_EPWM1, &epwm1ISR);
+    Interrupt_enable(INT_EPWM1);
+    EPWM_setInterruptSource(EPWM1_BASE, EPWM_INT_TBCTR_ZERO);
+    EPWM_enableInterrupt(EPWM1_BASE);
+    EPWM_setInterruptEventCount(EPWM1_BASE, 3U);
 }
 //************************************************************************************************\\
 //
+
+
+
 
 //***********************************************scl中断服务函数**********************************\\
 //
@@ -251,4 +265,11 @@ __interrupt void spibRxFIFOISR(void)
    SPI_clearInterruptStatus(SPIB_BASE, SPI_INT_RXFF);
    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
 
+}
+__interrupt void epwm1ISR(void)
+{
+    EPWM_clearEventTriggerInterruptFlag(EPWM1_BASE);
+    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP3);
+    CLB_setGPREG(CLB1_BASE, clb_mode & 3UL);
+    asm(" NOP");
 }

@@ -98,7 +98,7 @@ extern "C"
 //! Software force generated EPWM sync-out pulse
 #define EPWM_SYNC_OUT_PULSE_ON_SOFTWARE         EPWM_SYNCOUTEN_SWEN
 //! Counter zero event generates EPWM sync-out pulse
-#define EPWM_SYNC_OUT_PULSE_ON_CNTR_ZERO        EPWM_SYNCOUTEN_ZEROEN
+#define EPWM_SYNC_OUT_PULSE_ON_COUNTER_ZERO     EPWM_SYNCOUTEN_ZEROEN
 //! Counter equal to CMPB event generates EPWM sync-out pulse
 #define EPWM_SYNC_OUT_PULSE_ON_CNTR_COMPARE_B   EPWM_SYNCOUTEN_CMPBEN
 //! Counter equal to CMPC event generates EPWM sync-out pulse

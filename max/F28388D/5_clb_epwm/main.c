@@ -20,13 +20,13 @@
 #include "driverlib.h"
 #include "device.h"
 #include <stdbool.h>
-//
-#include "user_led.h"
-#include "user_spi.h"
 #include "user_interrupt.h"
 //
+#include "user_epwm.h"
+#include "user_clb.h"
 
-uint16_t    spi_data=0;
+//
+
 // Main
 void main(void)
 {
@@ -39,47 +39,41 @@ void main(void)
     interrupt_init_set();
 
 //***********************************************外设初始化设置**********************************\\
+//
+    SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
 
+    initEPWM1();//EPWM1:
+                //使用了中断，中断为计数器为0的时候触发，触发时设定CLB工作模式
+                //设定输出的GPIO为0和1
+                //设定为计数器0的时候为高电平
+                //启用了两个比较器，计数器采样向上计数方式
+                //EPWMA计数到A的时候置低，EPWMB计数到B的时候反转电平
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB1);
 
-//SPIa设置为主机，时钟500k，数据16位
-//SPIa模式Rising edge without delay.
-//GPIO19 is the SPIASTE
-//GPIO18 is the SPIACLK
-//GPIO16 is the SPIASIMO.
-//GPIO17 is the SPIASOMI.
-//没有中断
-    SPIa_init_set();
-//SPIb设置为从机，时钟500k，数据16位
-//SPIb模式Rising edge without delay.
-//GPIO27 is the SPIBSTE
-//GPIO26 is the SPIBCLK
-//GPIO24 is the SPIBSIMO.
-//GPIO25 is the SPIBSOMI.
-//填满2个16位FIFO后，开启中断读取数据
-    SPIb_init_set();
+    clb1_init_set();//模式0：clb不修改输入的epwm波形直接输出
+                    //模式1：不允许两个PWM同时低电平，诺出现就反转
+                    //模式2：不允许两个PWM同时出现高电平，诺出现就反转
+                    //模式3：保留现状
+                    //23输入，采样EPWM输入信号，12输入为模式选择，采用GP_REG信号
+                    //4个输入进入clb进行卡诺图运算
 EINT;
-ERTM;
-//***********************************************函数执行***************************************\\
-//函数执行
-
-
+////***********************************************函数执行***************************************\\
+////函数执行
+//
+//
      while(1){
-         //0x88=0000_0000_1000_1000
-         spia_send_data(spi_data);//发送的是16位数据，未满16位前面自动补
-         DEVICE_DELAY_US(500000);
-         spi_data=spi_data+1;
-         spia_send_data(spi_data);
-         DEVICE_DELAY_US(500000);
+
        }
-
-
-
-
-
-
-
-
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 }
 
