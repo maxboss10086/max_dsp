@@ -32,22 +32,26 @@
 void initEPWM1(void)
 {
     epwm1_interrupt_set();
-//EPWM1的GPIO设置
-    GPIO_setPadConfig(0, GPIO_PIN_TYPE_STD);
-    GPIO_setPinConfig(GPIO_0_EPWM1A);
-    GPIO_setPadConfig(1, GPIO_PIN_TYPE_STD);
-    GPIO_setPinConfig(GPIO_1_EPWM1B);
+//EPWM1的输出GPIO设置
+    GPIO_setDirectionMode(0, GPIO_DIR_MODE_OUT);//引脚设置为输出
+    GPIO_setPadConfig(0, GPIO_PIN_TYPE_STD);//推完输出
+    GPIO_setPinConfig(GPIO_0_EPWM1A);//引脚复用为EPWM1A
+
+    GPIO_setDirectionMode(1, GPIO_DIR_MODE_OUT);//引脚设置为输出
+    GPIO_setPadConfig(1, GPIO_PIN_TYPE_STD);//推完输出
+    GPIO_setPinConfig(GPIO_1_EPWM1B);//引脚复用为EPWM1B
 
     EPWM_setTimeBasePeriod(EPWM1_BASE, EPWM1_TIMER_TBPRD);
     EPWM_setPhaseShift(EPWM1_BASE, 0U);
     EPWM_setTimeBaseCounter(EPWM1_BASE, 0U);
-
-    EPWM_enableSyncOutPulseSource(EPWM1_BASE, EPWM_SYNC_OUT_PULSE_ON_COUNTER_ZERO);
+//找计数器0时产生中断
+    EPWM_enableSyncOutPulseSource(EPWM1_BASE, EPWM_SYNC_OUT_PULSE_ON_CNTR_ZERO);
 
     EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_A, EPWM1_CMPA);
     EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_B, EPWM1_CMPB);
 
     EPWM_disablePhaseShiftLoad(EPWM1_BASE);
+    //时钟不分频
     EPWM_setClockPrescaler(EPWM1_BASE, EPWM_CLOCK_DIVIDER_1, EPWM_HSCLOCK_DIVIDER_1);
 
     EPWM_setCounterCompareShadowLoadMode(EPWM1_BASE, EPWM_COUNTER_COMPARE_A, EPWM_COMP_LOAD_ON_CNTR_ZERO);
@@ -57,16 +61,19 @@ void initEPWM1(void)
     EPWM_setActionQualifierAction(EPWM1_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_LOW, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);
     EPWM_setActionQualifierAction(EPWM1_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_TOGGLE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);
 
-    //EPWM计数器向上计数
+    // start PWMs
     EPWM_setTimeBaseCounterMode(EPWM1_BASE, EPWM_COUNTER_MODE_UP);
 }
 
 
 void initEPWM2(void)
 {
-    GPIO_setPadConfig(2, GPIO_PIN_TYPE_STD);
+    GPIO_setDirectionMode(3, GPIO_DIR_MODE_OUT);//引脚设置为输出
+    GPIO_setPadConfig(2, GPIO_PIN_TYPE_STD);//推完输出
     GPIO_setPinConfig(GPIO_2_EPWM2A);
-    GPIO_setPadConfig(3, GPIO_PIN_TYPE_STD);
+
+    GPIO_setDirectionMode(3, GPIO_DIR_MODE_OUT);//引脚设置为输出
+    GPIO_setPadConfig(3, GPIO_PIN_TYPE_STD);//推完输出
     GPIO_setPinConfig(GPIO_3_EPWM2B);
 
     EPWM_setTimeBasePeriod(EPWM2_BASE, EPWM2_TIMER_TBPRD);
@@ -90,6 +97,6 @@ void initEPWM2(void)
     EPWM_setActionQualifierAction(EPWM2_BASE, EPWM_AQ_OUTPUT_A, EPWM_AQ_OUTPUT_LOW, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);
     //PWM2B计数到B的时候反转
     EPWM_setActionQualifierAction(EPWM2_BASE, EPWM_AQ_OUTPUT_B, EPWM_AQ_OUTPUT_TOGGLE, EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB);
-//EPWM计数器向上计数
+// start PWMs
     EPWM_setTimeBaseCounterMode(EPWM2_BASE, EPWM_COUNTER_MODE_UP);
 }
