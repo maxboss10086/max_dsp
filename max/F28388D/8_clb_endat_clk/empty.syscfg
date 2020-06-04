@@ -121,8 +121,12 @@ TILE1.OUTLUT_6.$name = "OUTLUT_6";
 TILE1.OUTLUT_7.$name = "OUTLUT_7";
 // Name
 TILE1.HLC.$name = "HLC_0";
+// Event 0 (e0) - Event 0
+TILE1.HLC.e0 = "BOUNDARY.in7";
 // Name
 TILE1.HLC.program0.$name = "HLCP_0";
+// instruct0
+TILE1.HLC.program0.instruct0 = "INTR 1";
 // Name
 TILE1.HLC.program1.$name = "HLCP_1";
 // Name

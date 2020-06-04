@@ -24,7 +24,7 @@
 //
 #include "user_epwm.h"
 #include "user_clb.h"
-
+#include "user_spi.h"
 //
 
 // Main
@@ -56,6 +56,10 @@ void main(void)
                     //23输入，采样EPWM输入信号，12输入为模式选择，采用GP_REG信号
                     //4个输入进入clb进行卡诺图运算
 
+    SPIb_init_set();//SPIB设定为从机
+                    //设置SPI时钟为1M，时钟个数是16个
+                    //时钟默认低电平，下降沿接收数据
+                    //GPIO66是cs_n,GPIO65是scl,GPIO63是mosi,GPIO64是miso
 
 EINT;
 ////***********************************************函数执行***************************************\\
