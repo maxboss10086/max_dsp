@@ -52,6 +52,6 @@ __interrupt void spiaRxFIFOISR(void);
 __interrupt void spibTxFIFOISR(void);
 __interrupt void spibRxFIFOISR(void);
 __interrupt void epwm1ISR(void);
-__interrupt void clb1ISR(void);
+//__interrupt void clb1ISR(void);
 
 #endif /* PERIPHERALS_INTERRUPT_USER_INTERRUPT_H_ */

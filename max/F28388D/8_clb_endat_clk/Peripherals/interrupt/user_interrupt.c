@@ -136,10 +136,10 @@ void spib_rx_interrupt_set(void){
 //    EPWM_setInterruptEventCount(EPWM1_BASE, 3U);
 //}
 
-void clb1_interrupt_set(void){
-    Interrupt_register(INT_CLB1, &clb1ISR);
-    Interrupt_enable(INT_CLB1);
-}
+//void clb1_interrupt_set(void){
+//    Interrupt_register(INT_CLB1, &clb1ISR);
+//    Interrupt_enable(INT_CLB1);
+//}
 //************************************************************************************************\\
 //
 
@@ -272,23 +272,23 @@ __interrupt void spibRxFIFOISR(void)
 
 }
 
-//epwm中断
-__interrupt void epwm1ISR(void)
-{
-    EPWM_clearEventTriggerInterruptFlag(EPWM1_BASE);
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP3);
-    CLB_setGPREG(CLB1_BASE, clb_input & 3UL);
-    asm(" NOP");
-}
+////epwm中断
+//__interrupt void epwm1ISR(void)
+//{
+//    EPWM_clearEventTriggerInterruptFlag(EPWM1_BASE);
+//    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP3);
+//    CLB_setGPREG(CLB1_BASE, clb_input & 3UL);
+//    asm(" NOP");
+//}
 
 
-//由clb中HLC模块引起的CLB中断
-//猜想可能在该中断使能SPI接收
-uint32_t  cnt_clb=0;
-__interrupt void clb1ISR(void)
-{
-
-    cnt_clb = cnt_clb+1;
-    CLB_clearInterruptTag(CLB1_BASE);
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
-}
+////由clb中HLC模块引起的CLB中断
+////猜想可能在该中断使能SPI接收
+//uint32_t  cnt_clb=0;
+//__interrupt void clb1ISR(void)
+//{
+//
+//    cnt_clb = cnt_clb+1;
+//    CLB_clearInterruptTag(CLB1_BASE);
+//    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
+//}

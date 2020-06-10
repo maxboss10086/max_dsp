@@ -100,8 +100,8 @@ unsigned char endat_en (void){
 void clb1_init_set(){
 
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB1);
-    //clb使能中断
-    clb1_interrupt_set();
+    //clb不使能中断
+//    clb1_interrupt_set();
     CLB_enableCLB(CLB1_BASE);
     initTILE1(CLB1_BASE);
 
