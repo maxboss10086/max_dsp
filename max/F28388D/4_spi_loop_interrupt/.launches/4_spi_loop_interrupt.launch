@@ -7,7 +7,7 @@
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT.C:\TI\work_space\max_dsp\max\F28388D\4_spi_loop_interrupt\targetConfigs\TMS320F28388D.ccxml.Texas Instruments XDS100v2 USB Debug Probe_0/C28xx_CPU1" value="4_spi_loop_interrupt"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT.C:\TI\work_space\max_dsp\max\F28388D\spi_loop_interrupt\targetConfigs\TMS320F28388D.ccxml.Texas Instruments XDS100v2 USB Debug Probe_0/C28xx_CPU1" value="4_spi_loop_interrupt"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_TARGET_CONFIG" value="${target_config_active_default:4_spi_loop_interrupt}"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.C:\TI\work_space\max_dsp\max\F28388D\4_spi_loop_interrupt\targetConfigs\TMS320F28388D.ccxml.Texas Instruments XDS100v2 USB Debug Probe_0/C28xx_CPU1" value="C:/TI\work_space\max_dsp\max\F28388D\4_spi_loop_interrupt\CPU1_FLASH\4_spi_loop_interrupt.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.C:\TI\work_space\max_dsp\max\F28388D\4_spi_loop_interrupt\targetConfigs\TMS320F28388D.ccxml.Texas Instruments XDS100v2 USB Debug Probe_0/C28xx_CPU1" value="C:/TI\work_space\max_dsp\max\F28388D\4_spi_loop_interrupt\CPU1_RAM\4_spi_loop_interrupt.out"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.C:\TI\work_space\max_dsp\max\F28388D\spi_loop_interrupt\targetConfigs\TMS320F28388D.ccxml.Texas Instruments XDS100v2 USB Debug Probe_0/C28xx_CPU1" value="C:/TI\work_space\max_dsp\max\F28388D\spi_loop_interrupt\CPU1_RAM\4_spi_loop_interrupt.out"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/4_spi_loop_interrupt"/>

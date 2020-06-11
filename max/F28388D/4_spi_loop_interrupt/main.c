@@ -27,6 +27,7 @@
 //
 
 uint16_t    spi_data=0;
+uint16_t    receive_data=0;
 // Main
 void main(void)
 {
@@ -62,7 +63,7 @@ ERTM;
 //***********************************************函数执行***************************************\\
 //函数执行
 
-
+//
      while(1){
          //0x88=0000_0000_1000_1000
          spia_send_data(spi_data);//发送的是16位数据，未满16位前面自动补
@@ -71,8 +72,6 @@ ERTM;
          spia_send_data(spi_data);
          DEVICE_DELAY_US(500000);
        }
-
-
 
 
 
