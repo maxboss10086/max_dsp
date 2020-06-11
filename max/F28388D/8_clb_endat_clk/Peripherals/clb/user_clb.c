@@ -21,7 +21,10 @@
 #include "clb.h"
 
 #include "user_clb.h"
-unsigned char clb_input = 0x01;//0000_0001,in0输入1，使得时钟默认为高电平
+#include "endat_cmd.h"
+
+
+//unsigned char clb_input = 0x01;//0000_0001,in0输入1，使得时钟默认为高电平
 
 void clb1_input_xbar_init_set(void){
     //CLB输入信号
@@ -85,15 +88,15 @@ void clb1_input_port_init_set(void){
     CLB_configGlobalInputMux(CLB1_BASE, CLB_IN7, CLB_GLOBAL_IN_MUX_CLB_AUXSIG0);//外来信号接入clb_xbar
 }
 
-//输入脉冲信号使能endat
-unsigned char endat_en (void){
-    clb_input= clb_input|0x40;       //clb的8输入端口第7个端口输入1
-    CLB_setGPREG(CLB1_BASE, clb_input);//设置输入CLB的信号
-    DEVICE_DELAY_US(1);
-    clb_input= clb_input&0xbf;       //clb的8输入端口第7个端口输入0
-    CLB_setGPREG(CLB1_BASE, clb_input);//设置输入CLB的信号
-    return clb_input;
-}
+////输入脉冲信号使能endat
+//unsigned char endat_en (void){
+//    clb_input= clb_input|0x40;       //clb的8输入端口第7个端口输入1
+//    CLB_setGPREG(CLB1_BASE, clb_input);//设置输入CLB的信号
+//    DEVICE_DELAY_US(1);
+//    clb_input= clb_input&0xbf;       //clb的8输入端口第7个端口输入0
+//    CLB_setGPREG(CLB1_BASE, clb_input);//设置输入CLB的信号
+//    return clb_input;
+//}
 
 //clb1设置：
 //时钟100M

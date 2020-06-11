@@ -49,7 +49,5 @@ void initDMA()
     DMA_configBurst(DMA_CH6_BASE, BURST, 0, 1);
     DMA_configTransfer(DMA_CH6_BASE, TRANSFER, 0, 1);
 
-    DMA_startChannel(DMA_CH6_BASE);
-
 
 }

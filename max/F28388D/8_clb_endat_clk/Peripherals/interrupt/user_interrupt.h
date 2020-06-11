@@ -39,7 +39,7 @@ void spib_rx_interrupt_set(void);
 void spib_tx_interrupt_set(void);
 void epwm1_interrupt_set(void);
 void clb1_interrupt_set(void);
-
+void dma_interrupt_set(void);
 
 
 //中断服务函数
@@ -53,5 +53,10 @@ __interrupt void spibTxFIFOISR(void);
 __interrupt void spibRxFIFOISR(void);
 __interrupt void epwm1ISR(void);
 //__interrupt void clb1ISR(void);
+__interrupt void dmaCh5ISR(void);
+__interrupt void dmaCh6ISR(void);
+
+
+
 
 #endif /* PERIPHERALS_INTERRUPT_USER_INTERRUPT_H_ */

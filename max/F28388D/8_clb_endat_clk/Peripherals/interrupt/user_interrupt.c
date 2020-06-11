@@ -140,16 +140,34 @@ void spib_rx_interrupt_set(void){
 //    Interrupt_register(INT_CLB1, &clb1ISR);
 //    Interrupt_enable(INT_CLB1);
 //}
+void dma_interrupt_set(){
+    Interrupt_register(INT_DMA_CH5, &dmaCh5ISR);
+    Interrupt_register(INT_DMA_CH6, &dmaCh6ISR);
+    Interrupt_enable(INT_DMA_CH5);
+    Interrupt_enable(INT_DMA_CH6);
+    // Configure DMA Ch5 interrupts
+    //
+    DMA_setInterruptMode(DMA_CH5_BASE, DMA_INT_AT_END);
+    DMA_enableInterrupt(DMA_CH5_BASE);
+    DMA_enableTrigger(DMA_CH5_BASE);
+
+    // Configure DMA Ch6 interrupts
+    //传输结束触发中断
+    DMA_setInterruptMode(DMA_CH6_BASE, DMA_INT_AT_END);
+    DMA_enableInterrupt(DMA_CH6_BASE);
+    DMA_enableTrigger(DMA_CH6_BASE);
+
+    DMA_startChannel(DMA_CH6_BASE);
+    DMA_startChannel(DMA_CH5_BASE);
+}
 //************************************************************************************************\\
 //
 
 
 
-
+//*************************************************中断服务函数***********************************************\\
 //***********************************************scl中断服务函数**********************************\\
 //
-uint16_t sDataA[2];// Send data for SCI-A
-uint16_t rDataA[2];// Received data for SCI-A
 __interrupt void sciaRXFIFOISR(void)
 {
 //    uint16_t i;
@@ -292,3 +310,37 @@ __interrupt void spibRxFIFOISR(void)
 //    CLB_clearInterruptTag(CLB1_BASE);
 //    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
 //}
+// DMA Channel 5 ISR
+//
+__interrupt void dmaCh5ISR(void)
+{
+    DMA_stopChannel(DMA_CH5_BASE);
+    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
+    return;
+}
+
+//
+// DMA Channel 6 ISR
+//
+ __interrupt void dmaCh6ISR(void)
+{
+//    uint16_t i;
+
+    DMA_stopChannel(DMA_CH6_BASE);
+    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
+
+    //
+    // Check for data integrity
+    //
+//    for(i = 0; i < 128; i++)
+//    {
+//        if (rData[i] != i)
+//        {
+//            // Something went wrong. rData doesn't contain expected data.
+//            ESTOP0;
+//        }
+//    }
+//
+//    done = 1;
+    return;
+}
