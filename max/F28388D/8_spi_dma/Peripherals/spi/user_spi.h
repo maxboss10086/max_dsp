@@ -21,8 +21,14 @@
 
 
 
-#define FIFO_LVL    2               // FIFO interrupt level
-
+#define FIFO_LVL    8               // FIFO interrupt level
+extern uint16_t sci_rDataA[2];
+extern uint16_t sci_sDataA[2];
+extern uint16_t spia_sData[128];
+extern uint16_t spia_rData[8];
+extern uint16_t spib_sData[8];
+extern uint16_t spib_rData[128];
+extern uint16_t spi_i;
 //define
 #define spi_a               SPIA_BASE;
 #define spi_b               SPIB_BASE;
@@ -49,6 +55,6 @@ uint16_t                    spia_receive_data(void);
 void                        SPIa_init_set(void);
 void                        SPIb_init_set(void);
 uint16_t                    spib_receive_data(void);
-
+void                        init_SPI_enableLoopback();
 
 #endif /* PERIPHERALS_SPI_USER_SPI_H_ */

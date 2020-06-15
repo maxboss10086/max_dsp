@@ -43,27 +43,27 @@ void init_dma_5(){
     // will be transferred from the sData buffer to the SPI module's transmit
     // buffer register.
     //DMA通道5将Sdata送入发送FIFO
-    DMA_configAddresses(DMA_CH5_BASE, (uint16_t *)(SPIB_BASE + SPI_O_TXBUF),spib_sData);
+    DMA_configAddresses(DMA_CH5_BASE, (uint16_t *)(dma_5 + SPI_O_TXBUF),spia_sData);
     DMA_configBurst(DMA_CH5_BASE, BURST, 1, 0);//突发传输深度为8,用户端即数组没有达到8可能不会进行突发
     DMA_configTransfer(DMA_CH5_BASE, TRANSFER, 1, 0);//TRANSFER=16，数据位宽16位
     //DMA通道5传输模式，SPIb的接收FIFO触发DMA，每次触发突发一次，传输结束通道关闭，传输数据大小16位
-    DMA_configMode(DMA_CH5_BASE, DMA_TRIGGER_SPIBTX, DMA_CFG_ONESHOT_DISABLE |
-                   DMA_CFG_CONTINUOUS_DISABLE | DMA_CFG_SIZE_16BIT);
+    DMA_configMode(DMA_CH5_BASE, DMA_TRIGGER_SPIATX, DMA_CFG_ONESHOT_DISABLE |
+                   DMA_CFG_CONTINUOUS_ENABLE | DMA_CFG_SIZE_16BIT);
     // Configure DMA Ch5 interrupts
     DMA_setInterruptMode(DMA_CH5_BASE, DMA_INT_AT_END);
     DMA_enableInterrupt(DMA_CH5_BASE);//传输完毕，令DMA停止
     DMA_enableTrigger(DMA_CH5_BASE);
 
-    DMA_startChannel(DMA_CH5_BASE);
+//    DMA_startChannel(DMA_CH5_BASE);
 }
 
 void init_dma_6(){
-    dma_6_interrupt_en();
+   dma_6_interrupt_en();
     // Configure DMA Ch6 for RX. When the FIFO contains at least 8 words to
     // read, data will be transferred from the SPI module's receive buffer
     // register to the rData buffer.
     //当接收FIFO等于设定的深度时，DMA将数据从FIFO搬入用户端(数组)
-    DMA_configAddresses(DMA_CH6_BASE, spib_rData,(uint16_t *)(SPIB_BASE + SPI_O_RXBUF));
+    DMA_configAddresses(DMA_CH6_BASE, spib_rData,(uint16_t *)(dma_6 + SPI_O_RXBUF));
     DMA_configBurst(DMA_CH6_BASE, BURST, 0, 1);//突发传输深度为FIFO的深度，突发一次，读空FIFO
     DMA_configTransfer(DMA_CH6_BASE, TRANSFER, 0, 1);//TRANSFER=16，数据位宽16位
     //DMA通道6传输模式，SPIb接收FIFO触发DMA，每次触发突发一次，传输结束通道关闭，传输数据大小16位
@@ -75,7 +75,7 @@ void init_dma_6(){
     DMA_enableInterrupt(DMA_CH6_BASE);
     DMA_enableTrigger(DMA_CH6_BASE);
 
-    DMA_startChannel(DMA_CH6_BASE);
+//    DMA_startChannel(DMA_CH6_BASE);
 }
 
 void initDMA(){

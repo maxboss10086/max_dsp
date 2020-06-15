@@ -8,8 +8,8 @@
 #ifndef PERIPHERALS_DMA_USER_DMA_H_
 #define PERIPHERALS_DMA_USER_DMA_H_
 
-
-
+#define dma_5       SPIA_BASE
+#define dma_6       SPIB_BASE
 
 void initDMA(void);
 

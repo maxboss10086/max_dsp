@@ -21,6 +21,18 @@
 
 #include "user_spi.h"
 
+uint16_t sci_rDataA[2];//定义函数在这里，h文件只是用extern把定义的函数发送出去
+uint16_t sci_sDataA[2];
+uint16_t spia_sData[128];
+uint16_t spia_rData[8];
+uint16_t spib_sData[8];
+uint16_t spib_rData[128];
+uint16_t spi_i;
+// Place buffers in GSRAM
+//给DMA分配sdram，否则DMA无法正确传输
+#pragma DATA_SECTION(spia_sData, "ramgs0");
+#pragma DATA_SECTION(spib_rData, "ramgs1");
+
 
 //******************SPI中断使能************************
 ////使能spia发送中断
@@ -88,12 +100,40 @@ void SPIa_init_set(void)
     // SPI configuration. Use a 5MHz SPICLK and 16-bit word size.
     SPI_setConfig(SPIA_BASE, DEVICE_LSPCLK_FREQ, SPI_PROT_POL0PHA0,
                   SPI_MODE_MASTER, 5000000, 16);
-    //SPI_disableLoopback(SPIA_BASE);
+    SPI_disableLoopback(SPIA_BASE);
     SPI_setEmulationMode(SPIA_BASE, SPI_EMULATION_FREE_RUN);
     SPI_resetTxFIFO(SPIA_BASE);
-    // FIFO and interrupt configuration
+// FIFO and interrupt configuration
     SPI_enableFIFO(SPIA_BASE);
+    SPI_clearInterruptStatus(SPIA_BASE, SPI_INT_RXFF | SPI_INT_TXFF);//清除SPI中断FIFO设置
+    //设置触发DMA的FIFO深度
+    SPI_setFIFOInterruptLevel(SPIA_BASE, (SPI_TxFIFOLevel)FIFO_LVL,(SPI_RxFIFOLevel)FIFO_LVL);
     // Configuration complete. Enable the module.
+    SPI_enableModule(SPIA_BASE);
+}
+
+void init_SPI_enableLoopback()
+{
+    //
+    // Must put SPI into reset before configuring it
+    //
+    SPI_disableModule(SPIA_BASE);
+
+    //
+    // FIFO configuration
+    //
+    SPI_enableFIFO(SPIA_BASE);
+    SPI_clearInterruptStatus(SPIA_BASE, SPI_INT_RXFF | SPI_INT_TXFF);
+    SPI_setFIFOInterruptLevel(SPIA_BASE, (SPI_TxFIFOLevel)FIFO_LVL,
+                             (SPI_RxFIFOLevel)FIFO_LVL);
+
+
+    //
+    // SPI configuration. Use a 500kHz SPICLK and 16-bit word size.
+    //
+    SPI_setConfig(SPIA_BASE, DEVICE_LSPCLK_FREQ, SPI_PROT_POL0PHA0,
+                  SPI_MODE_MASTER, 500000, 16);
+    SPI_enableLoopback(SPIA_BASE);
     SPI_enableModule(SPIA_BASE);
 }
 
@@ -108,8 +148,6 @@ uint16_t spia_receive_data(){
 }
 
 
-//
-// Function to configure SPI B as slave with FIFO enabled.
 //
 void SPIb_init_set(void)
 {
