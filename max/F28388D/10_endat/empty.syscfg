@@ -54,7 +54,7 @@ TILE1.FSM_0.eqn_s0 = "(((!e0)&(!e1)&s0)|((e0)&(!e1)&(!s0))|(e0&(!e1)&s0))";
 // eqn_out - Boolean equation on the variables e1,e0,s1,s0 for the LUT output.
 TILE1.FSM_0.eqn_out = "~s0";
 // e0 - External Input 0.
-TILE1.FSM_0.e0 = "BOUNDARY.in6";
+TILE1.FSM_0.e0 = "LUT_0.OUT";
 // Name
 TILE1.FSM_1.$name = "FSM_1";
 // e1 - External Input 1.
@@ -104,7 +104,7 @@ TILE1.COUNTER_2.mode0 = "LUT_0.OUT";
 // match1_val - Sets the value of the Match reference 1 register.
 TILE1.COUNTER_2.match1_val = "1";
 // reset - Reset the counter to 0 on next clock cycle (triggers low to high)
-TILE1.COUNTER_2.reset = "LUT_0.OUT";
+TILE1.COUNTER_2.reset = "BOUNDARY.in6";
 // Name
 TILE1.OUTLUT_0.$name = "OUTLUT_0";
 // eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
@@ -132,9 +132,7 @@ TILE1.OUTLUT_3.$name = "OUTLUT_3";
 // Name
 TILE1.OUTLUT_4.$name = "OUTLUT_4";
 // eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
-TILE1.OUTLUT_4.eqn = "i0";
-// i0 - Input 0.
-TILE1.OUTLUT_4.i0 = "FSM_0.S0";
+TILE1.OUTLUT_4.eqn = "0";
 // Name
 TILE1.OUTLUT_5.$name = "OUTLUT_5";
 // eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
