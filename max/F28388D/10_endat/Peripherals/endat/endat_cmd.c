@@ -28,25 +28,27 @@ unsigned char clb_input = 0x01;//0000_0001,in0输入1，使得时钟默认为高电平
                                //endat_en将改变输入clb的信号用以启动endat
 
 //输入脉冲信号使能endat,直接使用会报内存错误，留在后续研究
+void endat_en (void){
+    clb_input= clb_input|0x40;       //clb的8输入端口第7个端口即in6输入1
+    CLB_setGPREG(CLB1_BASE, clb_input);//设置输入CLB的信号
+    DEVICE_DELAY_US(1);
+    clb_input= clb_input&0xbf;       //clb的8输入端口第7个端口即in6输入0
+    CLB_setGPREG(CLB1_BASE, clb_input);//设置输入CLB的信号*/
+}
+
+////输入脉冲信号使能endat，通过外部GPIO短接
 //void endat_en (void){
-//    clb_input= clb_input|0x40;       //clb的8输入端口第7个端口输入1
-//    CLB_setGPREG(CLB1_BASE, clb_input);//设置输入CLB的信号
+//    GPIO61_H();       //clb的8输入端口第7个端口即in6输入1
 //    DEVICE_DELAY_US(1);
-//    clb_input= clb_input&0xbf;       //clb的8输入端口第7个端口输入0
-//    CLB_setGPREG(CLB1_BASE, clb_input);//设置输入CLB的信号*/
+//    GPIO61_L();//clb的8输入端口第7个端口即in6输入0
 //}
 
-//输入脉冲信号使能endat，通过外部GPIO短接
-void endat_en (void){
-    GPIO61_H();       //clb的8输入端口第7个端口即in6输入1
-    DEVICE_DELAY_US(1);
-    GPIO61_L();//clb的8输入端口第7个端口即in6输入0
-}
 
 
 void endat_send_position(){
-    spib_sData[0]=0x07;//000_111
-     DMA_startChannel(DMA_CH5_BASE);
+    spib_sData[0]=0x0ea1;//00_001110_A1=0000_1110_1010_0001选择存储区命令及MRS码
+    spib_sData[1]=0xaaaa;//16位任意参数
+    //spib_sData[2]=0x0;//16位任意参数
 }
 
 

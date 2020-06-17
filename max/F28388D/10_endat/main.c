@@ -29,9 +29,10 @@
 #include "user_dma.h"
 
 
-//
+
+
 // Main
-//
+
 void main(void)
 {
 //    uint16_t i;
@@ -48,8 +49,6 @@ void main(void)
     //
 
     user_gpio_init_set();
-
-//    led_init_set();//34引脚设置为GPIO输出
 
     DEVICE_DELAY_US(2000000);//编码器设备自身初始化需要2s
 
@@ -72,66 +71,32 @@ void main(void)
     ERTM;
 ////***********************************************函数执行***************************************\\
 ////函数执行
-//    DMA_startChannel(DMA_CH6_BASE);
-//    //
-//    // Initialize the data buffers
-//    //
-//    for(i = 0; i < 50; i++)
-//    {
-//        spib_sData[i] = i;
-//        spib_rData[i]= 0;
-//    }
-//    //一定在数据赋值完成后开启发送通道
-//    DMA_startChannel(DMA_CH5_BASE);
-//
-//    //
-//    // Enable interrupts required for this example
-//    //
-//
-//
-//    //
-//    // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
-//
-//
-//    //
-//    // Start the DMA channels
-//    //
-//
-//
-//    //
-//    // Wait until the DMA transfer is complete
-//    //
-//    while(!done);
-//
-//    //
-//    // When the DMA transfer is complete the program will stop here
-//    //
-//    ESTOP0;
-//}
-
 endat_send_position();
+//先设置好要发送的数组数据，再使能中断令SPI发送数据
+SPI_enableInterrupt(SPIB_BASE, SPI_INT_TXFF);
 //先设置好要发送的数组数据，再开启DMA通道
 //DMA_startChannel(DMA_CH5_BASE);
 //DMA_startChannel(DMA_CH6_BASE);
 
-    while(1){
-        endat_en();//向CLB输入信号 0100 0001
-        DEVICE_DELAY_US(800);//endat发送数据，拉高命令信号
+while(1){
+    endat_en();//向CLB输入信号 0100 0001
+    DEVICE_DELAY_US(10);//endat发送数据，拉高命令信号
 
-        GPIO16_L();
+    GPIO16_L();
 
-        DEVICE_DELAY_US(100);//命令数据发送完毕，数据输入线拉低，轮询高电平
+    DEVICE_DELAY_US(1);//命令数据发送完毕，数据输入线被编码器拉低，主机轮询高电平
 
-        GPIO16_H();
+    GPIO16_H();
 
-        DEVICE_DELAY_US(20);//命令数据拉高开始接收数据
+    DEVICE_DELAY_US(1);//S位拉高1us开始接收数据
 
-        GPIO16_L();
+    GPIO16_L();
 
-        DEVICE_DELAY_US(10000);//假设接收的数据都是0
-    }
+    DEVICE_DELAY_US(1000);//假设接收的数据都是0
+}
 
 }
+
 
 
 

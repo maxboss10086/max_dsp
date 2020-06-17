@@ -112,12 +112,14 @@ interrupt void xint2ISR(void)
 
 //**************************************************spi中断服务函数**********************************************\\
 //SPI a send FIFO ISR
+//CPU将数组深度2填入FIFO
 __interrupt void spiaTxFIFOISR(void)
 {
+    uint16_t spi_send_i = 0;
     // Send data
-    for(spi_i = 0; spi_i < 2; spi_i++)
+    for(spi_send_i = 0; spi_send_i < 2; spi_send_i++)
     {
-       SPI_writeDataNonBlocking(SPIA_BASE, spia_sData[spi_i]);
+       SPI_writeDataNonBlocking(SPIA_BASE, spia_sData[spi_send_i]);
     }
     // Clear interrupt flag and issue ACK
     SPI_clearInterruptStatus(SPIA_BASE, SPI_INT_TXFF);
@@ -127,13 +129,13 @@ __interrupt void spiaTxFIFOISR(void)
 // SPI a Receive FIFO ISR
  __interrupt void spiaRxFIFOISR(void)
 {
-    //uint16_t spia_rDataPoint = 0;
+     uint16_t spia_read_i = 0;
     //
     // Read data
     //
-    for(spi_i = 0; spi_i < 2; spi_i++)
+    for(spia_read_i = 0; spia_read_i < 2; spia_read_i++)
     {
-        spia_rData[spi_i] = SPI_readDataNonBlocking(SPIA_BASE);
+        spia_rData[spia_read_i] = SPI_readDataNonBlocking(SPIA_BASE);
     }
     // Check received data
     //这里可以编写接收后进行校验
@@ -144,13 +146,15 @@ __interrupt void spiaTxFIFOISR(void)
 }
 
 //SPI b send FIFO ISR
+ uint16_t spib_send_i = 0;
 __interrupt void spibTxFIFOISR(void)
 {
-    // Send data
-    for(spi_i = 0; spi_i < 2; spi_i++)
-    {
-       SPI_writeDataNonBlocking(SPIB_BASE, spib_sData[spi_i]);
+//    uint16_t spib_send_i = 0;
+    for(spib_send_i = 0; spib_send_i <= 1; spib_send_i++)
+    {//一直发送
+       SPI_writeDataNonBlocking(SPIB_BASE, spib_sData[spib_send_i]);
     }
+
     // Clear interrupt flag and issue ACK
     SPI_clearInterruptStatus(SPIB_BASE, SPI_INT_TXFF);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
@@ -159,11 +163,11 @@ __interrupt void spibTxFIFOISR(void)
 //SPI b receive FIFO ISR
 __interrupt void spibRxFIFOISR(void)
 {
-   //uint16_t spib_rDataPoint = 0;
+    uint16_t spib_read_i = 0;
    // Read data
-   for(spi_i = 0; spi_i < 2; spi_i++)
+   for(spib_read_i = 0; spib_read_i < 3; spib_read_i++)
    {//这里好像不能像串口一样,一个函数读取全部数据,需要一帧一帧读出来存入数组
-       spib_rData[spi_i] = SPI_readDataNonBlocking(SPIB_BASE);
+       spib_rData[spib_read_i] = SPI_readDataNonBlocking(SPIB_BASE);
    }
    // Check received data
    //这里可以编写接收后进行校验
@@ -211,7 +215,7 @@ __interrupt void dmaCh5ISR(void)
 volatile uint16_t done = 0;         // Flag to set when all data transfered
  __interrupt void dmaCh6ISR(void)
 {
-    uint16_t i;
+//    uint16_t i;
 
     //DMA_stopChannel(DMA_CH6_BASE);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
@@ -219,15 +223,15 @@ volatile uint16_t done = 0;         // Flag to set when all data transfered
     //
     // Check for data integrity
     //
-    for(i = 0; i < 128; i++)
-    {
-        if (spib_rData[i] != i)
-        {
-            // Something went wrong. rData doesn't contain expected data.
-            ESTOP0;
-        }
-    }
-
-    done = 1;
+//    for(i = 0; i < 128; i++)
+//    {
+//        if (spib_rData[i] != i)
+//        {
+//            // Something went wrong. rData doesn't contain expected data.
+//            ESTOP0;
+//        }
+//    }
+//
+//    done = 1;
     return;
 }

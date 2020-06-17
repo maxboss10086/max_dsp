@@ -25,9 +25,9 @@
 extern uint16_t sci_rDataA[2];
 extern uint16_t sci_sDataA[2];
 extern uint16_t spia_sData[2];
-extern uint16_t spia_rData[8];
-extern uint16_t spib_sData[2];
-extern uint16_t spib_rData[2];
+extern uint16_t spia_rData[2];
+extern uint16_t spib_sData[3];
+extern uint16_t spib_rData[3];
 extern uint16_t spi_i;
 //define
 #define spi_a               SPIA_BASE;
