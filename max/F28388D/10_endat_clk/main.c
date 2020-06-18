@@ -78,22 +78,26 @@ SPI_enableInterrupt(SPIB_BASE, SPI_INT_TXFF);
 //DMA_startChannel(DMA_CH5_BASE);
 //DMA_startChannel(DMA_CH6_BASE);
 
-while(1){
-    endat_en();//向CLB输入信号 0100 0001
-    DEVICE_DELAY_US(10);//endat发送数据，拉高命令信号
+//while(1){
+//    endat_en();//向CLB输入信号 0100 0001
+//    DEVICE_DELAY_US(10);//endat发送数据，拉高发送命令信号
+//
+//    GPIO16_L();
+//
+//    DEVICE_DELAY_US(1);//命令数据发送完毕，数据输入线被编码器拉低，主机轮询高电平
+//
+//    GPIO16_H();
+//
+//    DEVICE_DELAY_US(1);//S位拉高1us开始接收数据
+//
+//    GPIO16_L();
+//
+//    DEVICE_DELAY_US(1000);//假设接收的数据都是0
+//
+//}
 
-    GPIO16_L();
 
-    DEVICE_DELAY_US(1);//命令数据发送完毕，数据输入线被编码器拉低，主机轮询高电平
-
-    GPIO16_H();
-
-    DEVICE_DELAY_US(1);//S位拉高1us开始接收数据
-
-    GPIO16_L();
-
-    DEVICE_DELAY_US(1000);//假设接收的数据都是0
-}
+endat_en();//向CLB输入信号 0100 0001
 
 }
 

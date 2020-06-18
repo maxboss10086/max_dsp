@@ -181,7 +181,9 @@ void SPIb_init_set(void)
     SPI_enableFIFO(SPIB_BASE);
     SPI_clearInterruptStatus(SPIB_BASE, SPI_INT_RXFF | SPI_INT_TXFF);//清除之前的SPI中断FIFO设置
     //设置触发SPI中断的FIFO深度
-    SPI_setFIFOInterruptLevel(SPIB_BASE, SPI_FIFO_TX2, SPI_FIFO_RX2);
+    //SPI_FIFO_TX2表示FIFO中小于2时填入数据
+    //SPI_FIFO_TXEMPTY表示FIFO为空时填入数据
+    SPI_setFIFOInterruptLevel(SPIB_BASE, SPI_FIFO_TXEMPTY, SPI_FIFO_RX2);
     //设置触发DMA的FIFO深度
 //    SPI_setFIFOInterruptLevel(SPIB_BASE, (SPI_TxFIFOLevel)FIFO_LVL,(SPI_RxFIFOLevel)FIFO_LVL);
 
