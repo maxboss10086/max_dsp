@@ -96,9 +96,10 @@ SPI_enableInterrupt(SPIB_BASE, SPI_INT_TXFF);
 //
 //}
 
-
-endat_en();//向CLB输入信号 0100 0001
-
+    while(1){
+        endat_en();//向CLB输入信号 0100 0001
+        DEVICE_DELAY_US(1000);//假设接收的数据都是0
+    }
 }
 
 

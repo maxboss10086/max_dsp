@@ -85,6 +85,8 @@ void clb1_output_xbar_init_set(void){
         GPIO_setDirectionMode(7, GPIO_DIR_MODE_OUT);//配置为输出模式
         GPIO_setPadConfig(7, GPIO_PIN_TYPE_STD);//推完输出
         GPIO_setPinConfig(GPIO_7_OUTPUTXBAR5);//引脚复用为outxbar
+
+
 }
 void clb1_no_used_input_init_set(void){
     // Inputs set to GP register
