@@ -73,9 +73,9 @@ void main(void)
     ERTM;
 ////***********************************************函数执行***************************************\\
 ////函数执行
-endat_send_position();
+    endat_selection_of_memory_area();
 //先设置好要发送的数组数据，再使能中断令SPI发送数据
-SPI_enableInterrupt(SPIB_BASE, SPI_INT_TXFF);
+    SPI_enableInterrupt(SPIB_BASE, SPI_INT_TXFF);
 //先设置好要发送的数组数据，再开启DMA通道
 //DMA_startChannel(DMA_CH5_BASE);
 //DMA_startChannel(DMA_CH6_BASE);

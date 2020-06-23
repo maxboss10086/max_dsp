@@ -43,10 +43,17 @@ void endat_en (void){
 //    GPIO61_L();//clb的8输入端口第7个端口即in6输入0
 //}
 
+//第一个初始化命令由编码器选中存储区和对应的MRS码组成
+uint16_t endat_selection_of_memory_area_cmd(void){
+        uint16_t    init_cmd1_selection_of_memory_area;
+        init_cmd1_selection_of_memory_area = selection_of_memory_area;
+        init_cmd1_selection_of_memory_area = init_cmd1_selection_of_memory_area<<8;
+        init_cmd1_selection_of_memory_area = init_cmd1_selection_of_memory_area | MRS_Select_Parameters_of_Encoder_Manufacturer;
+        return init_cmd1_selection_of_memory_area;
+}
 
-
-void endat_send_position(){
-    spib_sData[0]=0x0ea1;//00_001110_A1=0000_1110_1010_0001选择存储区命令及MRS码
+void endat_selection_of_memory_area(){
+    spib_sData[0]=endat_selection_of_memory_area_cmd();//00_001110_A1=0000_1110_1010_0001选择存储区命令及MRS码
     spib_sData[1]=0xaaaa;//16位任意参数
     //spib_sData[2]=0x0;//16位任意参数
 }
