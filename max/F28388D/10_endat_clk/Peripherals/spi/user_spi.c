@@ -175,7 +175,7 @@ void SPIb_init_set(void)
     SPI_setConfig(SPIB_BASE, DEVICE_LSPCLK_FREQ, SPI_PROT_POL0PHA0,
                   SPI_MODE_SLAVE, 5000000, 16);
     SPI_disableLoopback(SPIB_BASE);
-    SPI_setEmulationMode(SPIB_BASE, SPI_EMULATION_FREE_RUN);
+    SPI_setEmulationMode(SPIB_BASE, SPI_EMULATION_STOP_AFTER_TRANSMIT);
 //FIFO设置
     // 使能FIFO以及用FIFO产生中断触发信号，可以用来触发SPI中断，也可以触发DMA
     SPI_enableFIFO(SPIB_BASE);
@@ -183,7 +183,7 @@ void SPIb_init_set(void)
     //设置触发SPI中断的FIFO深度
     //SPI_FIFO_TX2表示FIFO中小于2时填入数据
     //SPI_FIFO_TXEMPTY表示FIFO为空时填入数据
-    SPI_setFIFOInterruptLevel(SPIB_BASE, SPI_FIFO_TXEMPTY, SPI_FIFO_RX2);
+    SPI_setFIFOInterruptLevel(SPIB_BASE, SPI_FIFO_TXEMPTY, SPI_FIFO_RX3);
     //设置触发DMA的FIFO深度
 //    SPI_setFIFOInterruptLevel(SPIB_BASE, (SPI_TxFIFOLevel)FIFO_LVL,(SPI_RxFIFOLevel)FIFO_LVL);
 
