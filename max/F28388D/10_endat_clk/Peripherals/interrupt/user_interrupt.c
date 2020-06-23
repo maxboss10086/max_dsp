@@ -150,7 +150,7 @@ __interrupt void spiaTxFIFOISR(void)
 __interrupt void spibTxFIFOISR(void)
 {
 //    uint16_t spib_send_i = 0;
-    for(spib_send_i = 0; spib_send_i <= 2; spib_send_i++)
+    for(spib_send_i = 0; spib_send_i <= sizeof(spib_sData)/sizeof(uint16_t)-1; spib_send_i++)
     {//一直发送
        SPI_writeDataNonBlocking(SPIB_BASE, spib_sData[spib_send_i]);
     }
@@ -165,7 +165,7 @@ __interrupt void spibRxFIFOISR(void)
 {
     uint16_t spib_read_i = 0;
    // Read data
-   for(spib_read_i = 0; spib_read_i <= 2; spib_read_i++)
+   for(spib_read_i = 0; spib_read_i <= sizeof(spib_sData)/sizeof(uint16_t)-1; spib_read_i++)
    {//这里好像不能像串口一样,一个函数读取全部数据,需要一帧一帧读出来存入数组
        spib_rData[spib_read_i] = SPI_readDataNonBlocking(SPIB_BASE);
    }

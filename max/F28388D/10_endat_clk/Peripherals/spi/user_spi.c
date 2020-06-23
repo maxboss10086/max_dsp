@@ -25,8 +25,8 @@ uint16_t sci_rDataA[2];//定义函数在这里，h文件只是用extern把定义的函数发送出去
 uint16_t sci_sDataA[2];
 uint16_t spia_sData[2];
 uint16_t spia_rData[2];
-uint16_t spib_sData[3];
-uint16_t spib_rData[3];
+uint16_t spib_sData[4];//深度+1
+uint16_t spib_rData[4];
 uint16_t spi_i;
 // Place buffers in GSRAM
 //给DMA分配sdram，否则DMA无法正确传输
@@ -173,7 +173,7 @@ void SPIb_init_set(void)
     SPI_disableModule(SPIB_BASE);
     // SPI configuration. Use a 5MHz SPICLK and 16-bit word size.
     SPI_setConfig(SPIB_BASE, DEVICE_LSPCLK_FREQ, SPI_PROT_POL0PHA0,
-                  SPI_MODE_SLAVE, 5000000, 16);
+                  SPI_MODE_SLAVE, 5000000, 16);//移位寄存器设置
     SPI_disableLoopback(SPIB_BASE);
     SPI_setEmulationMode(SPIB_BASE, SPI_EMULATION_STOP_AFTER_TRANSMIT);
 //FIFO设置

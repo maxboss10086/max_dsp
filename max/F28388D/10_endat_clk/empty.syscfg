@@ -77,18 +77,20 @@ TILE1.COUNTER_0.mode1 = "1";
 TILE1.COUNTER_0.mode0 = "FSM_0.S0";
 // match1_val - Sets the value of the Match reference 1 register.
 TILE1.COUNTER_0.match1_val = "710";
+// match2_val - Sets the value of the Match reference 2 register.
+TILE1.COUNTER_0.match2_val = "670";
 // Name
 TILE1.COUNTER_1.$name = "COUNTER_1";
-// match2_val - Sets the value of the Match reference 2 register.
-TILE1.COUNTER_1.match2_val = "";
 // reset - Reset the counter to 0 on next clock cycle (triggers low to high)
 TILE1.COUNTER_1.reset = "COUNTER_1.count_match1";
 // mode1 - Controls counting direction. High enables count up. Low enables count down.
 TILE1.COUNTER_1.mode1 = "1";
 // mode0 - Enables Counting when high
 TILE1.COUNTER_1.mode0 = "FSM_2.S0";
+// match2_val - Sets the value of the Match reference 2 register.
+TILE1.COUNTER_1.match2_val = "610";
 // match1_val - Sets the value of the Match reference 1 register.
-TILE1.COUNTER_1.match1_val = "610";
+TILE1.COUNTER_1.match1_val = "630";
 // Name
 TILE1.COUNTER_2.$name = "COUNTER_2";
 // mode1 - Controls counting direction. High enables count up. Low enables count down.

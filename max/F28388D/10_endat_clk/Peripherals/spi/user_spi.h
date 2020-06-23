@@ -26,8 +26,8 @@ extern uint16_t sci_rDataA[2];
 extern uint16_t sci_sDataA[2];
 extern uint16_t spia_sData[2];
 extern uint16_t spia_rData[2];
-extern uint16_t spib_sData[3];
-extern uint16_t spib_rData[3];
+extern uint16_t spib_sData[4];
+extern uint16_t spib_rData[4];
 extern uint16_t spi_i;
 //define
 #define spi_a               SPIA_BASE;
@@ -40,6 +40,7 @@ extern uint16_t spi_i;
 #define spi_a_mosi_gpio     16
 #define spi_a_miso_gpio     17
 
+//定义一个枚举类型数据，别名叫spi_port
 typedef enum SPI_PORT{
     SPIA = 0x00006100U,
     SPIB = 0x00006110U,
