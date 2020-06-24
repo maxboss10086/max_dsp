@@ -9,8 +9,9 @@
 // Author:          Max
 // Creation Date:   2020年5月26日
 //----------------------------------------------------------------------------------------//
-//SPI中断就是令SPI停止传输数据
-
+//note: 1SPI中断就是令SPI停止传输数据
+//      2SPI发送时钟34个，接收时钟设置为30个，共64个时钟
+//      3中断触发设置的不对，会造成传输数据存在问题，如一帧数据传输64位，诺中断设置为2，会出现不稳定的情况
 //----------------------------------------------------------------------------------------//
 //***************************************include******************************************//
 
@@ -101,7 +102,8 @@ void SPIa_init_set(void)
     SPI_enableFIFO(SPIA_BASE);
     SPI_clearInterruptStatus(SPIA_BASE, SPI_INT_RXFF | SPI_INT_TXFF);//清除SPI中断FIFO设置
     //设置触发SPI中断的FIFO深度
-    SPI_setFIFOInterruptLevel(SPIB_BASE, SPI_FIFO_TX2, SPI_FIFO_RX2);
+    //中断触发设置的不对，会造成传输数据存在问题，如一帧数据传输64位，诺中断设置为2，会出现不稳定的情况
+    SPI_setFIFOInterruptLevel(SPIB_BASE, SPI_FIFO_TX4, SPI_FIFO_RX4);
     //设置触发DMA的FIFO深度
 //    SPI_setFIFOInterruptLevel(SPIB_BASE, (SPI_TxFIFOLevel)FIFO_LVL,(SPI_RxFIFOLevel)FIFO_LVL);
     // Configuration complete. Enable the module.
@@ -181,9 +183,9 @@ void SPIb_init_set(void)
     SPI_enableFIFO(SPIB_BASE);
     SPI_clearInterruptStatus(SPIB_BASE, SPI_INT_RXFF | SPI_INT_TXFF);//清除之前的SPI中断FIFO设置
     //设置触发SPI中断的FIFO深度
-    //SPI_FIFO_TX2表示FIFO中小于2时填入数据
+    //SPI_FIFO_TX2表示FIFO中小于2时填入数据,如果中断不是空触发，那么中断使能就可以在发送数据没写入前执行
     //SPI_FIFO_TXEMPTY表示FIFO为空时填入数据
-    SPI_setFIFOInterruptLevel(SPIB_BASE, SPI_FIFO_TXEMPTY, SPI_FIFO_RX3);
+    SPI_setFIFOInterruptLevel(SPIB_BASE, SPI_FIFO_TX4, SPI_FIFO_RX4);
     //设置触发DMA的FIFO深度
 //    SPI_setFIFOInterruptLevel(SPIB_BASE, (SPI_TxFIFOLevel)FIFO_LVL,(SPI_RxFIFOLevel)FIFO_LVL);
 

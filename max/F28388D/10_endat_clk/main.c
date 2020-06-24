@@ -12,7 +12,9 @@
 //note: 1启用CLB时，初始化DMA会报内存错误
 //      2SPI时钟与endat时钟呈反向关系
 //      3发送命令阶段：SPI上升沿发送命令数据，编码器用endat的上升沿(相当于SPI的下降沿)接收命令数据
-//      4接收命令阶段：编码器用endat的上升沿发送位置数据，cpu用spi的上升沿接收数据
+//      4接收命令阶段：编码器用endat的上升沿发送位置数据，cpu应用spi的上升沿接收数据，但实际上SPI设置为下降沿接收，这样会有一个小问题
+//  需要注意，就是接收数据最高位的S位数据会接收不到，而最低位总是读取到已经拉高的信号，也就是读取的数据会向左移动移位，最低位补上了1，这样在
+//  在截取数据的时候要注意
 //----------------------------------------------------------------------------------------//
 //***************************************include******************************************//
 // Included Files
@@ -73,34 +75,21 @@ void main(void)
     ERTM;
 ////***********************************************函数执行***************************************\\
 ////函数执行
-    endat_selection_of_memory_area();
-//先设置好要发送的数组数据，再使能中断令SPI发送数据
-    SPI_enableInterrupt(SPIB_BASE, SPI_INT_TXFF);
+
+
+
 //先设置好要发送的数组数据，再开启DMA通道
 //DMA_startChannel(DMA_CH5_BASE);
 //DMA_startChannel(DMA_CH6_BASE);
 
-//while(1){
-//    endat_en();//向CLB输入信号 0100 0001
-//    DEVICE_DELAY_US(10);//endat发送数据，拉高发送命令信号
-//
-//    GPIO16_L();
-//
-//    DEVICE_DELAY_US(1);//命令数据发送完毕，数据输入线被编码器拉低，主机轮询高电平
-//
-//    GPIO16_H();
-//
-//    DEVICE_DELAY_US(1);//S位拉高1us开始接收数据
-//
-//    GPIO16_L();
-//
-//    DEVICE_DELAY_US(1000);//假设接收的数据都是0
-//
-//}
 
+    endat_selection_of_memory_area();
+    SPI_enableInterrupt(SPIB_BASE, SPI_INT_TXFF);
+    endat_en();//endat每隔1000传输一次,向CLB输入信号 0100 0001,发出时钟，启动SPI传输
+    endat_send_clock_pulses();
     while(1){
-        endat_en();//向CLB输入信号 0100 0001
-        DEVICE_DELAY_US(1000);//假设接收的数据都是0
+               endat_en();//endat每隔1000传输一次,向CLB输入信号 0100 0001,发出时钟，启动SPI传输
+               DEVICE_DELAY_US(1000);//假设接收的数据都是0
     }
 }
 

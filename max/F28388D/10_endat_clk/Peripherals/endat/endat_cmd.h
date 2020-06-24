@@ -18,6 +18,8 @@
 
 //define
 extern unsigned char clb_input;
+extern uint16_t init_cmd1_sData[4];
+extern uint16_t init_cmd2_sData[4];
 //编码器命令
 #define     encoder_transmit_position_values                                0x07//6'b00_0111
 #define     selection_of_memory_area                                        0x0e//6'b00_1110
@@ -78,6 +80,7 @@ extern unsigned char clb_input;
 //function
 void endat_en (void);
 void endat_selection_of_memory_area(void);
+void endat_send_clock_pulses(void);
 void endat_send_position(void);
 
 #endif /* PERIPHERALS_ENDAT_ENDAT_CMD_H_ */

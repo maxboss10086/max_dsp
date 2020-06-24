@@ -26,8 +26,12 @@
 unsigned char clb_input = 0x01;//0000_0001,in0输入1，使得时钟默认为高电平
                                //clb初始化时，将使用0x01数据输入clb
                                //endat_en将改变输入clb的信号用以启动endat
+uint16_t init_cmd1_sData[4];
+uint16_t init_cmd2_sData[4];
+
 
 //输入脉冲信号使能endat,直接使用会报内存错误，留在后续研究
+//向CLB输入信号 0100 0001,CLB发出时钟，启动SPI传输
 void endat_en (void){
     clb_input= clb_input|0x40;       //clb的8输入端口第7个端口即in6输入1
     CLB_setGPREG(CLB1_BASE, clb_input);//设置输入CLB的信号
@@ -53,14 +57,26 @@ uint16_t endat_selection_of_memory_area_cmd(void){
 }
 
 void endat_selection_of_memory_area(){
-    spib_sData[0]=endat_selection_of_memory_area_cmd();//00_001110_A1=0000_1110_1010_0001选择存储区命令及MRS码
-    spib_sData[1]=0xaaaa;//16位任意参数
-    //spib_sData[2]=0x0;//16位任意参数
+    init_cmd1_sData[0]=endat_selection_of_memory_area_cmd();//00_001110_A1=0000_1110_1010_0001选择存储区命令及MRS码
+    init_cmd1_sData[1]=0xaaaa;//16位任意参数
+    init_cmd1_sData[2]=0xaaaa;
+    init_cmd1_sData[3]=0xaaaa;
 }
 
 
+//第二个初始化命令由编码器发送参数命令和对应的地址组成
+uint16_t endat_send_clock_pulses_cmd(void){
+        uint16_t    init_cmd2_endat_send_clock_pulses;
+        init_cmd2_endat_send_clock_pulses = encoder_send_parameter;
+        init_cmd2_endat_send_clock_pulses = init_cmd2_endat_send_clock_pulses<<8;
+        init_cmd2_endat_send_clock_pulses = init_cmd2_endat_send_clock_pulses | MRS_address_clock_pulses;
+        return init_cmd2_endat_send_clock_pulses;
+}
 
-
-
-
+void endat_send_clock_pulses(){
+    init_cmd2_sData[0]=endat_send_clock_pulses_cmd();//0010_0011_0000_1101
+    init_cmd2_sData[1]=0xaaaa;//16位任意参数
+    init_cmd2_sData[2]=0xaaaa;
+    init_cmd2_sData[3]=0xaaaa;
+}
 

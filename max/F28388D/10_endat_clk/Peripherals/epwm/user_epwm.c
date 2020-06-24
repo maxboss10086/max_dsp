@@ -60,7 +60,7 @@ void initEPWM1(void)
     EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_B, EPWM1_CMPB);
 
     EPWM_disablePhaseShiftLoad(EPWM1_BASE);
-    //EPWM默认100M，设置时基计数器时钟不分频，即EPWM时钟是多少M，计数器时钟就是多少
+    //
     EPWM_setClockPrescaler(EPWM1_BASE, EPWM_CLOCK_DIVIDER_1, EPWM_HSCLOCK_DIVIDER_1);
 
     EPWM_setCounterCompareShadowLoadMode(EPWM1_BASE, EPWM_COUNTER_COMPARE_A, EPWM_COMP_LOAD_ON_CNTR_ZERO);

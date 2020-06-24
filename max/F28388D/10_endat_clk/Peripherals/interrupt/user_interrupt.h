@@ -22,6 +22,7 @@
 
 
 extern volatile uint16_t done ;
+extern uint16_t flag;
 //function
 //中断使能设置
 void interrupt_init_set(void);

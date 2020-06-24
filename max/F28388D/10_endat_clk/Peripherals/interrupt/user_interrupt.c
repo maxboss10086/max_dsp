@@ -22,7 +22,7 @@
 
 #include "user_interrupt.h"
 #include "user_spi.h"//引入SPI数据
-
+#include "endat_cmd.h"//引入SPI数据
 
 
 
@@ -147,13 +147,29 @@ __interrupt void spiaTxFIFOISR(void)
 
 //SPI b send FIFO ISR
  uint16_t spib_send_i = 0;
+ uint16_t flag = 0;
 __interrupt void spibTxFIFOISR(void)
 {
-//    uint16_t spib_send_i = 0;
-    for(spib_send_i = 0; spib_send_i <= sizeof(spib_sData)/sizeof(uint16_t)-1; spib_send_i++)
-    {//一直发送
-       SPI_writeDataNonBlocking(SPIB_BASE, spib_sData[spib_send_i]);
+    if(flag == 0){
+        //    uint16_t spib_send_i = 0;
+            for(spib_send_i = 0; spib_send_i <= sizeof(init_cmd1_sData)/sizeof(uint16_t)-1; spib_send_i++)
+            {//一直发送
+               SPI_writeDataNonBlocking(SPIB_BASE, init_cmd1_sData[spib_send_i]);
+            }
+        flag = 1;
     }
+    else{
+        //    uint16_t spib_send_i = 0;
+            for(spib_send_i = 0; spib_send_i <= sizeof(init_cmd2_sData)/sizeof(uint16_t)-1; spib_send_i++)
+            {//一直发送
+               SPI_writeDataNonBlocking(SPIB_BASE, init_cmd2_sData[spib_send_i]);
+            }
+    }
+
+//    for(spib_send_i = 0; spib_send_i <= sizeof(init_cmd1_sData)/sizeof(uint16_t)-1; spib_send_i++)
+//    {//一直发送
+//       SPI_writeDataNonBlocking(SPIB_BASE, init_cmd1_sData[spib_send_i]);
+//    }
 
     // Clear interrupt flag and issue ACK
     SPI_clearInterruptStatus(SPIB_BASE, SPI_INT_TXFF);
@@ -161,6 +177,8 @@ __interrupt void spibTxFIFOISR(void)
 }
 
 //SPI b receive FIFO ISR
+//中断接收数据后，对数据进行处理，可以校验，也可以抽取分类
+uint16_t clock_pulses=0;
 __interrupt void spibRxFIFOISR(void)
 {
     uint16_t spib_read_i = 0;
@@ -169,8 +187,11 @@ __interrupt void spibRxFIFOISR(void)
    {//这里好像不能像串口一样,一个函数读取全部数据,需要一帧一帧读出来存入数组
        spib_rData[spib_read_i] = SPI_readDataNonBlocking(SPIB_BASE);
    }
-   // Check received data
-   //这里可以编写接收后进行校验
+   // 接收后处理数据
+   if(flag){
+   clock_pulses=spib_rData[3]&0xffc0;//截取数据的时候要注意，不是截取5-15，而是截取6-15，因为SPI采用下降沿接收
+   clock_pulses=clock_pulses>>6;
+   }//
 
    // Clear interrupt flag and issue ACK
    SPI_clearInterruptStatus(SPIB_BASE, SPI_INT_RXFF);
@@ -223,7 +244,7 @@ volatile uint16_t done = 0;         // Flag to set when all data transfered
 
     //
     // Check for data integrity
-    //
+    //中断接收数据后，对数据进行处理
 //    for(i = 0; i < 128; i++)
 //    {
 //        if (spib_rData[i] != i)
