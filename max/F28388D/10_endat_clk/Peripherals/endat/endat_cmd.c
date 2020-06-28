@@ -9,8 +9,8 @@
 // Author:          Max
 // Creation Date:   2020年6月11日
 //----------------------------------------------------------------------------------------//
-//note:全局变量在这里修改后进入各模块
-
+//note: 1：全局变量在这里修改后进入各模块
+//      2：8位赋值给16位，要强转成16位先，然后再赋值
 //----------------------------------------------------------------------------------------//
 //***************************************include******************************************//
 
@@ -50,9 +50,6 @@ void endat_en (void){
 //第一个初始化命令由编码器选中存储区和对应的MRS码组成
 uint16_t endat_selection_of_memory_area_cmd(void){
         uint16_t    init_cmd1_selection_of_memory_area = 0;
-        //init_cmd1_selection_of_memory_area = selection_of_memory_area;
-        //init_cmd1_selection_of_memory_area = init_cmd1_selection_of_memory_area<<8;
-        //init_cmd1_selection_of_memory_area = init_cmd1_selection_of_memory_area | MRS_Select_Parameters_of_Encoder_Manufacturer;
         init_cmd1_selection_of_memory_area = (uint16_t)selection_of_memory_area;
         init_cmd1_selection_of_memory_area = init_cmd1_selection_of_memory_area << 8;
         init_cmd1_selection_of_memory_area |= (uint16_t)MRS_Select_Parameters_of_Encoder_Manufacturer;
@@ -77,7 +74,7 @@ uint16_t endat_send_clock_pulses_cmd(void){
 }
 
 void endat_send_clock_pulses(){
-    init_cmd2_sData[0]=endat_send_clock_pulses_cmd();//endat_send_clock_pulses_cmd();//0010_0011_0000_1101
+    init_cmd2_sData[0]=endat_send_clock_pulses_cmd();//0010_0011_0000_1101
     init_cmd2_sData[1]=0xaaaa;//16位任意参数
     init_cmd2_sData[2]=0x0000;
     init_cmd2_sData[3]=0xffff;
