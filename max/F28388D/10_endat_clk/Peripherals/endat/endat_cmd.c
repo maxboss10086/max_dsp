@@ -1,53 +1,53 @@
 //****************************************Copyright (c)***********************************//
-//ÍøÕ¾²©¿Í: NC
-//°æÈ¨ËùÓĞ, µÁ°æ±Ø¾¿
+//ç½‘ç«™åšå®¢: NC
+//ç‰ˆæƒæ‰€æœ‰, ç›—ç‰ˆå¿…ç©¶
 //Copyright (c) 2020
 // ALL right reserved
 //----------------------------------------------------------------------------------------//
 //File name:        user_clb.c
-// Descriptions:    ÊµÏÖendatµÄÃüÁî
+// Descriptions:    å®ç°endatçš„å‘½ä»¤
 // Author:          Max
-// Creation Date:   2020Äê6ÔÂ11ÈÕ
+// Creation Date:   2020å¹´6æœˆ11æ—¥
 //----------------------------------------------------------------------------------------//
-//note: 1£ºÈ«¾Ö±äÁ¿ÔÚÕâÀïĞŞ¸Äºó½øÈë¸÷Ä£¿é
-//      2£º8Î»¸³Öµ¸ø16Î»£¬ÒªÇ¿×ª³É16Î»ÏÈ£¬È»ºóÔÙ¸³Öµ
+//note: 1ï¼šå…¨å±€å˜é‡åœ¨è¿™é‡Œä¿®æ”¹åè¿›å…¥å„æ¨¡å—
+//      2ï¼š8ä½èµ‹å€¼ç»™16ä½ï¼Œè¦å¼ºè½¬æˆ16ä½å…ˆï¼Œç„¶åå†èµ‹å€¼
 //----------------------------------------------------------------------------------------//
 //***************************************include******************************************//
 
 
 #include <stdbool.h>
-#include "device.h"//ÒıÈëÍâÉè
+#include "device.h"//å¼•å…¥å¤–è®¾
 #include "driverlib.h"
 #include "user_interrupt.h"
 
 #include "endat_cmd.h"
-#include "user_spi.h"//ÒıÈëspiÊı¾İ
+#include "user_spi.h"//å¼•å…¥spiæ•°æ®
 #include "user_gpio.h"
-unsigned char clb_input = 0x01;//0000_0001,in0ÊäÈë1£¬Ê¹µÃÊ±ÖÓÄ¬ÈÏÎª¸ßµçÆ½
-                               //clb³õÊ¼»¯Ê±£¬½«Ê¹ÓÃ0x01Êı¾İÊäÈëclb
-                               //endat_en½«¸Ä±äÊäÈëclbµÄĞÅºÅÓÃÒÔÆô¶¯endat
+unsigned char clb_input = 0x01;//0000_0001,in0è¾“å…¥1ï¼Œä½¿å¾—æ—¶é’Ÿé»˜è®¤ä¸ºé«˜ç”µå¹³
+                               //clbåˆå§‹åŒ–æ—¶ï¼Œå°†ä½¿ç”¨0x01æ•°æ®è¾“å…¥clb
+                               //endat_enå°†æ”¹å˜è¾“å…¥clbçš„ä¿¡å·ç”¨ä»¥å¯åŠ¨endat
 uint16_t init_cmd1_sData[4];
 uint16_t init_cmd2_sData[4];
 
 
-//ÊäÈëÂö³åĞÅºÅÊ¹ÄÜendat,Ö±½ÓÊ¹ÓÃ»á±¨ÄÚ´æ´íÎó£¬ÁôÔÚºóĞøÑĞ¾¿
-//ÏòCLBÊäÈëĞÅºÅ 0100 0001,CLB·¢³öÊ±ÖÓ£¬Æô¶¯SPI´«Êä
+//è¾“å…¥è„‰å†²ä¿¡å·ä½¿èƒ½endat,ç›´æ¥ä½¿ç”¨ä¼šæŠ¥å†…å­˜é”™è¯¯ï¼Œç•™åœ¨åç»­ç ”ç©¶
+//å‘CLBè¾“å…¥ä¿¡å· 0100 0001,CLBå‘å‡ºæ—¶é’Ÿï¼Œå¯åŠ¨SPIä¼ è¾“
 void endat_en (void){
-    clb_input= clb_input|0x40;       //clbµÄ8ÊäÈë¶Ë¿ÚµÚ7¸ö¶Ë¿Ú¼´in6ÊäÈë1
-    CLB_setGPREG(CLB1_BASE, clb_input);//ÉèÖÃÊäÈëCLBµÄĞÅºÅ
+    clb_input= clb_input|0x40;       //clbçš„8è¾“å…¥ç«¯å£ç¬¬7ä¸ªç«¯å£å³in6è¾“å…¥1
+    CLB_setGPREG(CLB1_BASE, clb_input);//è®¾ç½®è¾“å…¥CLBçš„ä¿¡å·
     DEVICE_DELAY_US(1);
-    clb_input= clb_input&0xbf;       //clbµÄ8ÊäÈë¶Ë¿ÚµÚ7¸ö¶Ë¿Ú¼´in6ÊäÈë0
-    CLB_setGPREG(CLB1_BASE, clb_input);//ÉèÖÃÊäÈëCLBµÄĞÅºÅ*/
+    clb_input= clb_input&0xbf;       //clbçš„8è¾“å…¥ç«¯å£ç¬¬7ä¸ªç«¯å£å³in6è¾“å…¥0
+    CLB_setGPREG(CLB1_BASE, clb_input);//è®¾ç½®è¾“å…¥CLBçš„ä¿¡å·*/
 }
 
-////ÊäÈëÂö³åĞÅºÅÊ¹ÄÜendat£¬Í¨¹ıÍâ²¿GPIO¶Ì½Ó
+////è¾“å…¥è„‰å†²ä¿¡å·ä½¿èƒ½endatï¼Œé€šè¿‡å¤–éƒ¨GPIOçŸ­æ¥
 //void endat_en (void){
-//    GPIO61_H();       //clbµÄ8ÊäÈë¶Ë¿ÚµÚ7¸ö¶Ë¿Ú¼´in6ÊäÈë1
+//    GPIO61_H();       //clbçš„8è¾“å…¥ç«¯å£ç¬¬7ä¸ªç«¯å£å³in6è¾“å…¥1
 //    DEVICE_DELAY_US(1);
-//    GPIO61_L();//clbµÄ8ÊäÈë¶Ë¿ÚµÚ7¸ö¶Ë¿Ú¼´in6ÊäÈë0
+//    GPIO61_L();//clbçš„8è¾“å…¥ç«¯å£ç¬¬7ä¸ªç«¯å£å³in6è¾“å…¥0
 //}
 
-//µÚÒ»¸ö³õÊ¼»¯ÃüÁîÓÉ±àÂëÆ÷Ñ¡ÖĞ´æ´¢ÇøºÍ¶ÔÓ¦µÄMRSÂë×é³É
+//ç¬¬ä¸€ä¸ªåˆå§‹åŒ–å‘½ä»¤ç”±ç¼–ç å™¨é€‰ä¸­å­˜å‚¨åŒºå’Œå¯¹åº”çš„MRSç ç»„æˆ
 uint16_t endat_selection_of_memory_area_cmd(void){
         uint16_t    init_cmd1_selection_of_memory_area = 0;
         init_cmd1_selection_of_memory_area = (uint16_t)selection_of_memory_area;
@@ -57,14 +57,14 @@ uint16_t endat_selection_of_memory_area_cmd(void){
 }
 
 void endat_selection_of_memory_area(){
-    init_cmd1_sData[0]=endat_selection_of_memory_area_cmd();//00_001110_A1=0000_1110_1010_0001Ñ¡Ôñ´æ´¢ÇøÃüÁî¼°MRSÂë
-    init_cmd1_sData[1]=0xaaaa;//16Î»ÈÎÒâ²ÎÊı
+    init_cmd1_sData[0]=endat_selection_of_memory_area_cmd();//00_001110_A1=0000_1110_1010_0001é€‰æ‹©å­˜å‚¨åŒºå‘½ä»¤åŠMRSç 
+    init_cmd1_sData[1]=0xaaaa;//16ä½ä»»æ„å‚æ•°
     init_cmd1_sData[2]=0x0000;
     init_cmd1_sData[3]=0xffff;
 }
 
 
-//µÚ¶ş¸ö³õÊ¼»¯ÃüÁîÓÉ±àÂëÆ÷·¢ËÍ²ÎÊıÃüÁîºÍ¶ÔÓ¦µÄµØÖ·×é³É
+//ç¬¬äºŒä¸ªåˆå§‹åŒ–å‘½ä»¤ç”±ç¼–ç å™¨å‘é€å‚æ•°å‘½ä»¤å’Œå¯¹åº”çš„åœ°å€ç»„æˆ
 uint16_t endat_send_clock_pulses_cmd(void){
         uint16_t    init_cmd2_endat_send_clock_pulses;
         init_cmd2_endat_send_clock_pulses = (uint16_t)encoder_send_parameter;
@@ -75,7 +75,7 @@ uint16_t endat_send_clock_pulses_cmd(void){
 
 void endat_send_clock_pulses(){
     init_cmd2_sData[0]=endat_send_clock_pulses_cmd();//0010_0011_0000_1101
-    init_cmd2_sData[1]=0xaaaa;//16Î»ÈÎÒâ²ÎÊı
+    init_cmd2_sData[1]=0xaaaa;//16ä½ä»»æ„å‚æ•°
     init_cmd2_sData[2]=0x0000;
     init_cmd2_sData[3]=0xffff;
 }

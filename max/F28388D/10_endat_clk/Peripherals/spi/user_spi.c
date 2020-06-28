@@ -54,7 +54,7 @@ void spia_tx_interrupt_en(void){
 void spib_tx_interrupt_en(void){
     Interrupt_register(INT_SPIB_TX, &spibTxFIFOISR);
     Interrupt_enable(INT_SPIB_TX);//SPI的FIFO触发SPI中断
-//    SPI_enableInterrupt(SPIB_BASE, SPI_INT_TXFF);
+    SPI_enableInterrupt(SPIB_BASE, SPI_INT_TXFF);
 }
 //spib接收中断使能
 void spib_rx_interrupt_en(void){
@@ -103,7 +103,7 @@ void SPIa_init_set(void)
     SPI_clearInterruptStatus(SPIA_BASE, SPI_INT_RXFF | SPI_INT_TXFF);//清除SPI中断FIFO设置
     //设置触发SPI中断的FIFO深度
     //中断触发设置的不对，会造成传输数据存在问题，如一帧数据传输64位，诺中断设置为2，会出现不稳定的情况
-    SPI_setFIFOInterruptLevel(SPIB_BASE, SPI_FIFO_TX4, SPI_FIFO_RX4);
+    SPI_setFIFOInterruptLevel(SPIB_BASE, SPI_FIFO_TXEMPTY, SPI_FIFO_RX4);
     //设置触发DMA的FIFO深度
 //    SPI_setFIFOInterruptLevel(SPIB_BASE, (SPI_TxFIFOLevel)FIFO_LVL,(SPI_RxFIFOLevel)FIFO_LVL);
     // Configuration complete. Enable the module.
@@ -177,7 +177,7 @@ void SPIb_init_set(void)
     SPI_setConfig(SPIB_BASE, DEVICE_LSPCLK_FREQ, SPI_PROT_POL0PHA0,
                   SPI_MODE_SLAVE, 5000000, 16);//移位寄存器设置
     SPI_disableLoopback(SPIB_BASE);
-    SPI_setEmulationMode(SPIB_BASE, SPI_EMULATION_STOP_AFTER_TRANSMIT);
+    SPI_setEmulationMode(SPIB_BASE, SPI_EMULATION_FREE_RUN);
 //FIFO设置
     // 使能FIFO以及用FIFO产生中断触发信号，可以用来触发SPI中断，也可以触发DMA
     SPI_enableFIFO(SPIB_BASE);

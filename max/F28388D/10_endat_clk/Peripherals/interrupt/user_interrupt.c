@@ -151,6 +151,7 @@ __interrupt void spiaTxFIFOISR(void)
 __interrupt void spibTxFIFOISR(void)
 {
     if(flag == 0){
+        endat_selection_of_memory_area();
         //    uint16_t spib_send_i = 0;
             for(spib_send_i = 0; spib_send_i <= sizeof(init_cmd1_sData)/sizeof(uint16_t)-1; spib_send_i++)
             {//一直发送
@@ -159,6 +160,7 @@ __interrupt void spibTxFIFOISR(void)
         flag = 1;
     }
     else{
+        endat_send_clock_pulses();
         //    uint16_t spib_send_i = 0;
             for(spib_send_i = 0; spib_send_i <= sizeof(init_cmd2_sData)/sizeof(uint16_t)-1; spib_send_i++)
             {//一直发送

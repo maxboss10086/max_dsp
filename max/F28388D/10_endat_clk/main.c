@@ -83,10 +83,7 @@ void main(void)
 //DMA_startChannel(DMA_CH6_BASE);
 
 
-    endat_selection_of_memory_area();
-    SPI_enableInterrupt(SPIB_BASE, SPI_INT_TXFF);
-    endat_en();//endat每隔1000传输一次,向CLB输入信号 0100 0001,发出时钟，启动SPI传输
-    endat_send_clock_pulses();
+
     while(1){
                endat_en();//endat每隔1000传输一次,向CLB输入信号 0100 0001,发出时钟，启动SPI传输
                DEVICE_DELAY_US(1000);//假设接收的数据都是0
