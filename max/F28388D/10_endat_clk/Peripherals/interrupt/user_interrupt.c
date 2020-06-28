@@ -146,10 +146,10 @@ __interrupt void spiaTxFIFOISR(void)
 }
 
 //SPI b send FIFO ISR
- uint16_t spib_send_i = 0;
  uint16_t flag = 0;
 __interrupt void spibTxFIFOISR(void)
 {
+    uint16_t spib_send_i = 0;
     if(flag == 0){
         endat_selection_of_memory_area();
         //    uint16_t spib_send_i = 0;
@@ -180,19 +180,18 @@ __interrupt void spibTxFIFOISR(void)
 
 //SPI b receive FIFO ISR
 //中断接收数据后，对数据进行处理，可以校验，也可以抽取分类
-uint16_t clock_pulses=0;
 __interrupt void spibRxFIFOISR(void)
 {
     uint16_t spib_read_i = 0;
    // Read data
-   for(spib_read_i = 0; spib_read_i <= sizeof(spib_sData)/sizeof(uint16_t)-1; spib_read_i++)
+   for(spib_read_i = 0; spib_read_i <= sizeof(endat22Data.rdata)/sizeof(uint16_t)-1; spib_read_i++)
    {//这里好像不能像串口一样,一个函数读取全部数据,需要一帧一帧读出来存入数组
-       spib_rData[spib_read_i] = SPI_readDataNonBlocking(SPIB_BASE);
+       endat22Data.rdata[spib_read_i] = SPI_readDataNonBlocking(SPIB_BASE);
    }
    // 接收后处理数据
    if(flag){
-   clock_pulses=spib_rData[3]&0xffc0;//截取数据的时候要注意，不是截取5-15，而是截取6-15，因为SPI采用下降沿接收
-   clock_pulses=clock_pulses>>6;
+       endat22Data.position_clocks=endat22Data.rdata[3]&0xffc0;//截取数据的时候要注意，不是截取5-15，而是截取6-15，因为SPI采用下降沿接收
+       endat22Data.position_clocks=endat22Data.position_clocks>>6;
    }//
 
    // Clear interrupt flag and issue ACK

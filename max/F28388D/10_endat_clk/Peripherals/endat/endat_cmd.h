@@ -20,6 +20,31 @@
 extern unsigned char clb_input;
 extern uint16_t init_cmd1_sData[4];
 extern uint16_t init_cmd2_sData[4];
+typedef struct  {                                 // bit descriptions
+    uint32_t  position_lo;
+    uint32_t  position_hi;
+    uint16_t  error1;
+    uint16_t  error2;
+    uint16_t  data;
+    uint16_t  data_crc;
+    uint16_t  address;
+    uint32_t  additional_data1;
+    uint32_t  additional_data2;
+    uint32_t  additional_data1_crc;
+    uint32_t  additional_data2_crc;
+    uint32_t  test_lo;
+    uint32_t  test_hi;
+    uint16_t  position_clocks;
+    volatile struct SPI_REGS *spi;//结构体指针，地址上的数据是结构体
+    uint32_t  delay_comp;
+    uint16_t  sdata[4];     // Send data buffer
+    uint16_t  rdata[4];     // Receive data buffer
+    uint16_t  dataReady;
+    uint16_t  fifo_level;
+
+} ENDAT_DATA_STRUCT;
+
+extern ENDAT_DATA_STRUCT endat22Data;
 //编码器命令
 #define     encoder_transmit_position_values                                0x07//6'b00_0111
 #define     selection_of_memory_area                                        0x0e//6'b00_1110

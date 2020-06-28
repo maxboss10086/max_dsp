@@ -28,7 +28,7 @@ unsigned char clb_input = 0x01;//0000_0001,in0输入1，使得时钟默认为高
                                //endat_en将改变输入clb的信号用以启动endat
 uint16_t init_cmd1_sData[4];
 uint16_t init_cmd2_sData[4];
-
+ENDAT_DATA_STRUCT endat22Data;
 
 //输入脉冲信号使能endat,直接使用会报内存错误，留在后续研究
 //向CLB输入信号 0100 0001,CLB发出时钟，启动SPI传输
