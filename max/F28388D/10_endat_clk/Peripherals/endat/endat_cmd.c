@@ -49,34 +49,37 @@ void endat_en (void){
 
 //第一个初始化命令由编码器选中存储区和对应的MRS码组成
 uint16_t endat_selection_of_memory_area_cmd(void){
-        uint16_t    init_cmd1_selection_of_memory_area;
-        init_cmd1_selection_of_memory_area = selection_of_memory_area;
-        init_cmd1_selection_of_memory_area = init_cmd1_selection_of_memory_area<<8;
-        init_cmd1_selection_of_memory_area = init_cmd1_selection_of_memory_area | MRS_Select_Parameters_of_Encoder_Manufacturer;
+        uint16_t    init_cmd1_selection_of_memory_area = 0;
+        //init_cmd1_selection_of_memory_area = selection_of_memory_area;
+        //init_cmd1_selection_of_memory_area = init_cmd1_selection_of_memory_area<<8;
+        //init_cmd1_selection_of_memory_area = init_cmd1_selection_of_memory_area | MRS_Select_Parameters_of_Encoder_Manufacturer;
+        init_cmd1_selection_of_memory_area = (uint16_t)selection_of_memory_area;
+        init_cmd1_selection_of_memory_area = init_cmd1_selection_of_memory_area << 8;
+        init_cmd1_selection_of_memory_area |= (uint16_t)MRS_Select_Parameters_of_Encoder_Manufacturer;
         return init_cmd1_selection_of_memory_area;
 }
 
 void endat_selection_of_memory_area(){
     init_cmd1_sData[0]=endat_selection_of_memory_area_cmd();//00_001110_A1=0000_1110_1010_0001选择存储区命令及MRS码
     init_cmd1_sData[1]=0xaaaa;//16位任意参数
-    init_cmd1_sData[2]=0xaaaa;
-    init_cmd1_sData[3]=0xaaaa;
+    init_cmd1_sData[2]=0x0000;
+    init_cmd1_sData[3]=0xffff;
 }
 
 
 //第二个初始化命令由编码器发送参数命令和对应的地址组成
 uint16_t endat_send_clock_pulses_cmd(void){
         uint16_t    init_cmd2_endat_send_clock_pulses;
-        init_cmd2_endat_send_clock_pulses = encoder_send_parameter;
+        init_cmd2_endat_send_clock_pulses = (uint16_t)encoder_send_parameter;
         init_cmd2_endat_send_clock_pulses = init_cmd2_endat_send_clock_pulses<<8;
-        init_cmd2_endat_send_clock_pulses = init_cmd2_endat_send_clock_pulses | MRS_address_clock_pulses;
+        init_cmd2_endat_send_clock_pulses = init_cmd2_endat_send_clock_pulses | (uint16_t)MRS_address_clock_pulses;
         return init_cmd2_endat_send_clock_pulses;
 }
 
 void endat_send_clock_pulses(){
-    init_cmd2_sData[0]=endat_send_clock_pulses_cmd();//0010_0011_0000_1101
+    init_cmd2_sData[0]=endat_send_clock_pulses_cmd();//endat_send_clock_pulses_cmd();//0010_0011_0000_1101
     init_cmd2_sData[1]=0xaaaa;//16位任意参数
-    init_cmd2_sData[2]=0xaaaa;
-    init_cmd2_sData[3]=0xaaaa;
+    init_cmd2_sData[2]=0x0000;
+    init_cmd2_sData[3]=0xffff;
 }
 
