@@ -153,18 +153,18 @@ __interrupt void spibTxFIFOISR(void)
     uint16_t spib_send_i = 0;
     if(flag == 0){
         endat_selection_of_memory_area();
-            for(spib_send_i = 0; spib_send_i <= sizeof(init_cmd1_sData)/sizeof(uint16_t)-1; )
+            for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; )
             {//一直发送
-               SPI_writeDataNonBlocking(SPIB_BASE, init_cmd1_sData[spib_send_i]);
+               SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
                spib_send_i++;
             }
         flag = 1;
     }
     else{
         endat_send_clock_pulses();
-        for(spib_send_i = 0; spib_send_i <= sizeof(init_cmd1_sData)/sizeof(uint16_t)-1; )
+        for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; )
             {//一直发送
-               SPI_writeDataNonBlocking(SPIB_BASE, init_cmd1_sData[spib_send_i]);
+               SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
                spib_send_i++;
             }
     }
