@@ -18,14 +18,12 @@
 
 //define
 extern unsigned char clb_input;
-extern uint16_t init_cmd1_sData[4];
-extern uint16_t init_cmd2_sData[4];
 typedef struct  {                                 // bit descriptions
     uint32_t  position_lo;
     uint32_t  position_hi;
     uint16_t  error1;
     uint16_t  error2;
-    uint16_t  data;
+    uint16_t  position_data;
     uint16_t  data_crc;
     uint16_t  address;
     uint32_t  additional_data1;
