@@ -181,6 +181,7 @@ void SPIb_init_set(void)
 //FIFO设置
     // 使能FIFO以及用FIFO产生中断触发信号，可以用来触发SPI中断，也可以触发DMA
     SPI_enableFIFO(SPIB_BASE);
+    SPI_resetTxFIFO(SPIB_BASE);
     SPI_clearInterruptStatus(SPIB_BASE, SPI_INT_RXFF | SPI_INT_TXFF);//清除之前的SPI中断FIFO设置
     //设置触发SPI中断的FIFO深度
     //SPI_FIFO_TX2表示FIFO中小于2时填入数据,如果中断不是空触发，那么中断使能就可以在发送数据没写入前执行

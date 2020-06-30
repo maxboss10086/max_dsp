@@ -148,26 +148,41 @@ __interrupt void spiaTxFIFOISR(void)
 //SPI b send FIFO ISR
  uint16_t flag = 0;
  uint16_t init_done = 0;
+ uint16_t position_clocks_cmd_done;
 __interrupt void spibTxFIFOISR(void)
 {
     uint16_t spib_send_i = 0;
-    if(flag == 0){
-        endat_selection_of_memory_area();
-            for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; )
-            {//一直发送
-               SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
-               spib_send_i++;
-            }
-        flag = 1;
-    }
-    else{
-        endat_send_clock_pulses();
-        for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; )
-            {//一直发送
-               SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
-               spib_send_i++;
-            }
-    }
+    static unsigned char step = 0;
+        switch(step){
+        case 0:
+                endat_selection_of_memory_area();
+                for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; )
+                {
+                    SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
+                    spib_send_i++;
+                }
+                step++;
+            break;
+        case 1:
+                endat_send_position_clocks();
+                for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; )
+                    {//一直发送
+                        SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
+                        spib_send_i++;
+                    }
+                position_clocks_cmd_done=1;
+            //step++;
+            break;
+//        case 2:
+//                position_clocks_cmd_done=0;
+//               endat_send_position_data();
+//               for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; )
+//                  {//一直发送
+//                        SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
+//                        spib_send_i++;
+//                   }
+//            break;
+        }
 
     // Clear interrupt flag and issue ACK
     SPI_clearInterruptStatus(SPIB_BASE, SPI_INT_TXFF);
@@ -185,10 +200,10 @@ __interrupt void spibRxFIFOISR(void)
        endat22Data.rdata[spib_read_i] = SPI_readDataNonBlocking(SPIB_BASE);
    }
    // 接收后处理数据
-   if(flag){
+   if(position_clocks_cmd_done){
        endat22Data.position_clocks = endat22Data.rdata[3]&0xffc0;//截取数据的时候要注意，不是截取5-15，而是截取6-15，因为SPI采用下降沿接收
        endat22Data.position_clocks = endat22Data.position_clocks>>6;
-       //init_done++;
+       init_done=1;
    }
 //   //校验数据
 //   if(init_done>=2){

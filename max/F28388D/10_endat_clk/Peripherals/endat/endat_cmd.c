@@ -11,6 +11,7 @@
 //----------------------------------------------------------------------------------------//
 //note: 1：全局变量在这里修改后进入各模块
 //      2：8位赋值给16位，要强转成16位先，然后再赋值
+//      3：剩下的数组全部初始化为0,一定要初始化为0，不写不会默认0，会出现问题
 //----------------------------------------------------------------------------------------//
 //***************************************include******************************************//
 
@@ -23,7 +24,7 @@
 #include "endat_cmd.h"
 #include "user_spi.h"//引入spi数据
 #include "user_gpio.h"
-unsigned char clb_input = 0x21;//0000_0001,in0输入1，使得时钟默认为高电平
+unsigned char clb_input = 0x01;//0000_0001,in0输入1，使得时钟默认为高电平
                                //0010_0001,in5输入1，使得LU1选择计数器match2
                                //clb初始化时，将使用0x01数据输入clb
                                //endat_en将改变输入clb的信号用以启动endat
@@ -57,10 +58,10 @@ uint16_t endat_selection_of_memory_area_cmd(void){
 }
 
 void endat_selection_of_memory_area(){
+    uint8_t i;
     endat22Data.sdata[0]=endat_selection_of_memory_area_cmd();//00_001110_A1=0000_1110_1010_0001选择存储区命令及MRS码
-    endat22Data.sdata[1]=0xaaaa;//16位任意参数
-    endat22Data.sdata[2]=0x0000;
-    endat22Data.sdata[3]=0xffff;
+    for(i=1;i<=sizeof(endat22Data.sdata)/sizeof(uint16_t)-1;i++)
+    endat22Data.sdata[i]=0x0;//剩下的数组全部初始化为0,一定要初始化为0，不写不会默认0，会出现问题
 }
 
 
@@ -73,10 +74,10 @@ uint16_t endat_send_clock_pulses_cmd(void){
         return init_cmd2;
 }
 
-void endat_send_clock_pulses(){
+void endat_send_position_clocks(){
+    uint8_t i;
     endat22Data.sdata[0]=endat_send_clock_pulses_cmd();//0010_0011_0000_1101
-    endat22Data.sdata[1]=0xaaaa;//16位任意参数
-    endat22Data.sdata[2]=0x0000;
-    endat22Data.sdata[3]=0xffff;
+    for(i=1;i<=sizeof(endat22Data.sdata)/sizeof(uint16_t)-1;i++)
+    endat22Data.sdata[i]=0x0;//剩下的数组全部初始化为0
 }
 
