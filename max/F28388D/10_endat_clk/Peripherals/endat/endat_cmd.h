@@ -35,8 +35,8 @@ typedef struct  {                                 // bit descriptions
     uint16_t  position_clocks;
     volatile struct SPI_REGS *spi;//结构体指针，地址上的数据是结构体
     uint32_t  delay_comp;
-    uint16_t  sdata[4];     // Send data buffer
-    uint16_t  rdata[4];     // Receive data buffer
+    uint16_t  sdata[5];     // Send data buffer
+    uint16_t  rdata[5];     // Receive data buffer
     uint16_t  dataReady;
     uint16_t  fifo_level;
 

@@ -169,11 +169,6 @@ __interrupt void spibTxFIFOISR(void)
             }
     }
 
-//    for(spib_send_i = 0; spib_send_i <= sizeof(init_cmd1_sData)/sizeof(uint16_t)-1; spib_send_i++)
-//    {//Ò»Ö±·¢ËÍ
-//       SPI_writeDataNonBlocking(SPIB_BASE, init_cmd1_sData[spib_send_i]);
-//    }
-
     // Clear interrupt flag and issue ACK
     SPI_clearInterruptStatus(SPIB_BASE, SPI_INT_TXFF);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
