@@ -36,7 +36,6 @@ ENDAT_DATA_STRUCT endat22Data;
 void endat_en (void){
     clb_input= clb_input|0x40;       //clb的8输入端口第7个端口即in6输入1
     CLB_setGPREG(CLB1_BASE, clb_input);//设置输入CLB的信号
-    DEVICE_DELAY_US(1);
     clb_input= clb_input&0xbf;       //clb的8输入端口第7个端口即in6输入0
     CLB_setGPREG(CLB1_BASE, clb_input);//设置输入CLB的信号*/
 }
@@ -58,15 +57,16 @@ uint16_t endat_selection_of_memory_area_cmd(void){
 }
 
 void endat_selection_of_memory_area(){
-    uint8_t i;
+    uint16_t i;
     endat22Data.sdata[0]=endat_selection_of_memory_area_cmd();//00_001110_A1=0000_1110_1010_0001选择存储区命令及MRS码
-    for(i=1;i<=sizeof(endat22Data.sdata)/sizeof(uint16_t)-1;i++)
-    endat22Data.sdata[i]=0x0;//剩下的数组全部初始化为0,一定要初始化为0，不写不会默认0，会出现问题
+    for(i=1;i<=sizeof(endat22Data.sdata)/sizeof(uint16_t)-1;i++){
+        endat22Data.sdata[i]=0x0;//剩下的数组全部初始化为0,一定要初始化为0，不写不会默认0，会出现问题
+    }
 }
 
 
 //第二个初始化命令由编码器发送参数命令和对应的地址组成
-uint16_t endat_send_clock_pulses_cmd(void){
+uint16_t endat_send_position_clocks_cmd(void){
         uint16_t    init_cmd2=0;
         init_cmd2 = encoder_send_parameter;
         init_cmd2 = init_cmd2<<8;
@@ -75,9 +75,10 @@ uint16_t endat_send_clock_pulses_cmd(void){
 }
 
 void endat_send_position_clocks(){
-    uint8_t i;
-    endat22Data.sdata[0]=endat_send_clock_pulses_cmd();//0010_0011_0000_1101
-    for(i=1;i<=sizeof(endat22Data.sdata)/sizeof(uint16_t)-1;i++)
-    endat22Data.sdata[i]=0x0;//剩下的数组全部初始化为0
+    uint16_t i;
+    endat22Data.sdata[0]=endat_send_position_clocks_cmd();//0010_0011_0000_1101
+    for(i=1;i<=sizeof(endat22Data.sdata)/sizeof(uint16_t)-1;i++){
+        endat22Data.sdata[i]=0x0;//剩下的数组全部初始化为0
+    }
 }
 

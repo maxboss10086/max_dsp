@@ -54,7 +54,7 @@ void initEPWM1(void)
     EPWM_setPhaseShift(EPWM1_BASE, 0U);
     EPWM_setTimeBaseCounter(EPWM1_BASE, 0U);
 //在计数器0时产生中断
-    EPWM_enableSyncOutPulseSource(EPWM1_BASE, EPWM_SYNC_OUT_PULSE_ON_CNTR_ZERO);
+    //EPWM_enableSyncOutPulseSource(EPWM1_BASE, EPWM_SYNC_OUT_PULSE_ON_CNTR_ZERO);
 
     EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_A, EPWM1_CMPA);
     EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_B, EPWM1_CMPB);
