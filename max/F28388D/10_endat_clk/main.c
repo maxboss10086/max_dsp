@@ -56,7 +56,7 @@ void main(void)
 
     DEVICE_DELAY_US(2000000);//编码器设备自身初始化需要2s
 
-    clb1_init_set();//时钟100M
+    clb_init_set();//时钟100M
                     //设置clb逻辑程序
 
     initEPWM1();//EPWM100M时钟(默认系统时钟2分频进入epwm)

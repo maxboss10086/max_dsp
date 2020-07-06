@@ -26,7 +26,7 @@
 //extern unsigned char clb_input;
 
 //function
-void clb1_init_set();
+void clb_init_set();
 //unsigned char endat_en (void);
 
 #endif /* PERIPHERALS_CLB_USER_CLB_H_ */

@@ -5,6 +5,7 @@
 
 var TILE = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/TILE");
 var TILE1 = TILE.addInstance();
+var TILE2 = TILE.addInstance();
 // Name
 TILE1.$name = "TILE1";
 // Name
@@ -64,7 +65,7 @@ TILE1.FSM_1.eqn_s1 = "e1&s0";
 // eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.
 TILE1.FSM_1.eqn_s0 = "((e0)&(!s0))|(e0&(e1)&s0)|(e0&(!e1)&s0)|((!e0)&(!e1)&s0)";
 // e0 - External Input 0.
-TILE1.FSM_1.e0 = "COUNTER_2.count_match1";
+TILE1.FSM_1.e0 = "COUNTER_0.count_match1";
 // Name
 TILE1.FSM_2.$name = "FSM_2";
 // eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.
@@ -139,18 +140,20 @@ TILE1.OUTLUT_3.$name = "OUTLUT_3";
 TILE1.OUTLUT_4.$name = "OUTLUT_4";
 // i0 - Input 0.
 TILE1.OUTLUT_4.i0 = "FSM_0.S0";
+// i1 - Input 1.
+TILE1.OUTLUT_4.i1 = "BOUNDARY.in7";
 // eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
 TILE1.OUTLUT_4.eqn = "i0";
 // Name
 TILE1.OUTLUT_5.$name = "OUTLUT_5";
 // i0 - Input 0.
 TILE1.OUTLUT_5.i0 = "FSM_0.OUT";
-// i1 - Input 1.
-TILE1.OUTLUT_5.i1 = "FSM_2.OUT";
-// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
-TILE1.OUTLUT_5.eqn = "i2";
 // i2 - Input 2.
 TILE1.OUTLUT_5.i2 = "FSM_0.S0";
+// i1 - Input 1.
+TILE1.OUTLUT_5.i1 = "FSM_1.S0";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE1.OUTLUT_5.eqn = "i1";
 // Name
 TILE1.OUTLUT_6.$name = "OUTLUT_6";
 // Name
@@ -169,3 +172,89 @@ var clb_run_dynamic_template_clb_h = scripting.addModule("/utilities/clb_tool/cl
 var clb_run_dynamic_template_clb_c = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_c.js");
 var clb_run_dynamic_template_clb_sim = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_sim.js");
 var clb_run_dynamic_template_clb_dot = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_dot.js");
+// Name
+TILE2.$name = "TILE2";
+// Name
+TILE2.BOUNDARY.$name = "BOUNDARY1";
+// Name
+TILE2.LUT_0.$name = "LUT_3";
+// eqn - Boolean equation on the variables i3,i2,i1,i0 for the LUT output.
+TILE2.LUT_0.eqn = "(i0&(!i2))|((!i0)&i1)";
+// i0 - Input 0.
+TILE2.LUT_0.i0 = "BOUNDARY.in6";
+// i1 - Input 1.
+TILE2.LUT_0.i1 = "BOUNDARY.in1";
+// i2 - Input 2.
+TILE2.LUT_0.i2 = "BOUNDARY.in3";
+// Name
+TILE2.LUT_1.$name = "LUT_4";
+// i0 - Input 0.
+TILE2.LUT_1.i0 = "BOUNDARY.in7";
+// i1 - Input 1.
+TILE2.LUT_1.i1 = "FSM_0.S0";
+// eqn - Boolean equation on the variables i3,i2,i1,i0 for the LUT output.
+TILE2.LUT_1.eqn = "~i1&i0";
+// Name
+TILE2.LUT_2.$name = "LUT_5";
+// Name
+TILE2.FSM_0.$name = "FSM_3";
+// eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.
+TILE2.FSM_0.eqn_s0 = "(((!e0)&(!e1)&s0)|((e0)&(!e1)&(!s0))|(e0&(!e1)&s0))";
+// e0 - External Input 0.
+TILE2.FSM_0.e0 = "LUT_0.OUT";
+// e1 - External Input 1.
+TILE2.FSM_0.e1 = "COUNTER_0.count_match1";
+// Name
+TILE2.FSM_1.$name = "FSM_4";
+// Name
+TILE2.FSM_2.$name = "FSM_5";
+// Name
+TILE2.COUNTER_0.$name = "COUNTER_3";
+// mode1 - Controls counting direction. High enables count up. Low enables count down.
+TILE2.COUNTER_0.mode1 = "1";
+// mode0 - Enables Counting when high
+TILE2.COUNTER_0.mode0 = "FSM_0.S0";
+// match1_val - Sets the value of the Match reference 1 register.
+TILE2.COUNTER_0.match1_val = "780";
+// reset - Reset the counter to 0 on next clock cycle (triggers low to high)
+TILE2.COUNTER_0.reset = "COUNTER_0.count_match1";
+// Name
+TILE2.COUNTER_1.$name = "COUNTER_4";
+// Name
+TILE2.COUNTER_2.$name = "COUNTER_5";
+// Name
+TILE2.OUTLUT_0.$name = "OUTLUT_8";
+// Name
+TILE2.OUTLUT_1.$name = "OUTLUT_9";
+// Name
+TILE2.OUTLUT_2.$name = "OUTLUT_10";
+// Name
+TILE2.OUTLUT_3.$name = "OUTLUT_11";
+// Name
+TILE2.OUTLUT_4.$name = "OUTLUT_12";
+// i0 - Input 0.
+TILE2.OUTLUT_4.i0 = "LUT_1.OUT";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE2.OUTLUT_4.eqn = "i0";
+// Name
+TILE2.OUTLUT_5.$name = "OUTLUT_13";
+// i0 - Input 0.
+TILE2.OUTLUT_5.i0 = "FSM_0.S0";
+// i2 - Input 2.
+TILE2.OUTLUT_5.i2 = "BOUNDARY.in7";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE2.OUTLUT_5.eqn = "i2";
+// Name
+TILE2.OUTLUT_6.$name = "OUTLUT_14";
+// Name
+TILE2.OUTLUT_7.$name = "OUTLUT_15";
+// Name
+TILE2.HLC.$name = "HLC_1";
+// Name
+TILE2.HLC.program0.$name = "HLCP_4";
+// Name
+TILE2.HLC.program1.$name = "HLCP_5";
+// Name
+TILE2.HLC.program2.$name = "HLCP_6";
+// Name
+TILE2.HLC.program3.$name = "HLCP_7";

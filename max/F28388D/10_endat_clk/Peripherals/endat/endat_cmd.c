@@ -35,9 +35,11 @@ ENDAT_DATA_STRUCT endat22Data;
 //向CLB输入信号 0100 0001,CLB发出时钟，启动SPI传输
 void endat_en (void){
     clb_input= clb_input|0x40;       //clb的8输入端口第7个端口即in6输入1
+    CLB_setGPREG(CLB2_BASE, clb_input);
     CLB_setGPREG(CLB1_BASE, clb_input);//设置输入CLB的信号
     clb_input= clb_input&0xbf;       //clb的8输入端口第7个端口即in6输入0
     CLB_setGPREG(CLB1_BASE, clb_input);//设置输入CLB的信号*/
+    CLB_setGPREG(CLB2_BASE, clb_input);
 }
 
 ////输入脉冲信号使能endat，通过外部GPIO短接
