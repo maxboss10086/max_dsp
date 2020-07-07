@@ -176,6 +176,14 @@ TILE2.$name = "TILE2";
 TILE2.BOUNDARY.$name = "BOUNDARY1";
 // Name
 TILE2.LUT_0.$name = "LUT_3";
+// i0 - Input 0.
+TILE2.LUT_0.i0 = "COUNTER_0.count_match1";
+// i2 - Input 2.
+TILE2.LUT_0.i2 = "COUNTER_0.count_match2";
+// i1 - Input 1.
+TILE2.LUT_0.i1 = "BOUNDARY.in5";
+// eqn - Boolean equation on the variables i3,i2,i1,i0 for the LUT output.
+TILE2.LUT_0.eqn = "(i0&(!i2))|((!i0)&i1)";
 // Name
 TILE2.LUT_1.$name = "LUT_4";
 // i0 - Input 0.
@@ -190,10 +198,10 @@ TILE2.LUT_2.$name = "LUT_5";
 TILE2.FSM_0.$name = "FSM_3";
 // eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.
 TILE2.FSM_0.eqn_s0 = "(((!e0)&(!e1)&s0)|((e0)&(!e1)&(!s0))|(e0&(!e1)&s0))";
-// e1 - External Input 1.
-TILE2.FSM_0.e1 = "COUNTER_0.count_match1";
 // e0 - External Input 0.
 TILE2.FSM_0.e0 = "BOUNDARY.in6";
+// e1 - External Input 1.
+TILE2.FSM_0.e1 = "LUT_0.OUT";
 // Name
 TILE2.FSM_1.$name = "FSM_4";
 // Name
@@ -206,8 +214,10 @@ TILE2.COUNTER_0.mode1 = "1";
 TILE2.COUNTER_0.mode0 = "FSM_0.S0";
 // match1_val - Sets the value of the Match reference 1 register.
 TILE2.COUNTER_0.match1_val = "780";
+// match2_val - Sets the value of the Match reference 2 register.
+TILE2.COUNTER_0.match2_val = "240";
 // reset - Reset the counter to 0 on next clock cycle (triggers low to high)
-TILE2.COUNTER_0.reset = "COUNTER_0.count_match1";
+TILE2.COUNTER_0.reset = "LUT_0.OUT";
 // Name
 TILE2.COUNTER_1.$name = "COUNTER_4";
 // Name
