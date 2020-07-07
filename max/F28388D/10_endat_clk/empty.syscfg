@@ -38,14 +38,14 @@ TILE1.LUT_1.i1 = "BOUNDARY.in1";
 TILE1.LUT_1.i2 = "BOUNDARY.in3";
 // Name
 TILE1.LUT_2.$name = "LUT_2";
-// eqn - Boolean equation on the variables i3,i2,i1,i0 for the LUT output.
-TILE1.LUT_2.eqn = "i0|i1|i2";
 // i0 - Input 0.
-TILE1.LUT_2.i0 = "FSM_0.S0";
-// i1 - Input 1.
-TILE1.LUT_2.i1 = "FSM_1.S0";
+TILE1.LUT_2.i0 = "COUNTER_1.count_match1";
 // i2 - Input 2.
-TILE1.LUT_2.i2 = "FSM_2.S0";
+TILE1.LUT_2.i2 = "COUNTER_1.count_match2";
+// i1 - Input 1.
+TILE1.LUT_2.i1 = "BOUNDARY.in5";
+// eqn - Boolean equation on the variables i3,i2,i1,i0 for the LUT output.
+TILE1.LUT_2.eqn = "((i1)&i2)|((!i1)&i0)";
 // Name
 TILE1.FSM_0.$name = "FSM_0";
 // eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.
@@ -56,6 +56,10 @@ TILE1.FSM_0.e1 = "BOUNDARY.in7";
 TILE1.FSM_0.eqn_s1 = "e1&s0";
 // e0 - External Input 0.
 TILE1.FSM_0.e0 = "LUT_0.OUT";
+// eqn_out - Boolean equation on the variables e1,e0,s1,s0 for the LUT output.
+TILE1.FSM_0.eqn_out = "s0|xe1";
+// xe1 - Extra External Input 1.
+TILE1.FSM_0.xe1 = "FSM_1.S0";
 // Name
 TILE1.FSM_1.$name = "FSM_1";
 // eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.
@@ -70,12 +74,14 @@ TILE1.FSM_1.e1 = "LUT_0.OUT";
 TILE1.FSM_2.$name = "FSM_2";
 // eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.
 TILE1.FSM_2.eqn_s0 = "(((!e0)&(!e1)&s0)|((e0)&(!e1)&(!s0))|(e0&(!e1)&s0))";
-// eqn_out - Boolean equation on the variables e1,e0,s1,s0 for the LUT output.
-TILE1.FSM_2.eqn_out = "~s0";
 // e0 - External Input 0.
 TILE1.FSM_2.e0 = "FSM_0.S1";
+// xe1 - Extra External Input 1.
+TILE1.FSM_2.xe1 = "FSM_0.OUT";
+// eqn_out - Boolean equation on the variables e1,e0,s1,s0 for the LUT output.
+TILE1.FSM_2.eqn_out = "s0|xe1";
 // e1 - External Input 1.
-TILE1.FSM_2.e1 = "COUNTER_1.count_match1";
+TILE1.FSM_2.e1 = "LUT_2.OUT";
 // Name
 TILE1.COUNTER_0.$name = "COUNTER_0";
 // mode1 - Controls counting direction. High enables count up. Low enables count down.
@@ -94,22 +100,16 @@ TILE1.COUNTER_1.$name = "COUNTER_1";
 TILE1.COUNTER_1.mode1 = "1";
 // mode0 - Enables Counting when high
 TILE1.COUNTER_1.mode0 = "FSM_2.S0";
-// reset - Reset the counter to 0 on next clock cycle (triggers low to high)
-TILE1.COUNTER_1.reset = "LUT_1.OUT";
 // match1_val - Sets the value of the Match reference 1 register.
 TILE1.COUNTER_1.match1_val = "630";
 // match2_val - Sets the value of the Match reference 2 register.
 TILE1.COUNTER_1.match2_val = "970";
+// reset - Reset the counter to 0 on next clock cycle (triggers low to high)
+TILE1.COUNTER_1.reset = "LUT_2.OUT";
 // Name
 TILE1.COUNTER_2.$name = "COUNTER_2";
-// mode1 - Controls counting direction. High enables count up. Low enables count down.
-TILE1.COUNTER_2.mode1 = "1";
-// mode0 - Enables Counting when high
-TILE1.COUNTER_2.mode0 = "1";
-// reset - Reset the counter to 0 on next clock cycle (triggers low to high)
-TILE1.COUNTER_2.reset = "COUNTER_0.count_match1";
 // match1_val - Sets the value of the Match reference 1 register.
-TILE1.COUNTER_2.match1_val = "10";
+TILE1.COUNTER_2.match1_val = "";
 // Name
 TILE1.OUTLUT_0.$name = "OUTLUT_0";
 // eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
@@ -119,7 +119,7 @@ TILE1.OUTLUT_0.i2 = "BOUNDARY.in2";
 // i0 - Input 0.
 TILE1.OUTLUT_0.i0 = "BOUNDARY.in0";
 // i1 - Input 1.
-TILE1.OUTLUT_0.i1 = "LUT_2.OUT";
+TILE1.OUTLUT_0.i1 = "FSM_2.OUT";
 // Name
 TILE1.OUTLUT_1.$name = "OUTLUT_1";
 // eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
@@ -146,12 +146,12 @@ TILE1.OUTLUT_4.i0 = "FSM_1.S0";
 TILE1.OUTLUT_5.$name = "OUTLUT_5";
 // i2 - Input 2.
 TILE1.OUTLUT_5.i2 = "FSM_0.S0";
-// i0 - Input 0.
-TILE1.OUTLUT_5.i0 = "LUT_0.OUT";
 // i1 - Input 1.
-TILE1.OUTLUT_5.i1 = "BOUNDARY.in7";
+TILE1.OUTLUT_5.i1 = "FSM_2.OUT";
+// i0 - Input 0.
+TILE1.OUTLUT_5.i0 = "LUT_2.OUT";
 // eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
-TILE1.OUTLUT_5.eqn = "i1";
+TILE1.OUTLUT_5.eqn = "i0";
 // Name
 TILE1.OUTLUT_6.$name = "OUTLUT_6";
 // Name

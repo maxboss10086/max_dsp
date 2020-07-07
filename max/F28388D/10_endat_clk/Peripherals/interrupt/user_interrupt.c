@@ -173,16 +173,16 @@ __interrupt void spibTxFIFOISR(void)
                 position_clocks_cmd_done=1;
             //step++;
             break;
-//        case 2:
-//                position_clocks_cmd_done=0;
-//               endat_send_position_data();
+//        case 0:
+//               position_clocks_cmd_done=0;
+//               endat_send_position();
 //               for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; )
 //                  {//Ò»Ö±·¢ËÍ
 //                        SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
 //                        spib_send_i++;
 //                   }
 //            break;
-        }
+       }
 
     // Clear interrupt flag and issue ACK
     SPI_clearInterruptStatus(SPIB_BASE, SPI_INT_TXFF);

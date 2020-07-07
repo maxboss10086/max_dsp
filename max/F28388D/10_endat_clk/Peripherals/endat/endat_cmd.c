@@ -84,3 +84,18 @@ void endat_send_position_clocks(){
     }
 }
 
+//第二个初始化命令由编码器发送参数命令和对应的地址组成
+uint16_t endat_send_position_cmd(void){
+        uint16_t    work_cmd1=0;
+        work_cmd1 = encoder_transmit_position_values;
+        work_cmd1 = work_cmd1<<8;
+        return work_cmd1;
+}
+
+void endat_send_position(){
+    uint16_t i;
+    endat22Data.sdata[0]=endat_send_position_cmd();//0010_0011_0000_1101
+    for(i=1;i<=sizeof(endat22Data.sdata)/sizeof(uint16_t)-1;i++){
+        endat22Data.sdata[i]=0x0;//剩下的数组全部初始化为0
+    }
+}
