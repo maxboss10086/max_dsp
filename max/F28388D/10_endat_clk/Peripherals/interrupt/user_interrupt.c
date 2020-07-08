@@ -149,6 +149,7 @@ __interrupt void spiaTxFIFOISR(void)
  uint16_t flag = 0;
  uint16_t init_done = 0;
  uint16_t position_clocks_cmd_done;
+ uint16_t endat_send_position_cmd_done=0;
 __interrupt void spibTxFIFOISR(void)
 {
     uint16_t spib_send_i = 0;
@@ -181,6 +182,7 @@ __interrupt void spibTxFIFOISR(void)
                         SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
                         spib_send_i++;
                    }
+               endat_send_position_cmd_done=1;
             break;
        }
 
@@ -204,6 +206,12 @@ __interrupt void spibRxFIFOISR(void)
        endat22Data.position_clocks = endat22Data.rdata[3]&0xffc0;//截取数据的时候要注意，不是截取5-15，而是截取6-15，因为SPI采用下降沿接收
        endat22Data.position_clocks = endat22Data.position_clocks>>6;
        init_done=1;
+   }
+   if(endat_send_position_cmd_done){
+       endat22Data.error1 = endat22Data.rdata[0]&0x400;
+       endat22Data.error1 = endat22Data.rdata[0]&0x800;
+       //endat22Data.position_lo = endat22Data.rdata[3]&0xffc0;//
+       //endat22Data.position_lo = endat22Data.position_clocks>>6;
    }
 //   //校验数据
 //   if(init_done>=2){

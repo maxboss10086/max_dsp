@@ -23,7 +23,7 @@ typedef struct  {                                 // bit descriptions
     uint32_t  position_hi;
     uint16_t  error1;
     uint16_t  error2;
-    uint16_t  position_data;
+    uint16_t  data;
     uint16_t  data_crc;
     uint16_t  address;
     uint32_t  additional_data1;

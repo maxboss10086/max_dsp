@@ -93,7 +93,7 @@ TILE1.COUNTER_0.match1_val = "690";
 // reset - Reset the counter to 0 on next clock cycle (triggers low to high)
 TILE1.COUNTER_0.reset = "LUT_0.OUT";
 // match2_val - Sets the value of the Match reference 2 register.
-TILE1.COUNTER_0.match2_val = "200";
+TILE1.COUNTER_0.match2_val = "220";
 // Name
 TILE1.COUNTER_1.$name = "COUNTER_1";
 // mode1 - Controls counting direction. High enables count up. Low enables count down.
@@ -105,7 +105,7 @@ TILE1.COUNTER_1.match1_val = "630";
 // reset - Reset the counter to 0 on next clock cycle (triggers low to high)
 TILE1.COUNTER_1.reset = "LUT_2.OUT";
 // match2_val - Sets the value of the Match reference 2 register.
-TILE1.COUNTER_1.match2_val = "1130";
+TILE1.COUNTER_1.match2_val = "1110";
 // Name
 TILE1.COUNTER_2.$name = "COUNTER_2";
 // match1_val - Sets the value of the Match reference 1 register.
@@ -217,7 +217,7 @@ TILE2.COUNTER_0.match1_val = "780";
 // reset - Reset the counter to 0 on next clock cycle (triggers low to high)
 TILE2.COUNTER_0.reset = "LUT_0.OUT";
 // match2_val - Sets the value of the Match reference 2 register.
-TILE2.COUNTER_0.match2_val = "258";
+TILE2.COUNTER_0.match2_val = "278";
 // Name
 TILE2.COUNTER_1.$name = "COUNTER_4";
 // Name
