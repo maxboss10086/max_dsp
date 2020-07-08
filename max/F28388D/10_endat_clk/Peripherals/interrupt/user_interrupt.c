@@ -154,34 +154,34 @@ __interrupt void spibTxFIFOISR(void)
     uint16_t spib_send_i = 0;
     static unsigned char step = 0;
         switch(step){
-        case 0:
-                endat_selection_of_memory_area();
-                for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; )
-                {
-                    SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
-                    spib_send_i++;
-                }
-                step++;
-            break;
-        case 1:
-                endat_send_position_clocks();
-                for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; )
-                    {//一直发送
-                        SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
-                        spib_send_i++;
-                    }
-                position_clocks_cmd_done=1;
-            //step++;
-            break;
 //        case 0:
-//               position_clocks_cmd_done=0;
-//               endat_send_position();
-//               for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; )
-//                  {//一直发送
+//                endat_selection_of_memory_area();
+//                for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; )
+//                {
+//                    SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
+//                    spib_send_i++;
+//                }
+//                step++;
+//            break;
+//        case 1:
+//                endat_send_position_clocks();
+//                for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; )
+//                    {//一直发送
 //                        SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
 //                        spib_send_i++;
-//                   }
+//                    }
+//                position_clocks_cmd_done=1;
+//            //step++;
 //            break;
+        case 0:
+               position_clocks_cmd_done=0;
+               endat_send_position();
+               for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; )
+                  {//一直发送
+                        SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
+                        spib_send_i++;
+                   }
+            break;
        }
 
     // Clear interrupt flag and issue ACK
