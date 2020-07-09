@@ -193,9 +193,16 @@ __interrupt void spibTxFIFOISR(void)
 
 //SPI b receive FIFO ISR
 //中断接收数据后，对数据进行处理，可以校验，也可以抽取分类
+
+uint32_t result=0;
+uint16_t i =0;
+uint16_t j=24;
 __interrupt void spibRxFIFOISR(void)
 {
+//    uint16_t i =0;
+//    uint16_t j=0;
     uint16_t spib_read_i = 0;
+//    uint32_t result=0;
    // Read data
    for(spib_read_i = 0; spib_read_i <= sizeof(endat22Data.rdata)/sizeof(uint16_t)-1; spib_read_i++)
    {//这里好像不能像串口一样,一个函数读取全部数据,需要一帧一帧读出来存入数组
@@ -207,15 +214,40 @@ __interrupt void spibRxFIFOISR(void)
        endat22Data.position_clocks = endat22Data.position_clocks>>5;
        init_done=1;
    }
+
    if(endat_send_position_cmd_done){
-       endat22Data.error1 = endat22Data.rdata[0]&0x800;//SPI发送命令脉冲是11个
-       endat22Data.error1 = endat22Data.error1>>11;
-       endat22Data.position_lo = endat22Data.rdata[0]&0xe000;//
-       endat22Data.position_lo = endat22Data.position_lo>>13;
-       endat22Data.position_hi = endat22Data.rdata[1]&0x07ff;
-       endat22Data.position_hi = endat22Data.position_hi<<3;
-       endat22Data.position_data = endat22Data.position_hi | endat22Data.position_lo;
-   }
+         endat22Data.error1 = endat22Data.rdata[0]&0x0008;//错误位脉冲是13个,即接收数据的低4位
+         endat22Data.error1 = endat22Data.error1>>3;
+         endat22Data.dataReady = endat22Data.rdata[0]&0x0010;//错误位脉冲是12个,即接收数据的低5位
+         endat22Data.dataReady = endat22Data.dataReady>>4;
+         for(i=1;i<=3;i++){//第一个数组循环执行3次，取出低3位
+             result = (endat22Data.rdata[0] & 0x0004) ? 1 :0;//按位取出第一个数组的数据，该数据不是0就是1
+                 result = result<<j;//左移J位，把这个数据放在位置数据的最高位，次高位，次次高位
+                 endat22Data.position_lo = endat22Data.position_lo | result;
+                 endat22Data.position_lo = endat22Data.position_lo>>1;
+             endat22Data.rdata[0] = endat22Data.rdata[0]<<1;
+         }
+         for( i=1;i<=16;i++){//第二个数组循环执行15次
+             result = (endat22Data.rdata[1] & 0x8000) ? 1 :0 ;
+                 result = result<<j;
+                 endat22Data.position_lo = endat22Data.position_lo | result;
+                 endat22Data.position_lo = endat22Data.position_lo>>1;
+             endat22Data.rdata[1] = endat22Data.rdata[1]<<1;
+         }
+         for(i=10;i<=15;i++){//第三个数组循环执行6次,取出高6位
+            result = (endat22Data.rdata[2] & 0x8000) ? 1 :0 ;
+            if(i<=14){
+                result = result<<j;
+                endat22Data.position_lo = endat22Data.position_lo | result;
+                endat22Data.position_lo = endat22Data.position_lo>>1;
+            }
+            if(i==15){
+                result = result<<j;
+                endat22Data.position_lo = endat22Data.position_lo | result;
+            }
+            endat22Data.rdata[2] = endat22Data.rdata[2]<<1;
+        }
+     }
 //   //校验数据
 //   if(init_done>=2){
 //       if((endat22Data.position_clocks!=25)||(endat22Data.position_clocks!=13)){
