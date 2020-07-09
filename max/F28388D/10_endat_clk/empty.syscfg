@@ -105,7 +105,7 @@ TILE1.COUNTER_1.reset = "LUT_2.OUT";
 // match1_val - Sets the value of the Match reference 1 register.
 TILE1.COUNTER_1.match1_val = "610";
 // match2_val - Sets the value of the Match reference 2 register.
-TILE1.COUNTER_1.match2_val = "990";
+TILE1.COUNTER_1.match2_val = "1090";
 // Name
 TILE1.COUNTER_2.$name = "COUNTER_2";
 // match1_val - Sets the value of the Match reference 1 register.

@@ -24,7 +24,7 @@
 #include "endat_cmd.h"
 #include "user_spi.h"//引入spi数据
 #include "user_gpio.h"
-unsigned char clb_input = 0x01;//0000_0001,in0输入1，使得时钟默认为高电平
+unsigned char clb_input = 0x21;//0000_0001,in0输入1，使得时钟默认为高电平
                                //0010_0001,in5输入1，使得LU1选择计数器match2
                                //clb初始化时，将使用0x01数据输入clb
                                //endat_en将改变输入clb的信号用以启动endat
