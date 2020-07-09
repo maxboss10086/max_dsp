@@ -207,12 +207,15 @@ __interrupt void spibRxFIFOISR(void)
        endat22Data.position_clocks = endat22Data.position_clocks>>6;
        init_done=1;
    }
-//   if(endat_send_position_cmd_done){
-//       endat22Data.error1 = endat22Data.rdata[0]&0x400;
-//       endat22Data.error1 = endat22Data.rdata[0]&0x800;
-//       //endat22Data.position_lo = endat22Data.rdata[3]&0xffc0;//
-//       //endat22Data.position_lo = endat22Data.position_clocks>>6;
-//   }
+   if(endat_send_position_cmd_done){
+       endat22Data.error1 = endat22Data.rdata[0]&0x800;//SPI发送命令脉冲是11个
+       endat22Data.error1 = endat22Data.error1>>11;
+       endat22Data.position_lo = endat22Data.rdata[0]&0xe000;//
+       endat22Data.position_lo = endat22Data.position_lo>>13;
+       endat22Data.position_hi = endat22Data.rdata[1]&0x07ff;
+       endat22Data.position_hi = endat22Data.position_hi<<3;
+       endat22Data.position_data = endat22Data.position_hi | endat22Data.position_lo;
+   }
 //   //校验数据
 //   if(init_done>=2){
 //       if((endat22Data.position_clocks!=25)||(endat22Data.position_clocks!=13)){
