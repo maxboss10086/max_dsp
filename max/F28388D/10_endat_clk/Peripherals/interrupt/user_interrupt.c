@@ -207,12 +207,12 @@ __interrupt void spibRxFIFOISR(void)
        endat22Data.position_clocks = endat22Data.position_clocks>>6;
        init_done=1;
    }
-   if(endat_send_position_cmd_done){
-       endat22Data.error1 = endat22Data.rdata[0]&0x400;
-       endat22Data.error1 = endat22Data.rdata[0]&0x800;
-       //endat22Data.position_lo = endat22Data.rdata[3]&0xffc0;//
-       //endat22Data.position_lo = endat22Data.position_clocks>>6;
-   }
+//   if(endat_send_position_cmd_done){
+//       endat22Data.error1 = endat22Data.rdata[0]&0x400;
+//       endat22Data.error1 = endat22Data.rdata[0]&0x800;
+//       //endat22Data.position_lo = endat22Data.rdata[3]&0xffc0;//
+//       //endat22Data.position_lo = endat22Data.position_clocks>>6;
+//   }
 //   //校验数据
 //   if(init_done>=2){
 //       if((endat22Data.position_clocks!=25)||(endat22Data.position_clocks!=13)){
