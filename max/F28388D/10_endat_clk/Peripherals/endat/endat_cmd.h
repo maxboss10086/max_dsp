@@ -39,6 +39,7 @@ typedef struct  {                                 // bit descriptions
     uint16_t  rdata[4];     // Receive data buffer
     uint16_t  dataReady;
     uint16_t  fifo_level;
+    uint16_t  init_done;
 
 } ENDAT_DATA;
 

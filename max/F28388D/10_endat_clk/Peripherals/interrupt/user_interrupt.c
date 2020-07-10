@@ -146,9 +146,8 @@ __interrupt void spiaTxFIFOISR(void)
 }
 
 //SPI b send FIFO ISR
- uint16_t flag = 0;
  uint16_t init_done = 0;
- uint16_t position_clocks_cmd_done;
+ uint16_t position_clocks_cmd_done=0;
  uint16_t endat_send_position_cmd_done=0;
 __interrupt void spibTxFIFOISR(void)
 {
@@ -175,7 +174,6 @@ __interrupt void spibTxFIFOISR(void)
             //send_step++;
         break;
         case 3:
-               endat22Data.endat_mode = 0x21;
                endat_send_position();
                for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; ){
                         SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
@@ -209,9 +207,11 @@ __interrupt void spibRxFIFOISR(void)
    switch(rx_step){
        case 0:
            if(position_clocks_cmd_done){
-               endat22Data.position_clocks = endat22Data.rdata[3]&0xffe0;
+               endat22Data.address = endat22Data.rdata[2] & 0x1fe0;
+               endat22Data.address = endat22Data.address>>5;
+               endat22Data.position_clocks = endat22Data.rdata[3] & 0xffe0;
                endat22Data.position_clocks = endat22Data.position_clocks>>5;
-               init_done=1;
+               endat22Data.init_done=1;
            }
            //rx_step++;
        break;
@@ -219,17 +219,17 @@ __interrupt void spibRxFIFOISR(void)
            if(endat_send_position_cmd_done){
                endat22Data.error1 = endat22Data.rdata[0]&0x0008;//错误位脉冲是13个,即接收数据的低4位
                endat22Data.error1 = endat22Data.error1>>3;
-               endat22Data.dataReady = endat22Data.rdata[0]&0x0010;//错误位脉冲是12个,即接收数据的低5位
+               endat22Data.dataReady = endat22Data.rdata[0]&0x0010;//S位脉冲是12个,即接收数据的低5位
                endat22Data.dataReady = endat22Data.dataReady>>4;
                for(i=1;i<=3;i++){//第一个数组循环执行3次，取出低3位
-                   result = (endat22Data.rdata[0] & 0x0004) ? 1 :0;//按位取出第一个数组的数据，该数据不是0就是1
+                   result = (endat22Data.rdata[0] & 0x0004) ? 1 :0;//取出数组的倒数第3位
                    result = result<<j;//左移J位，把这个数据放在位置数据的最高位
                    endat22Data.position_lo = endat22Data.position_lo | result;
                    endat22Data.position_lo = endat22Data.position_lo>>1;//然后位置数据右移
                    endat22Data.rdata[0] = endat22Data.rdata[0]<<1;
                }
                for( i=1;i<=16;i++){//第二个数组循环执行15次
-                   result = (endat22Data.rdata[1] & 0x8000) ? 1 :0 ;
+                   result = (endat22Data.rdata[1] & 0x8000) ? 1 :0 ;//取出数组的最高位
                    result = result<<j;
                    endat22Data.position_lo = endat22Data.position_lo | result;
                    endat22Data.position_lo = endat22Data.position_lo>>1;

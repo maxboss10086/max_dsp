@@ -87,6 +87,7 @@ void main(void)
     while(1){
                endat_en();//endat每隔1000传输一次,向CLB输入信号 0100 0001,发出时钟，启动SPI传输
                DEVICE_DELAY_US(1000);//假设接收的数据都是0
+               //if(endat22Data.init_done)
     }
 
 //
