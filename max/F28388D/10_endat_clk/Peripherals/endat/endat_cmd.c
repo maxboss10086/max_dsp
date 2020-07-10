@@ -24,22 +24,25 @@
 #include "endat_cmd.h"
 #include "user_spi.h"//引入spi数据
 #include "user_gpio.h"
-unsigned char clb_input = 0x01;//0000_0001,in0输入1，使得时钟默认为高电平
-                               //0010_0001,in5输入1，使得LU1选择计数器match2
-                               //clb初始化时，将使用0x01数据输入clb
-                               //endat_en将改变输入clb的信号用以启动endat
 
-ENDAT_DATA_STRUCT endat22Data;
+
+ENDAT_DATA endat22Data={1};//类比int a;
+                           //CLB的GP_REG输入信号设置
+                           //0000_0001,in0输入1，使得时钟默认为高电平
+                           //0010_0001,in5输入1，使得LU1选择计数器match2，从而改变endat运行模式
+                           //in6输入脉冲波形用于启动第一个状态机，从而启动endat的一帧数据
+                           //clb初始化时，将使用0x01数据输入clb
+                           //将endat_mode赋值为0x21，运行读取位置模式
 
 //输入脉冲信号使能endat,直接使用会报内存错误，留在后续研究
 //向CLB输入信号 0100 0001,CLB发出时钟，启动SPI传输
 void endat_en (void){
-    clb_input= clb_input|0x40;       //clb的8输入端口第7个端口即in6输入1
-    CLB_setGPREG(CLB2_BASE, clb_input);
-    CLB_setGPREG(CLB1_BASE, clb_input);//设置输入CLB的信号
-    clb_input= clb_input&0xbf;       //clb的8输入端口第7个端口即in6输入0
-    CLB_setGPREG(CLB1_BASE, clb_input);//设置输入CLB的信号*/
-    CLB_setGPREG(CLB2_BASE, clb_input);
+    endat22Data.endat_mode = endat22Data.endat_mode|0x40;       //clb的8输入端口第7个端口即in6输入1
+    CLB_setGPREG(CLB2_BASE, endat22Data.endat_mode);
+    CLB_setGPREG(CLB1_BASE, endat22Data.endat_mode);//设置输入CLB的信号
+    endat22Data.endat_mode = endat22Data.endat_mode&0xbf;       //clb的8输入端口第7个端口即in6输入0
+    CLB_setGPREG(CLB1_BASE, endat22Data.endat_mode);//设置输入CLB的信号*/
+    CLB_setGPREG(CLB2_BASE, endat22Data.endat_mode);
 }
 
 ////输入脉冲信号使能endat，通过外部GPIO短接

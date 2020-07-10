@@ -97,7 +97,7 @@ void clb1_in7_init_set(){
 
 //设置CLB的输入信号，如果不使用GPIO外部输入信号，那么就用GPREG的寄存器值作为输入信号
 void clb1_input_init_set(){
-    CLB_setGPREG(CLB1_BASE, clb_input);
+    CLB_setGPREG(CLB1_BASE, endat22Data.endat_mode);
     clb1_in0_init_set();
     clb1_in1_init_set();
     clb1_in2_init_set();
@@ -212,7 +212,7 @@ void clb2_in7_init_set(){
 
 //设置CLB的输入信号，如果不使用GPIO外部输入信号，那么就用GPREG的寄存器值作为输入信号
 void clb2_input_init_set(){
-    CLB_setGPREG(CLB2_BASE, clb_input);
+    CLB_setGPREG(CLB2_BASE, endat22Data.endat_mode);
     clb2_in0_init_set();
     clb2_in1_init_set();
     clb2_in2_init_set();

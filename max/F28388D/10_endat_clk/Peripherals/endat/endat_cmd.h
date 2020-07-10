@@ -17,8 +17,8 @@
 
 
 //define
-extern unsigned char clb_input;
 typedef struct  {                                 // bit descriptions
+    uint16_t  endat_mode;
     uint32_t  position_lo;
     uint32_t  position_hi;
     uint16_t  error1;
@@ -40,9 +40,11 @@ typedef struct  {                                 // bit descriptions
     uint16_t  dataReady;
     uint16_t  fifo_level;
 
-} ENDAT_DATA_STRUCT;
+} ENDAT_DATA;
 
-extern ENDAT_DATA_STRUCT endat22Data;
+//ENDAT_DATA  endat22Data= {1};
+
+extern ENDAT_DATA endat22Data;
 //编码器命令
 #define     encoder_transmit_position_values                                0x07//6'b00_0111
 #define     selection_of_memory_area                                        0x0e//6'b00_1110
