@@ -43,7 +43,7 @@ typedef struct  {                                 // bit descriptions
 
 } ENDAT_DATA;
 
-//ENDAT_DATA  endat22Data= {1};
+
 
 extern ENDAT_DATA endat22Data;
 //编码器命令

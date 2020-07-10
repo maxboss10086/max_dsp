@@ -9,7 +9,7 @@
 // Author:          Max
 // Creation Date:   2020年5月24日
 //----------------------------------------------------------------------------------------//
-//note:
+//note: 1中断所做的事：向FIFO填入数据供硬件发送，抽取FIFO中的数据进行处理和校验
 
 //----------------------------------------------------------------------------------------//
 //***************************************include******************************************//
@@ -146,9 +146,6 @@ __interrupt void spiaTxFIFOISR(void)
 }
 
 //SPI b send FIFO ISR
- uint16_t init_done = 0;
- uint16_t position_clocks_cmd_done=0;
- uint16_t endat_send_position_cmd_done=0;
 __interrupt void spibTxFIFOISR(void)
 {
     uint16_t spib_send_i = 0;
@@ -170,16 +167,14 @@ __interrupt void spibTxFIFOISR(void)
                         SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
                         spib_send_i++;
                     }
-                position_clocks_cmd_done=1;
-            //send_step++;
+                send_step++;
         break;
-        case 3:
+        case 2:
                endat_send_position();
                for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; ){
                         SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
                         spib_send_i++;
-                   }
-               endat_send_position_cmd_done=1;
+               }
         break;
        }
 
@@ -206,17 +201,20 @@ __interrupt void spibRxFIFOISR(void)
    static unsigned char rx_step = 0;
    switch(rx_step){
        case 0:
-           if(position_clocks_cmd_done){
+               rx_step++;//选择编码器MRS帧返回的数据不用做处理
+       break;
+       case 1:
                endat22Data.address = endat22Data.rdata[2] & 0x1fe0;
                endat22Data.address = endat22Data.address>>5;
                endat22Data.position_clocks = endat22Data.rdata[3] & 0xffe0;
                endat22Data.position_clocks = endat22Data.position_clocks>>5;
                endat22Data.init_done=1;
-           }
-           //rx_step++;
+               if(endat22Data.position_clocks == 25){
+                   endat22Data.endat_mode = 0x21;
+               }
+               rx_step++;
        break;
-       case 1:
-           if(endat_send_position_cmd_done){
+       case 2:
                endat22Data.error1 = endat22Data.rdata[0]&0x0008;//错误位脉冲是13个,即接收数据的低4位
                endat22Data.error1 = endat22Data.error1>>3;
                endat22Data.dataReady = endat22Data.rdata[0]&0x0010;//S位脉冲是12个,即接收数据的低5位
@@ -249,7 +247,7 @@ __interrupt void spibRxFIFOISR(void)
                    }
                    endat22Data.rdata[2] = endat22Data.rdata[2]<<1;
                }
-           }
+        break;
    }
 
 //*****校验数据******\\

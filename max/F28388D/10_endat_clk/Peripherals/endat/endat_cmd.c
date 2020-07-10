@@ -45,12 +45,7 @@ void endat_en (void){
     CLB_setGPREG(CLB2_BASE, endat22Data.endat_mode);
 }
 
-////输入脉冲信号使能endat，通过外部GPIO短接
-//void endat_en (void){
-//    GPIO61_H();       //clb的8输入端口第7个端口即in6输入1
-//    DEVICE_DELAY_US(1);
-//    GPIO61_L();//clb的8输入端口第7个端口即in6输入0
-//}
+
 
 //第一个初始化命令由编码器选中存储区和对应的MRS码组成
 uint16_t endat_selection_of_memory_area_cmd(void){
