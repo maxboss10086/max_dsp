@@ -62,14 +62,14 @@ TILE1.FSM_0.eqn_out = "s0|xe1";
 TILE1.FSM_0.xe1 = "FSM_1.S0";
 // Name
 TILE1.FSM_1.$name = "FSM_1";
-// eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.
-TILE1.FSM_1.eqn_s0 = "(((!e0)&(!e1)&s0)|((e0)&(!e1)&(!s0))|(e0&(!e1)&s0))";
 // eqn_out - Boolean equation on the variables e1,e0,s1,s0 for the LUT output.
 TILE1.FSM_1.eqn_out = "~s0";
 // e0 - External Input 0.
 TILE1.FSM_1.e0 = "LUT_1.OUT";
 // e1 - External Input 1.
 TILE1.FSM_1.e1 = "LUT_0.OUT";
+// eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.
+TILE1.FSM_1.eqn_s0 = "(((!e0)&(!e1)&s0)|((e0)&(!e1)&(!s0))|(e0&(!e1)&s0))";
 // Name
 TILE1.FSM_2.$name = "FSM_2";
 // eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.

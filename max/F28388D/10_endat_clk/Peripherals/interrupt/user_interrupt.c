@@ -167,7 +167,9 @@ __interrupt void spibTxFIFOISR(void)
                         SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
                         spib_send_i++;
                     }
-                send_step++;
+                if(endat22Data.init_done==1){
+                    send_step++;
+                }
         break;
         case 2:
                endat_send_position();
@@ -208,11 +210,11 @@ __interrupt void spibRxFIFOISR(void)
                endat22Data.address = endat22Data.address>>5;
                endat22Data.position_clocks = endat22Data.rdata[3] & 0xffe0;
                endat22Data.position_clocks = endat22Data.position_clocks>>5;
-               endat22Data.init_done=1;
                if(endat22Data.position_clocks == 25){
                    endat22Data.endat_mode = 0x21;
+                   endat22Data.init_done=1;
+                   rx_step++;
                }
-               rx_step++;
        break;
        case 2:
                endat22Data.error1 = endat22Data.rdata[0]&0x0008;//错误位脉冲是13个,即接收数据的低4位
