@@ -60,9 +60,10 @@ void clb1_in3_init_set(){
 //还没用到
 void clb1_in4_init_set(){
 
-    CLB_configGPInputMux(CLB1_BASE, CLB_IN4, CLB_GP_IN_MUX_GP_REG);
+    CLB_configGPInputMux(CLB1_BASE, CLB_IN4, CLB_GP_IN_MUX_EXTERNAL);
     CLB_configLocalInputMux(CLB1_BASE, CLB_IN4, CLB_LOCAL_IN_MUX_GLOBAL_IN);
-    CLB_configGlobalInputMux(CLB1_BASE, CLB_IN4, CLB_GLOBAL_IN_MUX_EPWM4_CTRDIR);
+    CLB_configGlobalInputMux(CLB1_BASE, CLB_IN4, CLB_GLOBAL_IN_MUX_EPWM1A);
+    CLB_selectInputFilter(CLB1_BASE,CLB_IN4,CLB_FILTER_RISING_EDGE);
 }
 
 //还没用到

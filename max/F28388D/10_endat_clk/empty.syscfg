@@ -16,6 +16,8 @@ TILE1.BOUNDARY.in_repeat_count0 = 0;
 TILE1.BOUNDARY.in0 = "1";
 // in1
 TILE1.BOUNDARY.in1 = "0";
+// in_edge2 - Edge detection on the inputs, generates 1 cycle pulse on chosen edges - for simulation purposes only
+TILE1.BOUNDARY.in_edge2 = "rising edge";
 // Name
 TILE1.LUT_0.$name = "LUT_0";
 // eqn - Boolean equation on the variables i3,i2,i1,i0 for the LUT output.
@@ -146,12 +148,12 @@ TILE1.OUTLUT_4.i0 = "FSM_1.S0";
 TILE1.OUTLUT_5.$name = "OUTLUT_5";
 // i2 - Input 2.
 TILE1.OUTLUT_5.i2 = "FSM_0.S0";
-// i1 - Input 1.
-TILE1.OUTLUT_5.i1 = "FSM_2.OUT";
 // i0 - Input 0.
 TILE1.OUTLUT_5.i0 = "LUT_2.OUT";
 // eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
-TILE1.OUTLUT_5.eqn = "i0";
+TILE1.OUTLUT_5.eqn = "i1";
+// i1 - Input 1.
+TILE1.OUTLUT_5.i1 = "BOUNDARY.in4";
 // Name
 TILE1.OUTLUT_6.$name = "OUTLUT_6";
 // Name
