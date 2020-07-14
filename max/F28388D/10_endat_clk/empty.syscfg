@@ -30,14 +30,16 @@ TILE1.LUT_0.i2 = "COUNTER_0.count_match2";
 TILE1.LUT_0.i1 = "BOUNDARY.in5";
 // Name
 TILE1.LUT_1.$name = "LUT_1";
-// eqn - Boolean equation on the variables i3,i2,i1,i0 for the LUT output.
-TILE1.LUT_1.eqn = "(i0&(!i2))|((!i0)&i1)";
 // i0 - Input 0.
 TILE1.LUT_1.i0 = "BOUNDARY.in6";
 // i1 - Input 1.
 TILE1.LUT_1.i1 = "BOUNDARY.in1";
 // i2 - Input 2.
 TILE1.LUT_1.i2 = "BOUNDARY.in3";
+// i3 - Input 3.
+TILE1.LUT_1.i3 = "BOUNDARY.in4";
+// eqn - Boolean equation on the variables i3,i2,i1,i0 for the LUT output.
+TILE1.LUT_1.eqn = "(i0&i3)|((!i0)&i1)";
 // Name
 TILE1.LUT_2.$name = "LUT_2";
 // i0 - Input 0.
@@ -140,20 +142,22 @@ TILE1.OUTLUT_2.eqn = "(i0&i2)|((i1)&(~i2))";
 TILE1.OUTLUT_3.$name = "OUTLUT_3";
 // Name
 TILE1.OUTLUT_4.$name = "OUTLUT_4";
-// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
-TILE1.OUTLUT_4.eqn = "i0";
 // i0 - Input 0.
 TILE1.OUTLUT_4.i0 = "FSM_1.S0";
+// i1 - Input 1.
+TILE1.OUTLUT_4.i1 = "BOUNDARY.in6";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE1.OUTLUT_4.eqn = "i0";
 // Name
 TILE1.OUTLUT_5.$name = "OUTLUT_5";
 // i2 - Input 2.
 TILE1.OUTLUT_5.i2 = "FSM_0.S0";
-// i0 - Input 0.
-TILE1.OUTLUT_5.i0 = "LUT_2.OUT";
-// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
-TILE1.OUTLUT_5.eqn = "i1";
 // i1 - Input 1.
 TILE1.OUTLUT_5.i1 = "BOUNDARY.in4";
+// i0 - Input 0.
+TILE1.OUTLUT_5.i0 = "LUT_1.OUT";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE1.OUTLUT_5.eqn = "i0";
 // Name
 TILE1.OUTLUT_6.$name = "OUTLUT_6";
 // Name
