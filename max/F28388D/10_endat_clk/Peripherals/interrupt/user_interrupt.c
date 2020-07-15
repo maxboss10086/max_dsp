@@ -217,12 +217,12 @@ __interrupt void spibRxFIFOISR(void)
                }
        break;
        case 2:
-               endat22Data.error1 = endat22Data.rdata[0]&0x0008;//错误位脉冲是13个,即接收数据的低4位
-               endat22Data.error1 = endat22Data.error1>>3;
-               endat22Data.dataReady = endat22Data.rdata[0]&0x0010;//S位脉冲是12个,即接收数据的低5位
-               endat22Data.dataReady = endat22Data.dataReady>>4;
-               for(i=1;i<=3;i++){//第一个数组循环执行3次，取出低3位
-                   result = (endat22Data.rdata[0] & 0x0004) ? 1 :0;//取出数组的倒数第3位
+               endat22Data.dataReady = endat22Data.rdata[0]&0x0020;//S位脉冲是11个,即接收数据的低5位
+               endat22Data.dataReady = endat22Data.dataReady>>5;
+               endat22Data.error1 = endat22Data.rdata[0]&0x0010;//错误位脉冲是12个,即接收数据的低4位
+               endat22Data.error1 = endat22Data.error1>>4;
+               for(i=1;i<=4;i++){//第一个数组循环执行4次，取出低4位
+                   result = (endat22Data.rdata[0] & 0x0008) ? 1 :0;//取出数组的倒数第4位
                    result = result<<j;//左移J位，把这个数据放在位置数据的最高位
                    endat22Data.position_lo = endat22Data.position_lo | result;
                    endat22Data.position_lo = endat22Data.position_lo>>1;//然后位置数据右移
@@ -235,7 +235,7 @@ __interrupt void spibRxFIFOISR(void)
                    endat22Data.position_lo = endat22Data.position_lo>>1;
                    endat22Data.rdata[1] = endat22Data.rdata[1]<<1;
                }
-               for(i=10;i<=15;i++){//第三个数组循环执行6次,取出高6位
+               for(i=11;i<=15;i++){//第三个数组循环执行5次,取出高5位
                    result = (endat22Data.rdata[2] & 0x8000) ? 1 :0 ;
                    if(i<=14){
                        result = result<<j;
