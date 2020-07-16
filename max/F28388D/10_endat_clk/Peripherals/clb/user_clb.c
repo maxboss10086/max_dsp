@@ -83,11 +83,9 @@ void clb1_in6_init_set(){
 
 //编码器的输入线接入clb的in7
 void clb1_in7_init_set(){
-
-    XBAR_setInputPin(INPUTXBAR_BASE, XBAR_INPUT2, 18);
-    //input-xbar接入clb_xbar
-    XBAR_setCLBMuxConfig(XBAR_AUXSIG1, XBAR_CLB_MUX03_INPUTXBAR2);
-    XBAR_enableCLBMux(XBAR_AUXSIG1, XBAR_MUX03);
+    //CLB2的xbar接入clb_xbar
+    XBAR_setCLBMuxConfig(XBAR_AUXSIG1, XBAR_CLB_MUX05_CLB2_OUT4);
+    XBAR_enableCLBMux(XBAR_AUXSIG1, XBAR_MUX05);
     //GPIO63信号输入clb设置
     CLB_configGPInputMux(CLB1_BASE, CLB_IN7, CLB_GP_IN_MUX_EXTERNAL);
     CLB_configLocalInputMux(CLB1_BASE, CLB_IN7, CLB_LOCAL_IN_MUX_GLOBAL_IN);
@@ -225,11 +223,11 @@ void clb2_input_init_set(){
 
 void clb2_ou4_init_set(){
     //将clb的out4输出接入output xabr
-    XBAR_setOutputMuxConfig(OUTPUTXBAR_BASE, XBAR_OUTPUT8, XBAR_OUT_MUX05_CLB2_OUT4);
-    XBAR_enableOutputMux(OUTPUTXBAR_BASE, XBAR_OUTPUT8, XBAR_MUX05);
-    //将GPIO9复用为output xbar，信号就从GPIO9输出
-    GPIO_setPadConfig(17, GPIO_PIN_TYPE_STD);//推完输出
-    GPIO_setPinConfig(GPIO_17_OUTPUTXBAR8);//引脚复用为outxbar
+    //XBAR_setOutputMuxConfig(XBAR_BASE, XBAR_OUTPUT8, XBAR_OUT_MUX05_CLB2_OUT4);
+    //XBAR_enableOutputMux(XBAR_BASE, XBAR_OUTPUT8, XBAR_MUX03);
+    //将GPIO9复用为output xbar，信号就从GPIO输出
+    //GPIO_setPadConfig(17, GPIO_PIN_TYPE_STD);//推完输出
+    //GPIO_setPinConfig(GPIO_17_OUTPUTXBAR8);//引脚复用为outxbar
 }
 
 void clb2_ou5_init_set(){

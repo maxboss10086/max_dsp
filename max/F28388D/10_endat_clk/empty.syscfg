@@ -105,7 +105,7 @@ TILE1.COUNTER_1.reset = "LUT_2.OUT";
 // match1_val - Sets the value of the Match reference 1 register.
 TILE1.COUNTER_1.match1_val = "610";
 // match2_val - Sets the value of the Match reference 2 register.
-TILE1.COUNTER_1.match2_val = "1120";
+TILE1.COUNTER_1.match2_val = "1115";
 // Name
 TILE1.COUNTER_2.$name = "COUNTER_2";
 // match1_val - Sets the value of the Match reference 1 register.
@@ -144,14 +144,14 @@ TILE1.OUTLUT_4.eqn = "i0";
 TILE1.OUTLUT_4.i0 = "FSM_1.S0";
 // Name
 TILE1.OUTLUT_5.$name = "OUTLUT_5";
-// i2 - Input 2.
-TILE1.OUTLUT_5.i2 = "FSM_0.S0";
 // i1 - Input 1.
 TILE1.OUTLUT_5.i1 = "FSM_2.OUT";
 // i0 - Input 0.
 TILE1.OUTLUT_5.i0 = "LUT_2.OUT";
+// i2 - Input 2.
+TILE1.OUTLUT_5.i2 = "BOUNDARY.in7";
 // eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
-TILE1.OUTLUT_5.eqn = "i0";
+TILE1.OUTLUT_5.eqn = "i2";
 // Name
 TILE1.OUTLUT_6.$name = "OUTLUT_6";
 // Name
