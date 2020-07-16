@@ -161,16 +161,18 @@ __interrupt void spibTxFIFOISR(void)
                 send_step++;
         break;
         case 1:
-                endat_send_position_clocks();
-                for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; )
-                    {//一直发送
-                        SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
-                        spib_send_i++;
-                    }
                 if(endat22Data.init_done==1){
                     send_step++;
                 }
-        break;
+                else{
+                    endat_send_position_clocks();
+                    for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; )
+                        {//一直发送
+                            SPI_writeDataNonBlocking(SPIB_BASE, endat22Data.sdata[spib_send_i]);
+                            spib_send_i++;
+                        }
+                    break;
+                }
         case 2:
                endat_send_position();
                for(spib_send_i = 0; spib_send_i <= sizeof(endat22Data.sdata)/sizeof(uint16_t)-1; ){
