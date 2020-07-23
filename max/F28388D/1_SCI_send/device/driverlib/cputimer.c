@@ -1,12 +1,8 @@
 //#############################################################################
 //
-// FILE:   empty_driverlib_main.c
+// FILE:   cputimer.c
 //
-// TITLE:  Empty Project
-//
-// Empty Project Example
-//
-// This example is an empty project setup for Driverlib development.
+// TITLE:   C28x CPU timer Driver
 //
 //#############################################################################
 // $TI Release: F2838x Support Library v3.02.00.00 $
@@ -44,55 +40,22 @@
 // $
 //#############################################################################
 
-//
-// Included Files
-//
+#include "cputimer.h"
 
-#include "driverlib.h"
-#include "device.h"
-
-#include "user_sci.h"
+//*****************************************************************************
 //
-// Main
-void main(void)
+// CPUTimer_setEmulationMode
+//
+//*****************************************************************************
+void CPUTimer_setEmulationMode(uint32_t base, CPUTimer_EmulationMode mode)
 {
-//***********************************************系统初始化**********************************\\
-// Initialize device clock and peripherals
-    Device_init();
-//    // Setup GPIO by disabling pin locks and enabling pullups
-    Device_initGPIO();
-//    // Initialize PIE and clear PIE registers. Disables CPU interrupts
-    Interrupt_initModule();
-//      // Initialize the PIE vector table with pointers to the shell Interrupt
-//      // Service Routines (ISR).
-    Interrupt_initVectorTable();
-//      // Enables CPU interrupts
-    Interrupt_enableMaster();
-    EINT;
-    ERTM;
-
-
-
-//***********************************************外设初始化设置**********************************\\
-//串口设置为9600
-    scia_init_set();
-//***********************************************函数执行***************************************\\
-//函数执行
-    while(1) {
-        scia_send('g');//读取FIFO中的数据进行发送
-        DEVICE_DELAY_US(500000);
-    }
-
-
-
-
-
-
-
-
-
+    ASSERT(CPUTimer_isBaseValid(base));
+    //
+    // Write to FREE_SOFT bits of register TCR
+    //
+      HWREGH(base + CPUTIMER_O_TCR) =
+            (HWREGH(base + CPUTIMER_O_TCR) &
+            ~(CPUTIMER_TCR_FREE | CPUTIMER_TCR_SOFT)) |
+            (uint16_t)mode;
 }
 
-//
-// End of File
-//

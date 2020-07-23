@@ -1,14 +1,10 @@
-//#############################################################################
+//###########################################################################
 //
-// FILE:   empty_driverlib_main.c
+// FILE:   cla.c
 //
-// TITLE:  Empty Project
+// TITLE:  CLA Driver Implementation File
 //
-// Empty Project Example
-//
-// This example is an empty project setup for Driverlib development.
-//
-//#############################################################################
+//###########################################################################
 // $TI Release: F2838x Support Library v3.02.00.00 $
 // $Release Date: Tue May 26 17:21:56 IST 2020 $
 // $Copyright:
@@ -42,57 +38,52 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
-//#############################################################################
+//###########################################################################
 
-//
-// Included Files
-//
+#include "cla.h"
 
-#include "driverlib.h"
-#include "device.h"
-
-#include "user_sci.h"
+//*****************************************************************************
 //
-// Main
-void main(void)
+// CLA_setTriggerSource()
+//
+//*****************************************************************************
+void
+CLA_setTriggerSource(CLA_TaskNumber taskNumber, CLA_Trigger trigger)
 {
-//***********************************************系统初始化**********************************\\
-// Initialize device clock and peripherals
-    Device_init();
-//    // Setup GPIO by disabling pin locks and enabling pullups
-    Device_initGPIO();
-//    // Initialize PIE and clear PIE registers. Disables CPU interrupts
-    Interrupt_initModule();
-//      // Initialize the PIE vector table with pointers to the shell Interrupt
-//      // Service Routines (ISR).
-    Interrupt_initVectorTable();
-//      // Enables CPU interrupts
-    Interrupt_enableMaster();
-    EINT;
-    ERTM;
+    uint32_t srcSelReg;
+    uint32_t shiftVal;
 
+    //
+    // Calculate the shift value for the specified task.
+    //
+    shiftVal = ((uint32_t)taskNumber * SYSCTL_CLA1TASKSRCSEL1_TASK2_S) % 32U;
 
-
-//***********************************************外设初始化设置**********************************\\
-//串口设置为9600
-    scia_init_set();
-//***********************************************函数执行***************************************\\
-//函数执行
-    while(1) {
-        scia_send('g');//读取FIFO中的数据进行发送
-        DEVICE_DELAY_US(500000);
+    //
+    // Calculate the register address for the specified task.
+    //
+    if(taskNumber <= CLA_TASK_4)
+    {
+        //
+        // Tasks 1-4
+        //
+        srcSelReg = (uint32_t)DMACLASRCSEL_BASE + SYSCTL_O_CLA1TASKSRCSEL1;
+    }
+    else
+    {
+        //
+        // Tasks 5-8
+        //
+        srcSelReg = (uint32_t)DMACLASRCSEL_BASE + SYSCTL_O_CLA1TASKSRCSEL2;
     }
 
+    EALLOW;
 
+    //
+    // Write trigger selection to the appropriate register.
+    //
+    HWREG(srcSelReg) &= ~((uint32_t)SYSCTL_CLA1TASKSRCSEL1_TASK1_M
+                           << shiftVal);
+    HWREG(srcSelReg) = HWREG(srcSelReg) | ((uint32_t)trigger << shiftVal);
 
-
-
-
-
-
-
+    EDIS;
 }
-
-//
-// End of File
-//

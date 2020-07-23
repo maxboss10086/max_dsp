@@ -1,14 +1,10 @@
-//#############################################################################
+//###########################################################################
 //
-// FILE:   empty_driverlib_main.c
+// FILE:   dac.c
 //
-// TITLE:  Empty Project
+// TITLE:  C28x DAC driver.
 //
-// Empty Project Example
-//
-// This example is an empty project setup for Driverlib development.
-//
-//#############################################################################
+//###########################################################################
 // $TI Release: F2838x Support Library v3.02.00.00 $
 // $Release Date: Tue May 26 17:21:56 IST 2020 $
 // $Copyright:
@@ -42,57 +38,56 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
-//#############################################################################
+//###########################################################################
 
-//
-// Included Files
-//
+#include "dac.h"
 
-#include "driverlib.h"
-#include "device.h"
-
-#include "user_sci.h"
+//*****************************************************************************
 //
-// Main
-void main(void)
+// DAC_tuneOffsetTrim()
+//
+//*****************************************************************************
+
+void
+DAC_tuneOffsetTrim(uint32_t base, float32_t referenceVoltage)
 {
-//***********************************************系统初始化**********************************\\
-// Initialize device clock and peripherals
-    Device_init();
-//    // Setup GPIO by disabling pin locks and enabling pullups
-    Device_initGPIO();
-//    // Initialize PIE and clear PIE registers. Disables CPU interrupts
-    Interrupt_initModule();
-//      // Initialize the PIE vector table with pointers to the shell Interrupt
-//      // Service Routines (ISR).
-    Interrupt_initVectorTable();
-//      // Enables CPU interrupts
-    Interrupt_enableMaster();
-    EINT;
-    ERTM;
+    uint16_t oldOffsetTrim;
+    float32_t newOffsetTrim;
 
+    //
+    // Check the arguments.
+    //
+    ASSERT(DAC_isBaseValid(base));
+    ASSERT(referenceVoltage > 0U);
 
+    //
+    // Get the sign-extended offset trim value
+    //
+    oldOffsetTrim = (HWREGH(base + DAC_O_TRIM) & DAC_TRIM_OFFSET_TRIM_M);
+    oldOffsetTrim = ((oldOffsetTrim & (uint16_t)DAC_REG_BYTE_MASK) ^
+                    (uint16_t)0x80) - (uint16_t)0x80;
 
-//***********************************************外设初始化设置**********************************\\
-//串口设置为9600
-    scia_init_set();
-//***********************************************函数执行***************************************\\
-//函数执行
-    while(1) {
-        scia_send('g');//读取FIFO中的数据进行发送
-        DEVICE_DELAY_US(500000);
-    }
+    //
+    // Calculate new offset trim value if DAC is operating at a reference
+    // voltage other than 2.5v.
+    //
+    newOffsetTrim = ((float32_t)(2.5 / referenceVoltage) *
+                     (int16_t)oldOffsetTrim);
 
+    //
+    // Check if the new offset trim value is valid
+    //
+    ASSERT(((int16_t)newOffsetTrim > -129) && ((int16_t)newOffsetTrim < 128));
 
+    //
+    // Set the new offset trim value
+    //
+    EALLOW;
+    HWREGH(base + DAC_O_TRIM) = (HWREGH(base + DAC_O_TRIM) &
+                                 ~DAC_TRIM_OFFSET_TRIM_M) |
+                                 (int16_t)newOffsetTrim;
 
-
-
-
-
-
+    EDIS;
 
 }
 
-//
-// End of File
-//

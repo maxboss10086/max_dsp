@@ -1,12 +1,8 @@
 //#############################################################################
 //
-// FILE:   empty_driverlib_main.c
+// FILE:   driverlib.h
 //
-// TITLE:  Empty Project
-//
-// Empty Project Example
-//
-// This example is an empty project setup for Driverlib development.
+// TITLE:  C28x Driverlib Header File
 //
 //#############################################################################
 // $TI Release: F2838x Support Library v3.02.00.00 $
@@ -43,56 +39,46 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
+#ifndef DRIVERLIB_H
+#define DRIVERLIB_H
 
-//
-// Included Files
-//
+#include "inc/hw_memmap.h"
 
-#include "driverlib.h"
-#include "device.h"
+#include "adc.h"
+#include "asysctl.h"
+#include "bgcrc.h"
+#include "can.h"
+#include "cla.h"
+#include "clb.h"
+#include "cmpss.h"
+#include "cpu.h"
+#include "cputimer.h"
+#include "dac.h"
+#include "dcc.h"
+#include "dcsm.h"
+#include "debug.h"
+#include "dma.h"
+#include "ecap.h"
+#include "emif.h"
+#include "epwm.h"
+#include "eqep.h"
+#include "escss.h"
+#include "flash.h"
+#include "fsi.h"
+#include "gpio.h"
+#include "hrcap.h"
+#include "hrpwm.h"
+#include "i2c.h"
+#include "interrupt.h"
+#include "ipc.h"
+#include "mcbsp.h"
+#include "memcfg.h"
+#include "pin_map.h"
+#include "sci.h"
+#include "sdfm.h"
+#include "spi.h"
+#include "sysctl.h"
+#include "usb.h"
+#include "xbar.h"
 
-#include "user_sci.h"
-//
-// Main
-void main(void)
-{
-//***********************************************系统初始化**********************************\\
-// Initialize device clock and peripherals
-    Device_init();
-//    // Setup GPIO by disabling pin locks and enabling pullups
-    Device_initGPIO();
-//    // Initialize PIE and clear PIE registers. Disables CPU interrupts
-    Interrupt_initModule();
-//      // Initialize the PIE vector table with pointers to the shell Interrupt
-//      // Service Routines (ISR).
-    Interrupt_initVectorTable();
-//      // Enables CPU interrupts
-    Interrupt_enableMaster();
-    EINT;
-    ERTM;
-
-
-
-//***********************************************外设初始化设置**********************************\\
-//串口设置为9600
-    scia_init_set();
-//***********************************************函数执行***************************************\\
-//函数执行
-    while(1) {
-        scia_send('g');//读取FIFO中的数据进行发送
-        DEVICE_DELAY_US(500000);
-    }
-
-
-
-
-
-
-
-
-
-}
-
-//
-// End of File
-//
+#endif  // end of DRIVERLIB_H definition

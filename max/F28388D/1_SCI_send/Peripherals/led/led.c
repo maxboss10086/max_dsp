@@ -6,8 +6,8 @@
  */
 
 
-#include <F2838X_lib/device/device.h>//引入外设
-#include <F2838X_lib/device/driverlib.h>
+#include "driverlib.h"
+#include "device.h"
 
 #include "led.h"
 

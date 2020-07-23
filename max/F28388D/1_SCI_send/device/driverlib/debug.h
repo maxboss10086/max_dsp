@@ -1,14 +1,10 @@
-//#############################################################################
+//###########################################################################
 //
-// FILE:   empty_driverlib_main.c
+// FILE:   debug.h
 //
-// TITLE:  Empty Project
+// TITLE:  Assert definition macro for debug.
 //
-// Empty Project Example
-//
-// This example is an empty project setup for Driverlib development.
-//
-//#############################################################################
+//###########################################################################
 // $TI Release: F2838x Support Library v3.02.00.00 $
 // $Release Date: Tue May 26 17:21:56 IST 2020 $
 // $Copyright:
@@ -42,57 +38,37 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
-//#############################################################################
+//###########################################################################
 
+#ifndef DEBUG_H
+#define DEBUG_H
+
+//*****************************************************************************
 //
-// Included Files
+// Prototype for the function that is called when an invalid argument is passed
+// to an API.  This is only used when doing a DEBUG build. It is the
+// application's responsibility to define the __error__ function.
 //
+//*****************************************************************************
+extern void __error__(char *filename, uint32_t line);
 
-#include "driverlib.h"
-#include "device.h"
-
-#include "user_sci.h"
+//*****************************************************************************
 //
-// Main
-void main(void)
-{
-//***********************************************系统初始化**********************************\\
-// Initialize device clock and peripherals
-    Device_init();
-//    // Setup GPIO by disabling pin locks and enabling pullups
-    Device_initGPIO();
-//    // Initialize PIE and clear PIE registers. Disables CPU interrupts
-    Interrupt_initModule();
-//      // Initialize the PIE vector table with pointers to the shell Interrupt
-//      // Service Routines (ISR).
-    Interrupt_initVectorTable();
-//      // Enables CPU interrupts
-    Interrupt_enableMaster();
-    EINT;
-    ERTM;
-
-
-
-//***********************************************外设初始化设置**********************************\\
-//串口设置为9600
-    scia_init_set();
-//***********************************************函数执行***************************************\\
-//函数执行
-    while(1) {
-        scia_send('g');//读取FIFO中的数据进行发送
-        DEVICE_DELAY_US(500000);
-    }
-
-
-
-
-
-
-
-
-
-}
-
+// The ASSERT macro, which does the actual assertion checking.  Typically, this
+// will be for procedure arguments.
 //
-// End of File
-//
+//*****************************************************************************
+#ifdef DEBUG
+#define ASSERT(expr) do                                                       \
+                     {                                                        \
+                         if(!(expr))                                          \
+                         {                                                    \
+                             __error__(__FILE__, __LINE__);                   \
+                         }                                                    \
+                     }                                                        \
+                     while(0)
+#else
+#define ASSERT(expr)
+#endif
+
+#endif // DEBUG_H
