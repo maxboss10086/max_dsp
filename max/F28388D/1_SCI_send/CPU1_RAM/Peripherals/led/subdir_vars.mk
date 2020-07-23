@@ -6,21 +6,21 @@ SHELL = cmd.exe
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Peripherals/led/led.c 
+../Peripherals/led/user_led.c 
 
 C_DEPS += \
-./Peripherals/led/led.d 
+./Peripherals/led/user_led.d 
 
 OBJS += \
-./Peripherals/led/led.obj 
+./Peripherals/led/user_led.obj 
 
 OBJS__QUOTED += \
-"Peripherals\led\led.obj" 
+"Peripherals\led\user_led.obj" 
 
 C_DEPS__QUOTED += \
-"Peripherals\led\led.d" 
+"Peripherals\led\user_led.d" 
 
 C_SRCS__QUOTED += \
-"../Peripherals/led/led.c" 
+"../Peripherals/led/user_led.c" 
 
 

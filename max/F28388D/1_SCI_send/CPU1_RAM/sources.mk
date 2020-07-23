@@ -112,7 +112,13 @@ PDE_DEPS__QUOTED :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 . \
+Peripherals/dlog \
+Peripherals/dma \
+Peripherals/epwm \
+Peripherals/gpio \
+Peripherals/interrupt \
 Peripherals/led \
 Peripherals/sci \
+Peripherals/spi \
 device \
 

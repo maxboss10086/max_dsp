@@ -1,7 +1,7 @@
 # FIXED
 
 Peripherals/led/led.obj: ../Peripherals/led/led.c
-Peripherals/led/led.obj: C:/TI/work_space_CCS9.3/empty_driverlib_project/device/driverlib.h
+Peripherals/led/led.obj: C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/device/driverlib.h
 Peripherals/led/led.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_memmap.h
 Peripherals/led/led.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/adc.h
 Peripherals/led/led.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/stdbool.h
@@ -90,11 +90,11 @@ Peripherals/led/led.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/
 Peripherals/led/led.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/spi.h
 Peripherals/led/led.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_spi.h
 Peripherals/led/led.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/usb.h
-Peripherals/led/led.obj: C:/TI/work_space_CCS9.3/empty_driverlib_project/device/device.h
+Peripherals/led/led.obj: C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/device/device.h
 Peripherals/led/led.obj: ../Peripherals/led/led.h
 
 ../Peripherals/led/led.c: 
-C:/TI/work_space_CCS9.3/empty_driverlib_project/device/driverlib.h: 
+C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/device/driverlib.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_memmap.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/adc.h: 
 C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/stdbool.h: 
@@ -183,5 +183,5 @@ C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_sdfm.h:
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/spi.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_spi.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/usb.h: 
-C:/TI/work_space_CCS9.3/empty_driverlib_project/device/device.h: 
+C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/device/device.h: 
 ../Peripherals/led/led.h: 

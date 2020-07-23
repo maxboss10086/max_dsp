@@ -50,6 +50,7 @@
 
 #include "driverlib.h"
 #include "device.h"
+#include "user_interrupt.h"
 
 #include "user_sci.h"
 //
@@ -57,31 +58,31 @@
 void main(void)
 {
 //***********************************************系统初始化**********************************\\
-// Initialize device clock and peripherals
-    Device_init();
-//    // Setup GPIO by disabling pin locks and enabling pullups
-    Device_initGPIO();
-//    // Initialize PIE and clear PIE registers. Disables CPU interrupts
-    Interrupt_initModule();
-//      // Initialize the PIE vector table with pointers to the shell Interrupt
-//      // Service Routines (ISR).
-    Interrupt_initVectorTable();
-//      // Enables CPU interrupts
-    Interrupt_enableMaster();
+    // Initialize device clock and peripherals
+        // PLLSYSCLK = 20MHz (XTAL_OSC) * 40 (IMULT) / (2 (REFDIV) * 2 (ODIV) * 1(SYSDIV))=200M
+        Device_init();
+    //    // Setup GPIO by disabling pin locks and enabling pullups
+        Device_initGPIO();
+    //    // Initialize PIE and clear PIE registers. Disables CPU interrupts
+        interrupt_init_set();
+//***********************************************外设初始化设置**********************************\\
+//串口设置为9600,GPIO29发送，28接收
+    sci_init_set(SCIA);
+
+
+// Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     EINT;
     ERTM;
-
-
-
-//***********************************************外设初始化设置**********************************\\
-//串口设置为9600
-    scia_init_set();
 //***********************************************函数执行***************************************\\
 //函数执行
     while(1) {
-        scia_send('g');//读取FIFO中的数据进行发送
+        sci_send(SCIA,'a');//读取FIFO中的数据进行发送
         DEVICE_DELAY_US(500000);
     }
+
+
+
+
 
 
 

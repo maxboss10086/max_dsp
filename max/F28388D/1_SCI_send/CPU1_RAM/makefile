@@ -11,8 +11,14 @@ GEN_CMDS__FLAG :=
 
 ORDERED_OBJS += \
 "./main.obj" \
-"./Peripherals/led/led.obj" \
+"./Peripherals/dlog/DLOG_4CH_F.obj" \
+"./Peripherals/dma/user_dma.obj" \
+"./Peripherals/epwm/user_epwm.obj" \
+"./Peripherals/gpio/user_gpio.obj" \
+"./Peripherals/interrupt/user_interrupt.obj" \
+"./Peripherals/led/user_led.obj" \
 "./Peripherals/sci/user_sci.obj" \
+"./Peripherals/spi/user_spi.obj" \
 "./device/device.obj" \
 "./device/f2838x_codestartbranch.obj" \
 "../device/2838x_RAM_lnk_cpu1.cmd" \
@@ -28,12 +34,24 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include Peripherals/dlog/subdir_vars.mk
+-include Peripherals/dma/subdir_vars.mk
+-include Peripherals/epwm/subdir_vars.mk
+-include Peripherals/gpio/subdir_vars.mk
+-include Peripherals/interrupt/subdir_vars.mk
 -include Peripherals/led/subdir_vars.mk
 -include Peripherals/sci/subdir_vars.mk
+-include Peripherals/spi/subdir_vars.mk
 -include device/subdir_vars.mk
 -include subdir_rules.mk
+-include Peripherals/dlog/subdir_rules.mk
+-include Peripherals/dma/subdir_rules.mk
+-include Peripherals/epwm/subdir_rules.mk
+-include Peripherals/gpio/subdir_rules.mk
+-include Peripherals/interrupt/subdir_rules.mk
 -include Peripherals/led/subdir_rules.mk
 -include Peripherals/sci/subdir_rules.mk
+-include Peripherals/spi/subdir_rules.mk
 -include device/subdir_rules.mk
 -include objects.mk
 
@@ -131,42 +149,42 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-empty_driverlib_project.out \
+1_SCI_send.out \
 
 EXE_OUTPUTS__QUOTED += \
-"empty_driverlib_project.out" \
+"1_SCI_send.out" \
 
 BIN_OUTPUTS += \
-empty_driverlib_project.hex \
+1_SCI_send.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"empty_driverlib_project.hex" \
+"1_SCI_send.hex" \
 
 
 # All Target
 all: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "empty_driverlib_project.out"
+	@$(MAKE) --no-print-directory -Onone "1_SCI_send.out"
 
 # Tool invocations
-empty_driverlib_project.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
+1_SCI_send.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: C2000 Linker'
-	"C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --idiv_support=idiv0 --tmu_support=tmu0 -Ooff --define=DEBUG --define=CPU1 --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi -z -m"empty_driverlib_project.map" --heap_size=0x200 --stack_size=0x100 --warn_sections -i"C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/lib" -i"C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include" --reread_libs --define=RAM --diag_wrap=off --display_error_number --xml_link_info="empty_driverlib_project_linkInfo.xml" --entry_point=code_start --rom_model -o "empty_driverlib_project.out" $(ORDERED_OBJS)
+	"C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --idiv_support=idiv0 --tmu_support=tmu0 -Ooff --define=DEBUG --define=CPU1 --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi -z -m"1_SCI_send.map" --heap_size=0x200 --stack_size=0x100 --warn_sections -i"C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/lib" -i"C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include" --reread_libs --define=RAM --diag_wrap=off --display_error_number --xml_link_info="1_SCI_send_linkInfo.xml" --entry_point=code_start --rom_model -o "1_SCI_send.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
-empty_driverlib_project.hex: $(EXE_OUTPUTS)
+1_SCI_send.hex: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: C2000 Hex Utility'
-	"C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/bin/hex2000"  -o "empty_driverlib_project.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/bin/hex2000"  -o "1_SCI_send.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "Peripherals\led\led.obj" "Peripherals\sci\user_sci.obj" "device\device.obj" "device\f2838x_codestartbranch.obj" 
-	-$(RM) "main.d" "Peripherals\led\led.d" "Peripherals\sci\user_sci.d" "device\device.d" 
+	-$(RM) "main.obj" "Peripherals\dlog\DLOG_4CH_F.obj" "Peripherals\dma\user_dma.obj" "Peripherals\epwm\user_epwm.obj" "Peripherals\gpio\user_gpio.obj" "Peripherals\interrupt\user_interrupt.obj" "Peripherals\led\user_led.obj" "Peripherals\sci\user_sci.obj" "Peripherals\spi\user_spi.obj" "device\device.obj" "device\f2838x_codestartbranch.obj" 
+	-$(RM) "main.d" "Peripherals\dlog\DLOG_4CH_F.d" "Peripherals\dma\user_dma.d" "Peripherals\epwm\user_epwm.d" "Peripherals\gpio\user_gpio.d" "Peripherals\interrupt\user_interrupt.d" "Peripherals\led\user_led.d" "Peripherals\sci\user_sci.d" "Peripherals\spi\user_spi.d" "device\device.d" 
 	-$(RM) "device\f2838x_codestartbranch.d" 
 	-@echo 'Finished clean'
 	-@echo ' '

@@ -1,10 +1,8 @@
 # FIXED
 
 Peripherals/sci/user_sci.obj: ../Peripherals/sci/user_sci.c
-Peripherals/sci/user_sci.obj: C:/TI/work_space_CCS9.3/empty_driverlib_project/device/driverlib.h
-Peripherals/sci/user_sci.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_memmap.h
-Peripherals/sci/user_sci.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/adc.h
 Peripherals/sci/user_sci.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/stdbool.h
+Peripherals/sci/user_sci.obj: C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/Peripherals/sci/user_sci.h
 Peripherals/sci/user_sci.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/stdint.h
 Peripherals/sci/user_sci.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/_stdint40.h
 Peripherals/sci/user_sci.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/stdint.h
@@ -13,6 +11,10 @@ Peripherals/sci/user_sci.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12
 Peripherals/sci/user_sci.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/machine/_types.h
 Peripherals/sci/user_sci.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/machine/_stdint.h
 Peripherals/sci/user_sci.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/_stdint.h
+Peripherals/sci/user_sci.obj: C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/device/device.h
+Peripherals/sci/user_sci.obj: C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/device/driverlib.h
+Peripherals/sci/user_sci.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_memmap.h
+Peripherals/sci/user_sci.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/adc.h
 Peripherals/sci/user_sci.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_adc.h
 Peripherals/sci/user_sci.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_sysctl.h
 Peripherals/sci/user_sci.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_types.h
@@ -90,14 +92,11 @@ Peripherals/sci/user_sci.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2
 Peripherals/sci/user_sci.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/spi.h
 Peripherals/sci/user_sci.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_spi.h
 Peripherals/sci/user_sci.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/usb.h
-Peripherals/sci/user_sci.obj: C:/TI/work_space_CCS9.3/empty_driverlib_project/device/device.h
-Peripherals/sci/user_sci.obj: ../Peripherals/sci/user_sci.h
+Peripherals/sci/user_sci.obj: C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/Peripherals/interrupt/user_interrupt.h
 
 ../Peripherals/sci/user_sci.c: 
-C:/TI/work_space_CCS9.3/empty_driverlib_project/device/driverlib.h: 
-C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_memmap.h: 
-C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/adc.h: 
 C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/stdbool.h: 
+C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/Peripherals/sci/user_sci.h: 
 C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/stdint.h: 
 C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/_stdint40.h: 
 C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/stdint.h: 
@@ -106,6 +105,10 @@ C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/_types.h:
 C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/machine/_types.h: 
 C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/machine/_stdint.h: 
 C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/_stdint.h: 
+C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/device/device.h: 
+C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/device/driverlib.h: 
+C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_memmap.h: 
+C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/adc.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_adc.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_sysctl.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_types.h: 
@@ -183,5 +186,4 @@ C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_sdfm.h:
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/spi.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_spi.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/usb.h: 
-C:/TI/work_space_CCS9.3/empty_driverlib_project/device/device.h: 
-../Peripherals/sci/user_sci.h: 
+C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/Peripherals/interrupt/user_interrupt.h: 
