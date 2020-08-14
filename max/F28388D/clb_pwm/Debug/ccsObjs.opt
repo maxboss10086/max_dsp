@@ -1,0 +1,1 @@
+"./empty.obj" "./syscfg/clb_config.obj" "./syscfg/clb_sim.obj" "./Peripherals/clb/user_clb.obj" "./device/device.obj" "./device/f2838x_codestartbranch.obj" "../2838x_RAM_lnk_cpu1.cmd" "C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/ccs/Debug/driverlib.lib" -llibc.a 
