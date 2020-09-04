@@ -130,35 +130,35 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-clb_empty.out \
+clb_pwm.out \
 
 EXE_OUTPUTS__QUOTED += \
-"clb_empty.out" \
+"clb_pwm.out" \
 
 BIN_OUTPUTS += \
-clb_empty.hex \
+clb_pwm.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"clb_empty.hex" \
+"clb_pwm.hex" \
 
 
 # All Target
 all: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "clb_empty.out"
+	@$(MAKE) --no-print-directory -Onone "clb_pwm.out"
 
 # Tool invocations
-clb_empty.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
+clb_pwm.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: C2000 Linker'
-	"C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --idiv_support=idiv0 --tmu_support=tmu0 -Ooff --define=DEBUG --define=CPU1 -g --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi -z -m"clb_empty.map" --heap_size=0x200 --stack_size=0x100 --warn_sections -i"C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/lib" -i"C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include" --reread_libs --define=RAM --diag_wrap=off --display_error_number --xml_link_info="clb_empty_linkInfo.xml" --entry_point=code_start --rom_model -o "clb_empty.out" $(ORDERED_OBJS)
+	"C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --idiv_support=idiv0 --tmu_support=tmu0 -Ooff --define=DEBUG --define=CPU1 -g --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi -z -m"clb_pwm.map" --heap_size=0x200 --stack_size=0x100 --warn_sections -i"C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/lib" -i"C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include" --reread_libs --define=RAM --diag_wrap=off --display_error_number --xml_link_info="clb_pwm_linkInfo.xml" --entry_point=code_start --rom_model -o "clb_pwm.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 	@$(MAKE) --no-print-directory post-build
 
-clb_empty.hex: $(EXE_OUTPUTS)
+clb_pwm.hex: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: C2000 Hex Utility'
-	"C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/bin/hex2000"  -o "clb_empty.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/bin/hex2000"  -o "clb_pwm.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 	@$(MAKE) --no-print-directory post-build
@@ -175,11 +175,11 @@ clean:
 	-@echo ' '
 
 post-build:
-	-mkdir "C:/TI/work_space_ccs10.1/clb_empty/Debug/simulation"
-	-C:/TDM-GCC-64/bin/g++  -c -DCLB_SIM -IC:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc-2.3.3/src -IC:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc/include -IC:/TI/work_space_ccs10.1/clb_empty -IC:/TDM-GCC-64/bin/include -Og -g -gdwarf-3 -gstrict-dwarf -Wall -MMD -MP -MFC:/TI/work_space_ccs10.1/clb_empty/Debug/simulation/clb_sim.d -MTC:/TI/work_space_ccs10.1/clb_empty/Debug/simulation/clb_sim.o -IC:/TI/work_space_ccs10.1/clb_empty/Debug/syscfg   -fno-threadsafe-statics  -oC:/TI/work_space_ccs10.1/clb_empty/Debug/simulation/clb_sim.o C:/TI/work_space_ccs10.1/clb_empty/Debug/syscfg/clb_sim.cpp
-	-C:/TDM-GCC-64/bin/g++ -DCLB_SIM -Og -g -gdwarf-3 -gstrict-dwarf -Wall -Wl,-Map,C:/TI/work_space_ccs10.1/clb_empty/Debug/simulation/simulation_output.map -LC:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc-2.3.3/build/src -oC:/TI/work_space_ccs10.1/clb_empty/Debug/simulation/simulation_output.exe C:/TI/work_space_ccs10.1/clb_empty/Debug/simulation/clb_sim.o C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc/src/CLB_FSM_SC_model.o C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc/src/CLB_HLC_SC_model.o C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc/src/CLB_LUT4_SC_model.o C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc/src/CLB_OutputLUT_SC_model.o C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc/src/CLB_counter_SC_model.o  -Wl,--start-group -lsystemc -Wl,--end-group
+	-mkdir "C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/simulation"
+	-C:/TDM-GCC-64/bin/g++  -c -DCLB_SIM -IC:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc-2.3.3/src -IC:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc/include -IC:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm -IC:/TDM-GCC-64/bin/include -Og -g -gdwarf-3 -gstrict-dwarf -Wall -MMD -MP -MFC:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/simulation/clb_sim.d -MTC:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/simulation/clb_sim.o -IC:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/syscfg   -fno-threadsafe-statics  -oC:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/simulation/clb_sim.o C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/syscfg/clb_sim.cpp
+	-C:/TDM-GCC-64/bin/g++ -DCLB_SIM -Og -g -gdwarf-3 -gstrict-dwarf -Wall -Wl,-Map,C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/simulation/simulation_output.map -LC:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc-2.3.3/build/src -oC:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/simulation/simulation_output.exe C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/simulation/clb_sim.o C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc/src/CLB_FSM_SC_model.o C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc/src/CLB_HLC_SC_model.o C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc/src/CLB_LUT4_SC_model.o C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc/src/CLB_OutputLUT_SC_model.o C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc/src/CLB_counter_SC_model.o  -Wl,--start-group -lsystemc -Wl,--end-group
 	-./simulation/simulation_output.exe
-	-C:/TI/ccs10.1/ccs/tools/node/node.exe "C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/dot_file_libraries/clbDotUtility.js"  "C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg" "C:/TI/work_space_ccs10.1/clb_empty/Debug/syscfg" "C:/TI/work_space_ccs10.1/clb_empty/Debug/syscfg/clb.dot"
+	-C:/TI/ccs10.1/ccs/tools/node/node.exe "C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/dot_file_libraries/clbDotUtility.js"  "C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg" "C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/syscfg" "C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/syscfg/clb.dot"
 	-@echo ' '
 
 .PHONY: all clean dependents

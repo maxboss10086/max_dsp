@@ -1,7 +1,7 @@
 # FIXED
 
 empty.obj: ../empty.c
-empty.obj: C:/TI/work_space_ccs10.1/clb_empty/device/driverlib.h
+empty.obj: C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/device/driverlib.h
 empty.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_memmap.h
 empty.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/adc.h
 empty.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/stdbool.h
@@ -92,12 +92,12 @@ empty.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/
 empty.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/spi.h
 empty.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_spi.h
 empty.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/usb.h
-empty.obj: C:/TI/work_space_ccs10.1/clb_empty/device/device.h
-empty.obj: C:/TI/work_space_ccs10.1/clb_empty/Debug/syscfg/clb_config.h
-empty.obj: C:/TI/work_space_ccs10.1/clb_empty/Peripherals/clb/user_clb.h
+empty.obj: C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/device/device.h
+empty.obj: C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/syscfg/clb_config.h
+empty.obj: C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Peripherals/clb/user_clb.h
 
 ../empty.c: 
-C:/TI/work_space_ccs10.1/clb_empty/device/driverlib.h: 
+C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/device/driverlib.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_memmap.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/adc.h: 
 C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/stdbool.h: 
@@ -188,6 +188,6 @@ C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_sdfm.h:
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/spi.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_spi.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/usb.h: 
-C:/TI/work_space_ccs10.1/clb_empty/device/device.h: 
-C:/TI/work_space_ccs10.1/clb_empty/Debug/syscfg/clb_config.h: 
-C:/TI/work_space_ccs10.1/clb_empty/Peripherals/clb/user_clb.h: 
+C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/device/device.h: 
+C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/syscfg/clb_config.h: 
+C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Peripherals/clb/user_clb.h: 

@@ -1,5 +1,5 @@
-C:/TI/work_space_ccs10.1/clb_empty/Debug/simulation/clb_sim.o: \
- C:/TI/work_space_ccs10.1/clb_empty/Debug/syscfg/clb_sim.cpp \
+C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/simulation/clb_sim.o: \
+ C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/syscfg/clb_sim.cpp \
  C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc-2.3.3/src/systemc.h \
  C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc-2.3.3/src/systemc \
  C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc-2.3.3/src/sysc/kernel/sc_cmnhdr.h \
@@ -110,7 +110,7 @@ C:/TI/work_space_ccs10.1/clb_empty/Debug/simulation/clb_sim.o: \
  C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc/include/CLB_FSM_SC_model.h \
  C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc/include/CLB_Input_conditioner.h \
  C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc/include/squareWave.h \
- C:/TI/work_space_ccs10.1/clb_empty/Debug/syscfg/clb_config.h
+ C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/syscfg/clb_config.h
 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc-2.3.3/src/systemc.h:
 
@@ -332,4 +332,4 @@ C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc/incl
 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/utilities/clb_tool/clb_syscfg/systemc/include/squareWave.h:
 
-C:/TI/work_space_ccs10.1/clb_empty/Debug/syscfg/clb_config.h:
+C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/syscfg/clb_config.h:

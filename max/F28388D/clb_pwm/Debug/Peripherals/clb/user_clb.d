@@ -1,7 +1,7 @@
 # FIXED
 
 Peripherals/clb/user_clb.obj: ../Peripherals/clb/user_clb.c
-Peripherals/clb/user_clb.obj: C:/TI/work_space_ccs10.1/clb_empty/device/driverlib.h
+Peripherals/clb/user_clb.obj: C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/device/driverlib.h
 Peripherals/clb/user_clb.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_memmap.h
 Peripherals/clb/user_clb.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/adc.h
 Peripherals/clb/user_clb.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/stdbool.h
@@ -92,12 +92,12 @@ Peripherals/clb/user_clb.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2
 Peripherals/clb/user_clb.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/spi.h
 Peripherals/clb/user_clb.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_spi.h
 Peripherals/clb/user_clb.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/usb.h
-Peripherals/clb/user_clb.obj: C:/TI/work_space_ccs10.1/clb_empty/device/device.h
-Peripherals/clb/user_clb.obj: C:/TI/work_space_ccs10.1/clb_empty/Debug/syscfg/clb_config.h
+Peripherals/clb/user_clb.obj: C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/device/device.h
+Peripherals/clb/user_clb.obj: C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/syscfg/clb_config.h
 Peripherals/clb/user_clb.obj: ../Peripherals/clb/user_clb.h
 
 ../Peripherals/clb/user_clb.c: 
-C:/TI/work_space_ccs10.1/clb_empty/device/driverlib.h: 
+C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/device/driverlib.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_memmap.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/adc.h: 
 C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/stdbool.h: 
@@ -188,6 +188,6 @@ C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_sdfm.h:
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/spi.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_spi.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/usb.h: 
-C:/TI/work_space_ccs10.1/clb_empty/device/device.h: 
-C:/TI/work_space_ccs10.1/clb_empty/Debug/syscfg/clb_config.h: 
+C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/device/device.h: 
+C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/clb_pwm/Debug/syscfg/clb_config.h: 
 ../Peripherals/clb/user_clb.h: 
