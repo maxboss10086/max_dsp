@@ -5,15 +5,17 @@ device/device.obj: ../device/device.h
 device/device.obj: ../device/driverlib.h
 device/device.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_memmap.h
 device/device.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/adc.h
-device/device.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/stdbool.h
-device/device.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/stdint.h
-device/device.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/_stdint40.h
-device/device.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/stdint.h
-device/device.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/cdefs.h
-device/device.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/_types.h
-device/device.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/machine/_types.h
-device/device.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/machine/_stdint.h
-device/device.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/_stdint.h
+device/device.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/stdbool.h
+device/device.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/_ti_config.h
+device/device.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/linkage.h
+device/device.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/stdint.h
+device/device.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/_stdint40.h
+device/device.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/sys/stdint.h
+device/device.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/sys/cdefs.h
+device/device.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/sys/_types.h
+device/device.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/machine/_types.h
+device/device.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/machine/_stdint.h
+device/device.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/sys/_stdint.h
 device/device.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_adc.h
 device/device.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_sysctl.h
 device/device.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_types.h
@@ -97,15 +99,17 @@ device/device.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driver
 ../device/driverlib.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_memmap.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/adc.h: 
-C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/stdbool.h: 
-C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/stdint.h: 
-C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/_stdint40.h: 
-C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/stdint.h: 
-C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/cdefs.h: 
-C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/_types.h: 
-C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/machine/_types.h: 
-C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/machine/_stdint.h: 
-C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/_stdint.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/stdbool.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/_ti_config.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/linkage.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/stdint.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/_stdint40.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/sys/stdint.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/sys/cdefs.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/sys/_types.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/machine/_types.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/machine/_stdint.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/sys/_stdint.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_adc.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_sysctl.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_types.h: 

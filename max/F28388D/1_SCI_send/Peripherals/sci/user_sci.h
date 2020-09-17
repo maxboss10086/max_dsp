@@ -1,7 +1,7 @@
 /*
  * scl.h
  *
- *  Created on: 2020年5月21日
+ *  Created on: 2020锟斤拷5锟斤拷21锟斤拷
  *      Author: 57315
  */
 
@@ -47,8 +47,8 @@ extern sci_init_all_para sci;
 //function
 void        scia_tx_init_set(void);
 void        scia_rx_init_set(void);
-void        sci_send(SCI_PORT_enum sci ,uint16_t data);//串口发送一帧数据
-uint16_t    sci_received(SCI_PORT_enum sci_port);//串口接收一帧数据
+void        sci_send(SCI_PORT_enum sci ,uint16_t data);
+uint16_t    sci_received(SCI_PORT_enum sci_port);
 void        sci_init_set(SCI_PORT_enum sci_port);
 bool        sci_reveive_ack(SCI_PORT_enum sci_port);
 

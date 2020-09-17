@@ -57,6 +57,45 @@
 void main(void)
 {
 
+    //***********************************************系统初始化**********************************\\
+    // Initialize device clock and peripherals
+        // PLLSYSCLK = 20MHz (XTAL_OSC) * 40 (IMULT) / (2 (REFDIV) * 2 (ODIV) * 1(SYSDIV))=200M
+    //
+    // Initialize device clock and peripherals
+    //
+
+
+    Device_init();
+    // Setup GPIO by disabling pin locks and enabling pullups
+    Device_initGPIO();
+    // Initialize PIE and clear PIE registers. Disables CPU interrupts.
+    Interrupt_initModule();
+
+    // Initialize the PIE vector table with pointers to the shell Interrupt
+    // Service Routines (ISR).
+    //
+    Interrupt_initVectorTable();
+
+
+    //***********************************************外设初始化设置**********************************\\
+
+    EALLOW;
+    GPIO_setPadConfig( 62, GPIO_PIN_TYPE_STD);
+    GPIO_setDirectionMode( 62, GPIO_DIR_MODE_OUT);
+    EDIS;
+
+
+    // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
+        EINT;
+        ERTM;
+    ////***********************************************函数执行***************************************\\
+    ////函数执行
+    while(1){
+        GpioDataRegs.GPBDAT.bit.GPIO62 = 1;
+        DELAY_US(5000);
+        GpioDataRegs.GPBDAT.bit.GPIO62 = 0;
+        DELAY_US(5000);
+    }
 }
 
 //

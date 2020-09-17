@@ -10,7 +10,7 @@
 	<rts value="libc.a"/>
 	<createSlaveProjects value=""/>
 	<templateProperties value="id=empty_bitfield_driverlib.projectspec.empty_bitfield_driverlib_project"/>
-	<origin value="C:\TI\c2000_ware\C2000Ware_3_02_00_00\device_support\f2838x\examples\cpu1\empty_projects\CCS\empty_bitfield_driverlib.projectspec"/>
+	<origin value="C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/F28388_empty_project"/>
 	<filesToOpen value=""/>
 	<isTargetManual value="false"/>
 </projectOptions>

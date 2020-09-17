@@ -1,18 +1,20 @@
 # FIXED
 
 main.obj: ../main.c
-main.obj: C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/device/driverlib.h
+main.obj: C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/1_SCI_send/device/driverlib.h
 main.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_memmap.h
 main.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/adc.h
-main.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/stdbool.h
-main.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/stdint.h
-main.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/_stdint40.h
-main.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/stdint.h
-main.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/cdefs.h
-main.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/_types.h
-main.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/machine/_types.h
-main.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/machine/_stdint.h
-main.obj: C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/_stdint.h
+main.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/stdbool.h
+main.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/_ti_config.h
+main.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/linkage.h
+main.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/stdint.h
+main.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/_stdint40.h
+main.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/sys/stdint.h
+main.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/sys/cdefs.h
+main.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/sys/_types.h
+main.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/machine/_types.h
+main.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/machine/_stdint.h
+main.obj: C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/sys/_stdint.h
 main.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_adc.h
 main.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_sysctl.h
 main.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_types.h
@@ -90,23 +92,25 @@ main.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/h
 main.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/spi.h
 main.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_spi.h
 main.obj: C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/usb.h
-main.obj: C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/device/device.h
-main.obj: C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/Peripherals/interrupt/user_interrupt.h
-main.obj: C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/Peripherals/sci/user_sci.h
+main.obj: C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/1_SCI_send/device/device.h
+main.obj: C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/1_SCI_send/Peripherals/interrupt/user_interrupt.h
+main.obj: C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/1_SCI_send/Peripherals/sci/user_sci.h
 
 ../main.c: 
-C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/device/driverlib.h: 
+C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/1_SCI_send/device/driverlib.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_memmap.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/adc.h: 
-C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/stdbool.h: 
-C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/stdint.h: 
-C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/_stdint40.h: 
-C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/stdint.h: 
-C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/cdefs.h: 
-C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/_types.h: 
-C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/machine/_types.h: 
-C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/machine/_stdint.h: 
-C:/TI/ccs9.3/ccs/tools/compiler/ti-cgt-c2000_18.12.4.LTS/include/sys/_stdint.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/stdbool.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/_ti_config.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/linkage.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/stdint.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/_stdint40.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/sys/stdint.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/sys/cdefs.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/sys/_types.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/machine/_types.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/machine/_stdint.h: 
+C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include/sys/_stdint.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_adc.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_sysctl.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_types.h: 
@@ -184,6 +188,6 @@ C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_sdfm.h:
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/spi.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/inc/hw_spi.h: 
 C:/TI/c2000_ware/C2000Ware_3_02_00_00/driverlib/f2838x/driverlib/usb.h: 
-C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/device/device.h: 
-C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/Peripherals/interrupt/user_interrupt.h: 
-C:/TI/work_space_CCS9.3/max_dsp/max/F28388D/1_SCI_send/Peripherals/sci/user_sci.h: 
+C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/1_SCI_send/device/device.h: 
+C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/1_SCI_send/Peripherals/interrupt/user_interrupt.h: 
+C:/TI/work_space_ccs10.1/max_dsp/max/F28388D/1_SCI_send/Peripherals/sci/user_sci.h: 

@@ -4,7 +4,7 @@
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROGRAM.TMS320F28388D.ccxml.Texas Instruments XDS100v2 USB Debug Probe_0/C28xx_CPU1" value="${build_artifact:1_SCI_send}"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT.TMS320F28388D.ccxml.Texas Instruments XDS100v2 USB Debug Probe_0/C28xx_CPU1" value="1_SCI_send"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_TARGET_CONFIG" value="${target_config_active_default:1_SCI_send}"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.TMS320F28388D.ccxml.Texas Instruments XDS100v2 USB Debug Probe_0/C28xx_CPU1" value="C:/TI\work_space_CCS9.3\max_dsp\max\F28388D\1_SCI_send\CPU1_RAM\1_SCI_send.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.TMS320F28388D.ccxml.Texas Instruments XDS100v2 USB Debug Probe_0/C28xx_CPU1" value="C:\TI\work_space_ccs10.1\max_dsp\max\F28388D\1_SCI_send\CPU1_RAM\1_SCI_send.out"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/1_SCI_send"/>
 </listAttribute>
