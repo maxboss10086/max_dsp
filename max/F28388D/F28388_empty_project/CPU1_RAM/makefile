@@ -57,6 +57,7 @@ ORDERED_OBJS += \
 "./device/driverlib/xbar.obj" \
 "../device/2838x_RAM_lnk_cpu1.cmd" \
 "../device/f2838x_headers_nonBIOS_cpu1.cmd" \
+"../device/sup_lib/crc/c28x_vcrc_library_fpu64.lib" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
 
@@ -70,9 +71,13 @@ RMDIR := RMDIR /S/Q
 -include subdir_vars.mk
 -include device/subdir_vars.mk
 -include device/driverlib/subdir_vars.mk
+-include device/sup_lib/crc/subdir_vars.mk
+-include device/sup_lib/subdir_vars.mk
 -include subdir_rules.mk
 -include device/subdir_rules.mk
 -include device/driverlib/subdir_rules.mk
+-include device/sup_lib/crc/subdir_rules.mk
+-include device/sup_lib/subdir_rules.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -182,14 +187,14 @@ BIN_OUTPUTS__QUOTED += \
 
 
 # All Target
-all: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
+all: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(A_SRCS) $(GEN_CMDS)
 	@$(MAKE) --no-print-directory -Onone "F28388_empty_project.out"
 
 # Tool invocations
-F28388_empty_project.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
+F28388_empty_project.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(A_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: C2000 Linker'
-	"C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --idiv_support=idiv0 --tmu_support=tmu0 -Ooff --advice:performance=all --define=DEBUG --define=CPU1 --define=_DUAL_HEADERS --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi -z -m"F28388_empty_project.map" --stack_size=0x100 --warn_sections -i"C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/lib" -i"C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="F28388_empty_project_linkInfo.xml" --entry_point=code_start --rom_model -o "F28388_empty_project.out" $(ORDERED_OBJS)
+	"C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --idiv_support=idiv0 --tmu_support=tmu0 -Ooff --advice:performance=all --define=DEBUG --define=CPU1 --define=_DUAL_HEADERS --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi -z -m"F28388_empty_project.map" --stack_size=0x100 --warn_sections -i"C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/lib" -i"C:/TI/ccs10.1/ccs/tools/compiler/ti-cgt-c2000_20.2.1.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="F28388_empty_project_linkInfo.xml" --entry_point=code_start --rom_model -o "F28388_empty_project.out" $(ORDERED_OBJS) $(A_SRCS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 

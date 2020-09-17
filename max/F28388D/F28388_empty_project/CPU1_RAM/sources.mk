@@ -114,4 +114,6 @@ SUBDIRS := \
 . \
 device \
 device/driverlib \
+device/sup_lib/crc \
+device/sup_lib \
 
